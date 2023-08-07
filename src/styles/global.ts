@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
 		--colorWhiteFixed: #ffffff;
 	}
 
-	.textStyleHeadingHeading1700 {
+	.textHeading1700 {
 		font-size: 4.4rem;
 		font-family: "Lexend";
 		font-weight: 700;
@@ -48,7 +48,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading2600 {
+	.textHeading2600 {
 		font-size: 3.6rem;
 		font-family: "Lexend";
 		font-weight: 600;
@@ -57,7 +57,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading3500 {
+	.textHeading3500 {
 		font-size: 3.2rem;
 		font-family: "Lexend";
 		font-weight: 500;
@@ -66,7 +66,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading3600 {
+	.textHeading3600 {
 		font-size: 3.2rem;
 		font-family: "Lexend";
 		font-weight: 600;
@@ -75,7 +75,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading4600 {
+	.textHeading4600 {
 		font-size: 2.8rem;
 		font-family: "Lexend";
 		font-weight: 600;
@@ -84,7 +84,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading4500 {
+	.textHeading4500 {
 		font-size: 2.8rem;
 		font-family: "Lexend";
 		font-weight: 500;
@@ -93,7 +93,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading5500 {
+	.textHeading5500 {
 		font-size: 2.4rem;
 		font-family: "Lexend";
 		font-weight: 500;
@@ -102,7 +102,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading5600 {
+	.textHeading5600 {
 		font-size: 2.4rem;
 		font-family: "Lexend";
 		font-weight: 600;
@@ -111,7 +111,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading6500 {
+	.textHeading6500 {
 		font-size: 2rem;
 		font-family: "Lexend";
 		font-weight: 500;
@@ -120,7 +120,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading6600 {
+	.textHeading6600 {
 		font-size: 2rem;
 		font-family: "Lexend";
 		font-weight: 600;
@@ -129,7 +129,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading7500 {
+	.textHeading7500 {
 		font-size: 1.6rem;
 		font-family: "Lexend";
 		font-weight: 500;
@@ -138,7 +138,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleHeadingHeading7600 {
+	.textHeading7600 {
 		font-size: 1.6rem;
 		font-family: "Lexend";
 		font-weight: 600;
@@ -147,7 +147,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleInputsButtonsInputLabel {
+	.textInputLabel {
 		font-size: 1.4rem;
 		font-family: "Inter";
 		font-weight: 500;
@@ -156,7 +156,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleInputsButtonsInputPlaceholder {
+	.textInputPlaceholder {
 		font-size: 1.6rem;
 		font-family: "Inter";
 		font-weight: 400;
@@ -165,7 +165,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleInputsButtonsButtonBigText {
+	.textButtonBigText {
 		font-size: 1.6rem;
 		font-family: "Inter";
 		font-weight: 700;
@@ -174,7 +174,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleTextBody1400 {
+	.textBody1400 {
 		font-size: 1.6rem;
 		font-family: "Inter";
 		font-weight: 400;
@@ -184,7 +184,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleTextBody1600 {
+	.textBody1600 {
 		font-size: 1.6rem;
 		font-family: "Inter";
 		font-weight: 700;
@@ -194,7 +194,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleTextBody2400 {
+	.textBody2400 {
 		font-size: 1.4rem;
 		font-family: "Inter";
 		font-weight: 400;
@@ -204,7 +204,7 @@ export const GlobalStyles = createGlobalStyle`
 		text-transform: none;
 	}
 
-	.textStyleTextBody2500 {
+	.textBody2500 {
 		font-size: 1.4rem;
 		font-family: "Inter";
 		font-weight: 500;
