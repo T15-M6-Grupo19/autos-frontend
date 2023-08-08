@@ -35,7 +35,7 @@ export const GlobalStyles = createGlobalStyle`
 		--color-Grey8: 	   #f1f3f5;
 		--color-Grey9: 	   #f8f9fa;
 		--color-Grey10: 	   #fdfdfd;
-		--color-WhiteFixed: #ffffff;
+		--color-WhiteFixed:#ffffff;
 	}
 
 	.textHeading1700 {
@@ -229,6 +229,13 @@ export const GlobalStyles = createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+	body{
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
     
 

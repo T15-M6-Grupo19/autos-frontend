@@ -21,6 +21,7 @@ export const StyledButton = styled.button<iButtonStyles>`
         return css`
           background-color: var(--color-Brand2);
           color: var(--color-WhiteFixed);
+          
           :hover {
             background-color: var(--color-Brand3);
           }
