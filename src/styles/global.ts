@@ -36,6 +36,7 @@ export const GlobalStyles = createGlobalStyle`
 		--color-Grey9: 	   #f8f9fa;
 		--color-Grey10: 	   #fdfdfd;
 		--color-WhiteFixed:#ffffff;
+
 	}
 
 	.textHeading1700 {
@@ -230,11 +231,11 @@ export const GlobalStyles = createGlobalStyle`
         cursor: pointer;
     }
 
-	body{
+	html body{
+		width: 100%;
 		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		
+		
 	}
 
     
