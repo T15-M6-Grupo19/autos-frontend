@@ -39,6 +39,16 @@ const PaginationStyle = styled.section`
      div .Icon{
           padding-top: 4px;
      }
+
+     @media(min-width: 1023px){
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          div{
+               width: 150px;
+          }
+     }
 `
 
 export { PaginationStyle }
