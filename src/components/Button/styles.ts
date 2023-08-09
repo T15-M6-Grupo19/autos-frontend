@@ -21,9 +21,16 @@ export const StyledButton = styled.button<iButtonStyles>`
         return css`
           background-color: var(--color-Brand2);
           color: var(--color-WhiteFixed);
+
+          font-size: 1.6rem;
+          font-family: "Inter";
+          font-weight: 700;
+          font-style: normal;
+          text-decoration: none;
+          text-transform: none;
           
-          :hover {
-            background-color: var(--color-Brand3);
+          &:hover { 
+            background-color: var(--color-Grey1)
           }
         `;
       case "secondary":
