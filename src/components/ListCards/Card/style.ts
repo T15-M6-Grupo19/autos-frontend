@@ -8,6 +8,8 @@ export const ContainerCard = styled.div`
   flex-direction: column;
   gap: 1rem;
 
+  transition: 1s linear;
+
   figure {
     width: 312px;
     height: 152px;
@@ -29,10 +31,23 @@ export const ContainerCard = styled.div`
     flex-direction: column;
     gap: 5px;
 
-    /* border: 1px solid red; */
+    color: var(--color-Grey2);
+    font-family: "Inter";
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    text-transform: none;
 
     .fist {
       h2 {
+        font-size: 16px;
+        font-family: "Lexend";
+        font-weight: 600;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+
+        color: var(--color-Grey1);
       }
 
       div {
@@ -54,6 +69,15 @@ export const ContainerCard = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
+
+      font-size: 14px;
+      font-family: "Inter";
+      font-weight: 500;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+
+      color: var(--color-Grey2);
 
       .ballon-name {
         width: 32px;
@@ -91,6 +115,14 @@ export const ContainerCard = styled.div`
           border-radius: 4px;
 
           background-color: var(--color-Brand4);
+          color: var(--color-Brand2);
+
+          font-size: 14px;
+          font-family: "Inter";
+          font-weight: 500;
+          font-style: normal;
+          text-decoration: none;
+          text-transform: none;
 
           display: flex;
           align-items: center;
@@ -100,7 +132,48 @@ export const ContainerCard = styled.div`
 
       .wrap-price {
         justify-content: end;
+
+        .price{
+          font-family: 'Lexend';
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 20px;
+
+          color: var(--color-Grey1);
+        }
       }
+    }
+  }
+
+  &:hover img{
+    animation: ClickImage 1s linear both;
+
+  }
+  &:hover figure{
+    border: 1px solid var(--color-Brand2);
+  }
+
+  &:not(:hover) img{
+    animation: NotCLickImage 1s linear both;
+
+  }
+
+  @keyframes ClickImage {
+    0%{
+      transform: scale(1)
+    }
+    100%{
+      transform: scale(1.5);
+    }
+  }
+
+  @keyframes NotCLickImage {
+    0%{
+      transform: scale(1.5)
+    }
+    100%{
+      transform: scale(0.9)
+
     }
   }
 `;

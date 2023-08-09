@@ -1,7 +1,10 @@
-import Porshe from '../../assets/Porshe.svg';
-import { ContainerCard } from './styles';
+import { ContainerCard } from "./style";
 
-export const Card = () => {
+import Porshe from "../../../assets/Porshe.svg";
+
+import { ICar } from "../types";
+
+export const Card = ({car}: ICar) => {
   return (
     <ContainerCard>
       <figure>
@@ -9,13 +12,8 @@ export const Card = () => {
       </figure>
       <div>
         <div className='fist'>
-          <h2> Ferrari </h2>
-          <div>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis et
-            ipsum repellat enim odit sit perspiciatis amet corporis alias
-            consequatur. Dicta inventore aperiam quas consectetur atque
-            deserunt, obcaecati doloribus dolores!
-          </div>
+          <h2> {car.name} </h2>
+          <div> {car.description} </div>
         </div>
         <div className='second'>
           <div className='ballon-name'>
@@ -37,3 +35,5 @@ export const Card = () => {
     </ContainerCard>
   );
 };
+
+export default Card;
