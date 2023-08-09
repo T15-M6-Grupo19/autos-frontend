@@ -32,7 +32,7 @@ export const ContainerCard = styled.div`
     gap: 5px;
 
     color: var(--color-Grey2);
-    font-family: "Inter";
+    font-family: 'Inter';
     font-weight: 400;
     font-style: normal;
     text-decoration: none;
@@ -41,7 +41,7 @@ export const ContainerCard = styled.div`
     .fist {
       h2 {
         font-size: 16px;
-        font-family: "Lexend";
+        font-family: 'Lexend';
         font-weight: 600;
         font-style: normal;
         text-decoration: none;
@@ -71,7 +71,7 @@ export const ContainerCard = styled.div`
       align-items: center;
 
       font-size: 14px;
-      font-family: "Inter";
+      font-family: 'Inter';
       font-weight: 500;
       font-style: normal;
       text-decoration: none;
@@ -118,7 +118,7 @@ export const ContainerCard = styled.div`
           color: var(--color-Brand2);
 
           font-size: 14px;
-          font-family: "Inter";
+          font-family: 'Inter';
           font-weight: 500;
           font-style: normal;
           text-decoration: none;
@@ -133,7 +133,7 @@ export const ContainerCard = styled.div`
       .wrap-price {
         justify-content: end;
 
-        .price{
+        .price {
           font-family: 'Lexend';
           font-size: 16px;
           font-weight: 500;
@@ -145,35 +145,32 @@ export const ContainerCard = styled.div`
     }
   }
 
-  &:hover img{
+  &:hover img {
     animation: ClickImage 1s linear both;
-
   }
-  &:hover figure{
+  &:hover figure {
     border: 1px solid var(--color-Brand2);
   }
 
-  &:not(:hover) img{
+  &:not(:hover) img {
     animation: NotCLickImage 1s linear both;
-
   }
 
   @keyframes ClickImage {
-    0%{
-      transform: scale(1)
+    0% {
+      transform: scale(1);
     }
-    100%{
+    100% {
       transform: scale(1.5);
     }
   }
 
   @keyframes NotCLickImage {
-    0%{
-      transform: scale(1.5)
+    0% {
+      transform: scale(1.5);
     }
-    100%{
-      transform: scale(0.9)
-
+    100% {
+      transform: scale(0.9);
     }
   }
 `;
