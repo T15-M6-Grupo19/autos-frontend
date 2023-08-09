@@ -1,9 +1,11 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const ContainerNav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 3;
 
   height: 80px;
 
@@ -37,20 +39,75 @@ export const ContainerNav = styled.nav`
 
     right: 0;
     top: 79px;
+
+    .login-link-mobile {
+      padding: 12px 20px;
+      border-radius: 4px;
+      border: 2px transparent solid;
+      background-color: transparent;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      color: var(--color-Grey2);
+      transition: ease 0.3s;
+      &:hover {
+        background-color: var(--color-Grey9);
+      }
+    }
+
+    .register-link-mobile {
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      border: 2px var(--color-Grey4) solid;
+      background-color: transparent;
+      color: var(--color-Grey0);
+      transition: ease 0.3s;
+      &:hover {
+        background-color: var(--color-Grey1);
+        border: 2px var(--color-Grey1) solid;
+        color: var(--color-Grey10);
+      }
+    }
   }
 
   .box-handle-desktop {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 20px;
     position: relative;
-  }
+    border-left: 2px solid var(--color-Grey6);
+    padding-left: 20px;
+    height: 80px;
 
-  .divider {
-    font-size: 5.6rem;
-    color: var(--color-Grey6);
+    .login-link {
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      border: 2px transparent solid;
+      background-color: transparent;
+      color: var(--color-Grey2);
+      transition: ease 0.3s;
+      &:hover {
+        background-color: var(--color-Grey9);
+      }
+    }
 
-    position: absolute;
-    right: 250px;
-    top: -19px;
+    .register-link {
+      padding: 12px 28px;
+      border-radius: 4px;
+      border: 2px var(--color-Grey4) solid;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      background-color: transparent;
+      color: var(--color-Grey0);
+      transition: ease 0.3s;
+      &:hover {
+        background-color: var(--color-Grey1);
+        border: 2px var(--color-Grey1) solid;
+        color: var(--color-Grey10);
+      }
+    }
   }
 `;
