@@ -1,7 +1,7 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const ContainerFooter = styled.footer`
-  width: 310px;
+  width: 100%;
   height: 310px;
 
   display: flex;
@@ -12,11 +12,9 @@ export const ContainerFooter = styled.footer`
 
   background-color: var(--color-Grey0);
 
-  border: 1px solid red;
-
   p {
     color: var(--color-WhiteFixed);
-    font: 400 0.575rem 'Inter';
+    font: 400 0.575rem "Inter";
   }
 
   a {
