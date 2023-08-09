@@ -1,13 +1,14 @@
 export interface car {
-     imageURL: string;
-     name: string;
-     description: string;
+  imageURL: string;
+  name: string;
+  description: string;
+  year: string;
 }
 
-export interface ICar{
-     car: car;
+export interface ICar {
+  car: car;
 }
 
 export interface IListCards {
-     listCard: car[];
+  listCard: car[];
 }
