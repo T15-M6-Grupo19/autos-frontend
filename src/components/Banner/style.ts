@@ -51,6 +51,10 @@ const TextStyle = styled.div`
      h1, h2{
           color: var(--color-Grey10);
      }
+     
+     @media(min-width: 1024px){
+          top: 27%;
+     }
 `
 
 export { BannerStyle, BackgroundGradientStyle, TextStyle};

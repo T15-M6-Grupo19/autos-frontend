@@ -14,6 +14,17 @@ const ListCardContainer = styled.ul`
      gap: 15px;
 
      overflow-y: auto;
+
+     @media(min-width: 1024px){
+          height: 100%;
+          width: 68vw;
+          margin: 0px;
+
+          align-items: normal;
+          display: grid; 
+          grid-template-columns: repeat(3, 1fr);
+         
+     }
 `;
 
 export { ListCardContainer }
