@@ -40,4 +40,6 @@ const InfoListCards: car[] = [
   },
 ];
 
-export default InfoListCards;
+
+
+export default infoListCards

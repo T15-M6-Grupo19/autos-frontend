@@ -1,10 +1,9 @@
 import {
   ContainerButtonFilterStyle,
-  FilterWrapper,
-  HomeMainWrapperStyle,
-  HomeSubWrapper,
   SimulateComponentHeaderStyle,
 } from "./style";
+
+import { ContainerButtonFilterStyle, MainStructure } from "./style";
 
 import infoListCards from "../../database/Mock";
 
@@ -12,9 +11,13 @@ import Pagination from "../../components/Pagination";
 import ListCards from "../../components/ListCards";
 import Button from "../../components/Button";
 import Banner from "../../components/Banner";
-import { FilterComponent } from "../../components/Filter";
+
+import FilterCars from "../../components/Filter";
+import { NavBar } from "../../components/NavBar";
+import { Footer } from "../../components/Footer";
+
+
 import { useContext } from "react";
-import { FilterContext } from "../../contexts/FilterContext/filterContext";
 
 const Home = () => {
   const { setFilter } = useContext(FilterContext);
@@ -29,25 +32,21 @@ const Home = () => {
       price: "",
     });
   };
+ 
   return (
-    <HomeMainWrapperStyle>
-      <FilterWrapper>
-        <FilterComponent />
-        <ContainerButtonFilterStyle>
-          <Button
-            name="Limpar filtros"
-            variant="primary"
-            onClick={handleResetClick}
-          />
-        </ContainerButtonFilterStyle>
-      </FilterWrapper>
-      <HomeSubWrapper>
-        <SimulateComponentHeaderStyle></SimulateComponentHeaderStyle>
-        <Banner />
+    <>
+      <NavBar />
+      <Banner />
+      <MainStructure>
+        <FilterCars minKm={0} maxKm={21} minPrice={0} maxPrice={100} />
         <ListCards listCard={infoListCards} />
-        <Pagination />
-      </HomeSubWrapper>
-    </HomeMainWrapperStyle>
+      </MainStructure>
+      <ContainerButtonFilterStyle>
+        <Button name="Filtro" variant="primary" />
+      </ContainerButtonFilterStyle>
+      <Pagination />
+      <Footer />
+    </>
   );
 };
 
