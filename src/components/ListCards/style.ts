@@ -21,8 +21,6 @@ const ListCardContainer = styled.ul`
 
     align-items: normal;
 
-    /* box-sizing: content-box; */
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
