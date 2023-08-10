@@ -1,14 +1,14 @@
-import { ContainerButtonFilterStyle, MainStructure } from "./style";
+import { ContainerButtonFilterStyle, MainStructure } from './style';
 
-import infoListCards from "../../database/Mock";
+import infoListCards from '../../database/Mock';
 
-import Pagination from "../../components/Pagination";
-import ListCards from "../../components/ListCards";
-import Button from "../../components/Button";
-import Banner from "../../components/Banner";
-import FilterCars from "../../components/Filter";
-import { Footer } from "../../components/Footer";
-import { NavBar } from "../../components/NavBar";
+import Pagination from '../../components/Pagination';
+import ListCards from '../../components/ListCards';
+import Button from '../../components/Button';
+import Banner from '../../components/Banner';
+import FilterCars from '../../components/Filter';
+import { Footer } from '../../components/Footer';
+import { NavBar } from '../../components/NavBar';
 
 const Home = () => {
   return (
@@ -20,7 +20,7 @@ const Home = () => {
         <ListCards listCard={infoListCards} />
       </MainStructure>
       <ContainerButtonFilterStyle>
-        <Button name="Filtro" variant="primary" />
+        <Button name='Filtro' variant='primary' />
       </ContainerButtonFilterStyle>
       <Pagination />
       <Footer />
