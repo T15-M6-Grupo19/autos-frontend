@@ -37,6 +37,9 @@ export const GlobalStyles = createGlobalStyle`
 		--color-Grey10: 	   #fdfdfd;
 		--color-WhiteFixed:#ffffff;
 
+		--slider-Widht: 250px;
+
+
 	}
 
 	.textHeading1700 {

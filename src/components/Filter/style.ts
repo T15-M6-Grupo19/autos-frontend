@@ -15,13 +15,6 @@ const FilterCard = styled.aside`
         
    }
 
-   input[type="range"] {
-        accent-color: #9747FF; 
-        margin-left: 25px;
-        width: 11vw;
-        height: 7px;
-    }
-
     li {
      a {
           font-size: 1.1rem;
