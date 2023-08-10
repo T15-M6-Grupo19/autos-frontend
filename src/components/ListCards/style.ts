@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 const ListCardContainer = styled.ul`
   height: 55vh;
-  width: 100%;
+  width: 90%;
 
   margin: 40px 0;
   padding: 0 20px;
