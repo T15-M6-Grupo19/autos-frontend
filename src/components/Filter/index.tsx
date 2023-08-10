@@ -1,16 +1,12 @@
+import { useContext } from "react";
 import Button from "../Button"
+import MultiRangeSlider from "./Ranger";
 import { FilterCard } from "./style"
+import { SlideContext } from "../../provider/SlideContext";
 
-interface IFilters {
-    maxPrice: number;
-    minPrice: number;
-    maxKm: number;
-    minKm: number;
-}
+const FilterCars = () => {
+    const { filterPriceMin, setFilterPriceMin, filterPriceMax, setFilterPriceMax, filterKmMin, filterKmMax,  setFilterKmMin, setFilterKmMax } = useContext(SlideContext);
 
-
-const FilterCars = ({maxPrice, minPrice, maxKm, minKm}: IFilters ) => {
-    
     return(
         <>
         <FilterCard>
@@ -63,21 +59,20 @@ const FilterCars = ({maxPrice, minPrice, maxKm, minKm}: IFilters ) => {
                     <li><a href="">Flex</a></li>
                     <li><a href="">Híbrido</a></li>
                 </ul>
-
             <h2 className="textHeading6600">Km</h2>
-                <div>
-                    <span className="kmAndPrice">
-                        <p>{minKm}km</p> <p>{maxKm}km</p>
-                    </span>
-                    <input type="range" min={minKm} max={maxKm}/>
-                </div>
+            <div>
+                <span className="kmAndPrice">
+                    <p>{filterKmMin}km</p> <p>{filterKmMax}km</p>
+                </span>
+                <MultiRangeSlider min={0} max={100}  onChange={({ min, max }: { min: number; max: number }) => {setFilterKmMin(min), setFilterKmMax(max) }}/>
+            </div>
                 
             <h2 className="textHeading6600">Preço</h2>
             <div>
-            <span className="kmAndPrice">
-                    <p>R$ {minPrice}</p> <p>R$ {maxPrice}</p>
+                <span className="kmAndPrice">
+                    <p>R$ {filterPriceMin}</p> <p>R$ {filterPriceMax}</p>
                 </span>
-                <input type="range" min={minPrice} max={maxPrice}/>
+                <MultiRangeSlider min={0} max={100}  onChange={({ min, max }: { min: number; max: number }) => {setFilterPriceMin(min), setFilterPriceMax(max) }}/>
             </div>
             <Button name="Limpar filtros" variant="primary"></Button>
         </FilterCard>
