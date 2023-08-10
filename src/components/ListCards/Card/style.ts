@@ -8,7 +8,11 @@ export const ContainerCard = styled.div`
   flex-direction: column;
   gap: 1rem;
 
+
+
   transition: 1s linear;
+
+  cursor: pointer;
 
   figure {
     width: 312px;
@@ -151,6 +155,7 @@ export const ContainerCard = styled.div`
   }
   &:hover figure{
     border: 1px solid var(--color-Brand2);
+    overflow: hidden;
   }
 
   &:not(:hover) img{
@@ -163,7 +168,7 @@ export const ContainerCard = styled.div`
       transform: scale(1)
     }
     100%{
-      transform: scale(1.5);
+      transform: scale(1.2);
     }
   }
 

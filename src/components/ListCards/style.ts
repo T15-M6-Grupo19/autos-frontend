@@ -20,8 +20,13 @@ const ListCardContainer = styled.ul`
     margin: 0px;
 
     align-items: normal;
+
+    /* box-sizing: content-box; */
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+    overflow: hidden;
   }
 `;
 
