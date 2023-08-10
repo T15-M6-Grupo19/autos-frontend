@@ -7,8 +7,8 @@ import ListCards from "../../components/ListCards";
 import Button from "../../components/Button";
 import Banner from "../../components/Banner";
 import FilterCars from "../../components/Filter";
-import { NavBar } from "../../components/NavBar";
 import { Footer } from "../../components/Footer";
+import { NavBar } from "../../components/NavBar";
 
 const Home = () => {
   return (
