@@ -16,7 +16,7 @@ const BannerStyle = styled.section`
 
   img {
     height: 100%;
-    width: 110%;
+    width: 100%;
   }
 `;
 
