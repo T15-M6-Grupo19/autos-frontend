@@ -1,34 +1,38 @@
 import { ContainerCard } from "./style";
 
-import Porshe from "../../../assets/Porshe.svg";
+// import Porshe from "../../../assets/Porshe.svg";
 
-import { ICar } from "../types";
+import { IMockCar } from "../types";
 
-export const Card = ({car}: ICar) => {
+export const Card = ({ car }: IMockCar) => {
   return (
     <ContainerCard>
       <figure>
-        <img src={Porshe} />
+        <img src={car.imageURL} />
       </figure>
       <div>
-        <div className='fist'>
-          <h2> {car.name} </h2>
-          <div> {car.description} </div>
+        <div className="fist">
+          <h2> {car.Marca} </h2>
+          <div> {car.Modelo} </div>
         </div>
-        <div className='second'>
-          <div className='ballon-name'>
+        <div className="second">
+          <div className="ballon-name">
             <span>SL</span>
           </div>
           <span>Silva Luiz</span>
         </div>
-        <div className='thirsd'>
-          <div className='detail'>
-            <span>Km</span>
-            <span>Ano</span>
+        <div className="thirsd">
+          <div className="detail">
+            <span>{car.Km}km</span>
+            <span>{car.Ano}</span>
           </div>
-          <div className='wrap-price'>
-            {' '}
-            <span className='price'>R$ 00,00</span>{' '}
+          <div className="wrap-price">
+            <span className="price">
+              {car.Preço.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </span>
           </div>
         </div>
       </div>
