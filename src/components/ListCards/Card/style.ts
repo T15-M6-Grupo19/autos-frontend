@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const ContainerCard = styled.div`
   width: 312px;
@@ -112,7 +112,7 @@ export const ContainerCard = styled.div`
         width: fit-content;
 
         span {
-          width: 50px;
+          width: 70px;
           height: 30px;
           padding: 0 5px;
 
@@ -140,7 +140,7 @@ export const ContainerCard = styled.div`
         justify-content: end;
 
         .price {
-          font-family: 'Lexend';
+          font-family: "Lexend";
           font-size: 16px;
           font-weight: 500;
           line-height: 20px;
