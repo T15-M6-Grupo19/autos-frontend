@@ -38,7 +38,7 @@ const FilterCars = () => {
   const initialMaxPrice = 100000;
   const initialMinPrice = 0;
   const initialMinKm = 0;
-  const initialMaxKm = 500000;
+  const initialMaxKm = 100000;
 
   const handleResetClick = () => {
     setFilter({
@@ -120,7 +120,7 @@ const FilterCars = () => {
         <MultiRangeSlider
           key={sliderKey}
           min={0}
-          max={500000}
+          max={100000}
           onChange={({ min, max }: { min: number; max: number }) => {
             setFilterKmMin(min), setFilterKmMax(max);
           }}

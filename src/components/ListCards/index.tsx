@@ -11,7 +11,8 @@ import { SlideContext } from "../../provider/SlideContext";
 
 const ListCards = ({ listCard }: IMockCarList) => {
   const { filter } = useContext(FilterContext);
-  const { filterPriceMin, filterKmMin } = useContext(SlideContext);
+  const { filterPriceMin, filterPriceMax, filterKmMin, filterKmMax } =
+    useContext(SlideContext);
 
   let filteredCars = mockList;
 
@@ -41,8 +42,14 @@ const ListCards = ({ listCard }: IMockCarList) => {
   if (filterPriceMin) {
     filteredCars = filteredCars.filter((car) => car.Preço > filterPriceMin);
   }
+  if (filterPriceMax) {
+    filteredCars = filteredCars.filter((car) => car.Preço < filterPriceMax);
+  }
   if (filterKmMin) {
     filteredCars = filteredCars.filter((car) => car.Km > filterKmMin);
+  }
+  if (filterKmMax) {
+    filteredCars = filteredCars.filter((car) => car.Km < filterKmMax);
   }
 
   if (filter!) {

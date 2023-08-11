@@ -1,4 +1,3 @@
-import Porshe from "../assets/Porshe.svg";
 const Corolla =
   "https://garagem360.com.br/wp-content/uploads/2023/07/Toyota-Corolla-GLi-2023-2.jpg";
 const Civic =
