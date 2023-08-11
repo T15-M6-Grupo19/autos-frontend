@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const ContainerCard = styled.div`
   width: 312px;
@@ -7,8 +7,6 @@ export const ContainerCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-
 
   transition: 1s linear;
 
@@ -113,7 +111,7 @@ export const ContainerCard = styled.div`
         flex-direction: row;
 
         span {
-          width: 50px;
+          width: 70px;
           height: 30px;
 
           border-radius: 4px;
@@ -137,8 +135,8 @@ export const ContainerCard = styled.div`
       .wrap-price {
         justify-content: end;
 
-        .price{
-          font-family: 'Lexend';
+        .price {
+          font-family: "Lexend";
           font-size: 16px;
           font-weight: 500;
           line-height: 20px;
@@ -149,36 +147,33 @@ export const ContainerCard = styled.div`
     }
   }
 
-  &:hover img{
+  &:hover img {
     animation: ClickImage 1s linear both;
-
   }
-  &:hover figure{
+  &:hover figure {
     border: 1px solid var(--color-Brand2);
     overflow: hidden;
   }
 
-  &:not(:hover) img{
+  &:not(:hover) img {
     animation: NotCLickImage 1s linear both;
-
   }
 
   @keyframes ClickImage {
-    0%{
-      transform: scale(1)
+    0% {
+      transform: scale(1);
     }
-    100%{
+    100% {
       transform: scale(1.2);
     }
   }
 
   @keyframes NotCLickImage {
-    0%{
-      transform: scale(1.5)
+    0% {
+      transform: scale(1.5);
     }
-    100%{
-      transform: scale(0.9)
-
+    100% {
+      transform: scale(0.9);
     }
   }
 `;

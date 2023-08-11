@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 const ListCardContainer = styled.ul`
   height: 55vh;
@@ -15,7 +15,7 @@ const ListCardContainer = styled.ul`
   overflow-y: auto;
 
   @media (min-width: 1024px) {
-    height: 100%;
+    height: auto;
     width: 68vw;
     margin: 0px;
 
