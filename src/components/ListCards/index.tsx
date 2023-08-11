@@ -12,9 +12,11 @@ const ListCards = ({ listCard }: IListCards) => {
 
   return (
     <ListCardContainer>
-      {listCard.map((Car) => (
+      {
+      listCard.map((Car) => (
         <Card car={Car} />
-      ))}
+      ))
+      }
     </ListCardContainer>
   );
 };
