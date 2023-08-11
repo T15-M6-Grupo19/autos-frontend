@@ -24,6 +24,7 @@ const FilterCard = styled.aside`
       line-height: 24px;
       text-decoration: none;
       text-transform: none;
+      cursor: pointer;
     }
   }
 

@@ -1,35 +1,12 @@
-const Corolla =
-  "https://garagem360.com.br/wp-content/uploads/2023/07/Toyota-Corolla-GLi-2023-2.jpg";
-const Civic =
-  "https://cdn.motor1.com/images/mgl/W81RXg/s3/honda-civic-sedan-e-hev-2023.webp";
-const Focus =
-  "https://quatrorodas.abril.com.br/wp-content/uploads/2021/10/Ford-Focus_ST-2022-1600-02.jpg?quality=70&strip=info&w=1280&h=720&crop=1";
-const Golf =
-  "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcHbnWd3OpnJW_1kpPe8Tm5RKQqNDMNqqTEB9VpAicWRKOvC2M_c3rzN9ZsVSGyg7pM8wfVQlYMqQ0Co8ya4qWdBRJM2jHMH44EeOuYjxOPc1-V2CEb0XrM6sGQKcEuiiFhag-It1JhqL-HzYMiWn7aEJNekYALmVHBdqxG92W0-981ZrZ9FFTTC1v/s600/VW-Golf-R-333-Limited-Edition%20%284%29.jpg";
-const Onix =
-  "https://quatrorodas.abril.com.br/wp-content/uploads/2022/12/01-galeria-onix-my23-e1671886742461.webp?w=1128&h=634&crop=1";
-const Sentra =
-  "https://www.automaistv.com.br/wp-content/uploads/2023/03/Novo-Nissan-Sentra-Exclusive-1_edited-990x594.jpg";
-const Sandero =
-  "https://www.autoo.com.br/fotos/2018/10/1280_960/renault_sandero_2019_1_18102018_10801_1280_960.jpg";
-const HB20 =
-  "https://carroesporteclube.com.br/wp-content/uploads/2023/01/Hyundai-HB20-2023-PRECOS-1024x586.jpg";
-const Uno = "https://pbs.twimg.com/media/FRxk4LGXsAEml0Y?format=jpg&name=large";
-const Lancer =
-  "https://s2-autoesporte.glbimg.com/7zEgQqC1XoFgADHmNYotU3yLa6Q=/0x0:620x400/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/b/r/biZvzdQ5WYjBFzKkJo4w/2015-10-05-mitsubishi-lancer-evolution-final-edition-10.jpg";
-const Kia =
-  "https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2021/06/08233212/kia_sportage_8269-1160x725.jpeg";
-const peugeot =
-  "https://img.olhardigital.com.br/wp-content/uploads/2023/07/Peugeot-e-208.jpg";
-const A3 =
-  "https://carroesporteclube.com.br/wp-content/uploads/2021/08/Audi-A3-2022-sportback.jpg";
-const BMW =
-  "https://s2-autoesporte.glbimg.com/PhZQ1K18IRL6Z3j3Be4G1frV-hw=/0x0:1366x1053/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2021/D/2/iaRVG2TfejbNovGDvq4Q/01.jpg";
-const Mercedes =
-  "https://quatrorodas.abril.com.br/wp-content/uploads/2021/02/Mercedes-Benz-Classe-C-2022-16.jpg?quality=70&strip=info";
+import carPic1 from "../assets/carro 1.png";
+import carPic2 from "../assets/carro 2.png";
+import carPic3 from "../assets/carro 3.png";
+
+const carro1 = "../assets/carro 3.png";
+
 export const mockList = [
   {
-    imageURL: `${Corolla}`,
+    imageURL: `${carPic1}`,
     Marca: "Toyota",
     Modelo: "Corolla",
     Combustível: "Gasolina",
@@ -39,7 +16,7 @@ export const mockList = [
     Preço: 45000,
   },
   {
-    imageURL: `${Civic}`,
+    imageURL: `${carPic2}`,
     Marca: "Honda",
     Modelo: "Civic",
     Combustível: "Etanol",
@@ -49,7 +26,7 @@ export const mockList = [
     Preço: 48000,
   },
   {
-    imageURL: `${Focus}`,
+    imageURL: `${carPic3}`,
     Marca: "Ford",
     Modelo: "Focus",
     Combustível: "Diesel",
@@ -59,7 +36,7 @@ export const mockList = [
     Preço: 35000,
   },
   {
-    imageURL: `${Golf}`,
+    imageURL: `${carPic1}`,
     Marca: "Volkswagen",
     Modelo: "Golf",
     Combustível: "Gasolina",
@@ -69,7 +46,7 @@ export const mockList = [
     Preço: 42000,
   },
   {
-    imageURL: `${Onix}`,
+    imageURL: `${carPic2}`,
     Marca: "Chevrolet",
     Modelo: "Onix",
     Combustível: "Etanol",
@@ -79,7 +56,7 @@ export const mockList = [
     Preço: 50000,
   },
   {
-    imageURL: `${Onix}`,
+    imageURL: `${carPic2}`,
     Marca: "Chevrolet",
     Modelo: "Onix",
     Combustível: "Etanol",
@@ -89,7 +66,7 @@ export const mockList = [
     Preço: 50000,
   },
   {
-    imageURL: `${Onix}`,
+    imageURL: `${carPic2}`,
     Marca: "Chevrolet",
     Modelo: "Onix",
     Combustível: "Etanol",
@@ -99,7 +76,7 @@ export const mockList = [
     Preço: 50000,
   },
   {
-    imageURL: `${Sentra}`,
+    imageURL: `${carPic3}`,
     Marca: "Nissan",
     Modelo: "Sentra",
     Combustível: "Gasolina",
@@ -109,7 +86,7 @@ export const mockList = [
     Preço: 38000,
   },
   {
-    imageURL: `${Sandero}`,
+    imageURL: `${carPic1}`,
     Marca: "Renault",
     Modelo: "Sandero",
     Combustível: "Etanol",
@@ -119,7 +96,7 @@ export const mockList = [
     Preço: 42000,
   },
   {
-    imageURL: `${HB20}`,
+    imageURL: `${carPic2}`,
     Marca: "Hyundai",
     Modelo: "HB20",
     Combustível: "Gasolina",
@@ -129,7 +106,7 @@ export const mockList = [
     Preço: 39000,
   },
   {
-    imageURL: `${Uno}`,
+    imageURL: `${carPic3}`,
     Marca: "Fiat",
     Modelo: "Uno",
     Combustível: "Etanol",
@@ -139,7 +116,7 @@ export const mockList = [
     Preço: 28000,
   },
   {
-    imageURL: `${Lancer}`,
+    imageURL: `${carPic1}`,
     Marca: "Mitsubishi",
     Modelo: "Lancer",
     Combustível: "Gasolina",
@@ -149,7 +126,7 @@ export const mockList = [
     Preço: 32000,
   },
   {
-    imageURL: `${Kia}`,
+    imageURL: `${carPic3}`,
     Marca: "Kia",
     Modelo: "Sportage",
     Combustível: "Diesel",
@@ -159,7 +136,7 @@ export const mockList = [
     Preço: 47000,
   },
   {
-    imageURL: `${peugeot}`,
+    imageURL: `${carPic1}`,
     Marca: "Peugeot",
     Modelo: "208",
     Combustível: "Gasolina",
@@ -169,7 +146,7 @@ export const mockList = [
     Preço: 38000,
   },
   {
-    imageURL: `${A3}`,
+    imageURL: `${carPic2}`,
     Marca: "Audi",
     Modelo: "A3",
     Combustível: "Etanol",
@@ -179,7 +156,7 @@ export const mockList = [
     Preço: 52000,
   },
   {
-    imageURL: `${BMW}`,
+    imageURL: `${carPic3}`,
     Marca: "BMW",
     Modelo: "Série 3",
     Combustível: "Gasolina",
@@ -189,7 +166,7 @@ export const mockList = [
     Preço: 55000,
   },
   {
-    imageURL: `${Mercedes}`,
+    imageURL: `${carPic1}`,
     Marca: "Mercedes-Benz",
     Modelo: "C-Class",
     Combustível: "Diesel",
