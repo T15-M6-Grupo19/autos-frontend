@@ -1,10 +1,10 @@
-import { ContainerCard } from "./style";
+import { ContainerCard } from './style';
 
-import Porshe from "../../../assets/Porshe.svg";
+import Porshe from '../../../assets/Porshe.svg';
 
-import { ICar } from "../types";
+import { ICar } from '../types';
 
-export const Card = ({car}: ICar) => {
+export const Card = ({ car }: ICar) => {
   return (
     <ContainerCard>
       <figure>
