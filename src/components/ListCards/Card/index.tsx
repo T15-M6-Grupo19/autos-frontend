@@ -1,14 +1,24 @@
 import { ContainerCard } from './style';
-
 import { IMockCar } from '../types';
+import Button from '../../Button';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export const Card = ({ car }: IMockCar) => {
+  const [isProfile, setIsProfile] = useState(false);
+  const page = useLocation();
+  useEffect(() => {
+    page.pathname.split('/')[1] !== '' && setIsProfile(true);
+
+    return;
+  }, [page, isProfile]);
+
   return (
     <ContainerCard>
       <figure>
         <img src={car.imageURL} />
       </figure>
-      <div>
+      <div className='box-div'>
         <div className='fist'>
           <h2>
             {' '}
@@ -24,7 +34,9 @@ export const Card = ({ car }: IMockCar) => {
         </div>
         <div className='thirsd'>
           <div className='detail'>
-            <span>{car.Km}km</span>
+            <span>
+              {car.Km} <span>KM</span>
+            </span>
             <span>{car.Ano}</span>
           </div>
           <div className='wrap-price'>
@@ -36,6 +48,12 @@ export const Card = ({ car }: IMockCar) => {
             </span>
           </div>
         </div>
+        {isProfile ? (
+          <div className='fourth'>
+            <Button variant='Editar' name={'Editar'} />
+            <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+          </div>
+        ) : null}
       </div>
     </ContainerCard>
   );

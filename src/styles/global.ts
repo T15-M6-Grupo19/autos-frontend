@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
     :root {
@@ -232,6 +232,7 @@ export const GlobalStyles = createGlobalStyle`
 
     button {
         cursor: pointer;
+	
     }
 
 	html body{

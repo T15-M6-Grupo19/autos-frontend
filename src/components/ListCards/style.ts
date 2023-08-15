@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 const ListCardContainer = styled.ul`
   height: 55vh;
