@@ -6,16 +6,18 @@ import { mockList } from "../../database/Mock2";
 import Pagination from "../../components/Pagination";
 import ListCards from "../../components/ListCards";
 import Button from "../../components/Button";
-import Banner from "../../components/Banner";
 import FilterCars from "../../components/Filter";
+
 import { Footer } from "../../components/Footer";
 import { NavBar } from "../../components/NavBar";
+import { BannerImage } from "../../components/Banner";
+
 
 const Home = () => {
   return (
     <>
       <NavBar />
-      <Banner />
+      <BannerImage />
       <MainStructure>
         <FilterCars />
         <ListCards listCard={mockList} />
