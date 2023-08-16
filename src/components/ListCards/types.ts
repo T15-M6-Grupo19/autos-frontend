@@ -12,6 +12,10 @@ export interface IListCards {
   listCard: car[];
 }
 
+export interface IListCard {
+  view: string;
+}
+
 export interface MockCar {
   imageURL: string;
   Marca: string;

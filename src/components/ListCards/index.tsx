@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import Banner from "../Banner";
+import { useContext, useEffect, useState } from "react";
+import { BannerImage } from "../Banner";
 import Card from "./Card";
 
 import { ListCardContainer } from "./style";
@@ -8,11 +8,18 @@ import { IMockCarList } from "./types";
 import { FilterContext } from "../../contexts/FilterContext";
 import { mockList } from "../../database/Mock2";
 import { SlideContext } from "../../provider/SlideContext";
+import { useLocation } from "react-router-dom";
 
 const ListCards = ({ listCard }: IMockCarList) => {
+  const [isProfile, setIsProfile] = useState(false);
   const { filter } = useContext(FilterContext);
-  const { filterPriceMin, filterPriceMax, filterKmMin, filterKmMax } =
-    useContext(SlideContext);
+  const { filterPriceMin, filterPriceMax, filterKmMin, filterKmMax } = useContext(SlideContext);
+
+  const page = useLocation();
+  useEffect(() => {
+    page.pathname.split('/')[1] === 'Profile' && setIsProfile(true);
+  }, [page]);
+ 
 
   let filteredCars = mockList;
 
@@ -57,16 +64,18 @@ const ListCards = ({ listCard }: IMockCarList) => {
   }
 
   if (listCard.length === 0) {
-    return <Banner />;
+    return <BannerImage />;
   }
 
   return (
-    <ListCardContainer>
+    <ListCardContainer view={ isProfile ? "allSpace" : "spaceTwo"}>
       {filteredCars.map((Car) => (
         <Card car={Car} />
       ))}
     </ListCardContainer>
   );
 };
+
+export const AdvertiserListCards = () => {}
 
 export default ListCards;

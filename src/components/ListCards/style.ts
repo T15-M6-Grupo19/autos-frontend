@@ -1,6 +1,8 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
-const ListCardContainer = styled.ul`
+import { IListCard } from "./types";
+
+const ListCardContainer = styled.ul<IListCard>`
   height: 55vh;
   width: 100%;
 
@@ -14,18 +16,47 @@ const ListCardContainer = styled.ul`
 
   overflow-y: auto;
 
-  @media (min-width: 1024px) {
-    height: auto;
-    width: 68vw;
-    margin: 0px;
+  ${({ view }) => {
+    switch (view) {
+      default:
+      case "allSpace":
+        return css`
+          background-color: white;
 
-    align-items: normal;
+          @media (min-width: 1024px) {
+            height: auto;
+            width: 100%;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+            justify-content: space-evenly;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            display: flex;
 
-    overflow: hidden;
-  }
+            overflow: hidden;
+          }
+        `;
+
+        case "spaceTwo":
+          return css`
+              @media (min-width: 1024px) {
+                height: auto;
+                width: 68vw;
+                
+                margin: 0px;
+
+                align-items: normal;
+
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+
+                overflow: hidden;
+              } 
+          `
+    }
+  }}
+
+
 `;
 
 export { ListCardContainer };
