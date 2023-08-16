@@ -1,15 +1,17 @@
 import { styled } from "styled-components";
 
 export const ContainerCard = styled.li`
-  width: 310px;
+  width: 280px;
   height: 350px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
   transition: 1s linear;
-
   cursor: pointer;
+
+
+  
+
 
   figure {
     
@@ -39,7 +41,7 @@ export const ContainerCard = styled.li`
     text-decoration: none;
     text-transform: none;
 
-    .fist {
+    .first {
       h2 {
         font-size: 16px;
         font-family: "Lexend";
@@ -80,7 +82,7 @@ export const ContainerCard = styled.li`
 
       color: var(--color-Grey2);
 
-      .ballon-name {
+      .balloon-name {
         width: 32px;
         height: 32px;
 
@@ -97,7 +99,7 @@ export const ContainerCard = styled.li`
       }
     }
 
-    .thirsd {
+    .third {
       display: flex;
       flex-direction: row;
 
