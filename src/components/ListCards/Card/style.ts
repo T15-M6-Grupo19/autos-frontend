@@ -1,9 +1,8 @@
 import { styled } from "styled-components";
 
-export const ContainerCard = styled.div`
-  width: 312px;
+export const ContainerCard = styled.li`
+  width: 310px;
   height: 350px;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -13,8 +12,8 @@ export const ContainerCard = styled.div`
   cursor: pointer;
 
   figure {
-    width: 312px;
-    height: 152px;
+    
+    height: 150px;
 
     display: flex;
     align-items: center;

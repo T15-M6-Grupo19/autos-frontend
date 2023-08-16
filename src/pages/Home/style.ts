@@ -8,8 +8,9 @@ const SimulateComponentHeaderStyle = styled.header`
 `;
 
 const MainStructure = styled.main`
+
   @media (min-width: 1023px) {
-    height: 1680px;
+    height: 1460px;
     width: 95vw;
 
     gap: 20px;

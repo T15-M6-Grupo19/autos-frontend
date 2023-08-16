@@ -1,149 +1,149 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Button from "../Button";
-import MultiRangeSlider from "./Ranger";
 import { FilterCard } from "./style";
-import { SlideContext } from "../../provider/SlideContext";
+import { CarContext } from "../../providers/CarContext";
 import { mockList } from "../../database/Mock2";
-import { FilterContext } from "../../contexts/FilterContext";
+import Slider from "rc-slider";
+import 'rc-slider/assets/index.css';
 
 const FilterCars = () => {
-  const [sliderKey, setSliderKey] = useState(0);
-  const { filter, setFilter } = useContext(FilterContext);
-  const {
-    filterPriceMin,
-    setFilterPriceMin,
-    filterPriceMax,
-    setFilterPriceMax,
-    filterKmMin,
-    filterKmMax,
-    setFilterKmMin,
-    setFilterKmMax,
-  } = useContext(SlideContext);
+  const {searchResult , setFilteredCars, setCars, kmRange,
+    setKmRange, priceRange, setPriceRange
+  } = useContext(CarContext)
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    const target = event.target as HTMLElement;
-    const key = target.getAttribute("data-key");
-    const value = target.textContent;
+  function handleClick(value: string | number){
+    setFilteredCars(value.toString())
+    setCars(searchResult)
+  }
 
-    if (key) {
-      setFilter((prevState) => ({
-        ...prevState,
-        [key]: value,
-      }));
+  function eraseFilter(){
+    setFilteredCars("")
+    setCars(mockList)
+    setKmRange([0,650000])
+    setPriceRange([10000,550000])
+  }
+
+  function handleKmRange(newRange:any){
+    setKmRange(newRange)
+  }
+
+  function handlePriceRange(newRange:any){
+    setPriceRange(newRange)
+  }
+
+  const brands:string[] = []
+  searchResult.map((car)=>{
+    if(!brands.includes(car.marca)){
+      brands.push(car.marca)
     }
-    console.log(filter);
-  };
+  })
+  brands.sort()
 
-  const initialMaxPrice = 100000;
-  const initialMinPrice = 0;
-  const initialMinKm = 0;
-  const initialMaxKm = 100000;
+  const models: string[] = []
+  searchResult.map((car)=>{
+    if(!models.includes(car.modelo)){
+      models.push(car.modelo)
+    }
+  })
+  models.sort()
 
-  const handleResetClick = () => {
-    setFilter({
-      Marca: "",
-      Modelo: "",
-      Combustível: "",
-      Cor: "",
-      Ano: null,
-      Km: null,
-      Preço: null,
-    });
+  const colors:string[] = []
+  searchResult.map((car)=>{
+    if(!colors.includes(car.cor)){
+      colors.push(car.cor)
+    }
+  })
+  colors.sort()
 
-    setFilterPriceMin;
+  const years: number[] = []
+  searchResult.map((car)=>{
+    if(!years.includes(car.ano)){
+      years.push(car.ano)
+    }
+  })
+  years.sort()
 
-    setFilterKmMax(initialMaxKm);
-    setFilterKmMin(initialMinKm);
-    setFilterPriceMax(initialMaxPrice);
-    setFilterPriceMin(initialMinPrice);
-    setSliderKey((prevState) => prevState + 1);
-  };
-
-  const brands = [...new Set(mockList.map((item) => item.Marca))];
-  const models = [...new Set(mockList.map((item) => item.Modelo))];
-  const years = [...new Set(mockList.map((item) => item.Ano))];
-  const colors = [...new Set(mockList.map((item) => item.Cor))];
+  const fuelTypes:string[] = []
+  searchResult.map((car)=>{
+    if(!fuelTypes.includes(car.combustivel)){
+      fuelTypes.push(car.combustivel)
+    }
+  })
+  fuelTypes.sort()
 
   return (
     <FilterCard>
       <div>
         <h2 className="textHeading6600">Marca</h2>
         <ul>
-          {brands.map((brand) => (
-            <li onClick={handleClick}>
-              <a href="" data-key="Marca">
-                {brand}
-              </a>
-            </li>
-          ))}
+            {
+              brands.map((brand)=>(
+              <li onClick={()=>handleClick(brand)} key={brand}>{brand}</li>
+              ))
+            }
         </ul>
         <h2 className="textHeading6600">Modelo</h2>
         <ul>
-          {models.map((model) => (
-            <li onClick={handleClick}>
-              <a data-key="Modelo"> {model}</a>
-            </li>
-          ))}
+            {
+              models.map((model)=>(
+                <li onClick={()=>handleClick(model)} key={model}>{model}</li>
+              ))
+            }
         </ul>
         <h2 className="textHeading6600">Cor</h2>
         <ul>
-          {colors.map((color) => (
-            <li onClick={handleClick}>
-              <a data-key="Cor"> {color}</a>
-            </li>
-          ))}
+            {
+              colors.map((color)=>(
+                <li onClick={()=>handleClick(color)} key={color}>{color}</li>
+              ))
+            }
         </ul>
         <h2 className="textHeading6600">Ano</h2>
         <ul>
-          {years.map((ano) => (
-            <li onClick={handleClick}>
-              <a data-key="Ano">{ano}</a>
-            </li>
-          ))}
+            {
+              years.map((year)=>(
+                <li onClick={()=>handleClick(year)} key={year}>{year}</li>
+              ))
+            }
         </ul>
         <h2 className="textHeading6600">Combustível</h2>
         <ul>
-          <li onClick={handleClick}>
-            <a data-key="Combustível"> Gasolina </a>
-          </li>
-          <li onClick={handleClick}>
-            <a data-key="Combustível">Etanol </a>
-          </li>
+            {
+              fuelTypes.map((fuel)=>(
+                <li onClick={()=>handleClick(fuel)} key={fuel}>{fuel}</li>
+              ))
+            }
         </ul>
       </div>
       <h2 className="textHeading6600">Km</h2>
       <div>
         <span className="kmAndPrice">
-          <p>{filterKmMin}km</p> <p>{filterKmMax}km</p>
+          <p>{kmRange[0]}km</p><p>{kmRange[1]}km</p>
         </span>
-        <MultiRangeSlider
-          key={sliderKey}
-          min={0}
-          max={100000}
-          onChange={({ min, max }: { min: number; max: number }) => {
-            setFilterKmMin(min), setFilterKmMax(max);
-          }}
+        <Slider 
+          range 
+          min={0} max={650000} 
+          defaultValue={kmRange} 
+          onChange={handleKmRange}
         />
       </div>
+      
       <h2 className="textHeading6600">Preço</h2>
       <div>
         <span className="kmAndPrice">
-          <p>R$ {filterPriceMin}</p> <p>R$ {filterPriceMax}</p>
+          <p>R$ {priceRange[0]}</p><p>R$ {priceRange[1]}</p>
         </span>
-        <MultiRangeSlider
-          key={sliderKey}
-          min={0}
-          max={100000}
-          onChange={({ min, max }: { min: number; max: number }) => {
-            setFilterPriceMin(min), setFilterPriceMax(max);
-          }}
+        <Slider 
+          range 
+          min={10000} max={550000} 
+          defaultValue={priceRange} 
+          onChange={handlePriceRange} 
         />
       </div>
       <Button
         name="Limpar filtros"
         variant="primary"
-        onClick={handleResetClick}
+        onClick={eraseFilter}
       ></Button>
     </FilterCard>
   );
