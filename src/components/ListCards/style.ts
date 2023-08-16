@@ -1,30 +1,20 @@
 import { styled } from "styled-components";
 
 const ListCardContainer = styled.ul`
-  height: 55vh;
-  width: 100%;
-
-  margin: 40px 0;
-  padding: 0 20px;
-
-  flex-direction: row;
-  align-items: center;
+ 
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
 
-  overflow-y: auto;
 
-  @media (min-width: 1024px) {
-    height: auto;
-    width: 68vw;
-    margin: 0px;
+  @media (max-width: 1022px) {
+  
+    flex-direction: row;
+    flex-wrap: unset;
+    overflow-x: auto;
 
-    align-items: normal;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    overflow: hidden;
   }
 `;
 

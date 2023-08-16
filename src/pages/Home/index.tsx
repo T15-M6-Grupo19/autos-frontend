@@ -1,15 +1,11 @@
 import { ContainerButtonFilterStyle, MainStructure } from "./style";
-
-// import infoListCards from "../../database/Mock";
-import { mockList } from "../../database/Mock2";
-
 import Pagination from "../../components/Pagination";
 import ListCards from "../../components/ListCards";
 import Button from "../../components/Button";
 import Banner from "../../components/Banner";
-import FilterCars from "../../components/Filter";
 import { Footer } from "../../components/Footer";
 import { NavBar } from "../../components/NavBar";
+import FilterCars from "../../components/Filter";
 
 const Home = () => {
   return (
@@ -18,7 +14,7 @@ const Home = () => {
       <Banner />
       <MainStructure>
         <FilterCars />
-        <ListCards listCard={mockList} />
+        <ListCards  />
       </MainStructure>
       <ContainerButtonFilterStyle>
         <Button name="Filtro" variant="primary" />

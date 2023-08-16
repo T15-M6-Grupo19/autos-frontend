@@ -1,13 +1,11 @@
 import { styled } from "styled-components";
 
 const FilterCard = styled.aside`
-  height: 100%;
-  width: 27vw;
-
-  margin-left: 1.5vw;
+  height: 98%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   gap: 20px;
 
   ul {
@@ -15,7 +13,7 @@ const FilterCard = styled.aside`
   }
 
   li {
-    a {
+    
       font-size: 1.1rem;
       font-family: "Lexend";
       font-weight: 500;
@@ -25,7 +23,7 @@ const FilterCard = styled.aside`
       text-decoration: none;
       text-transform: none;
       cursor: pointer;
-    }
+    
   }
 
   .kmAndPrice {
