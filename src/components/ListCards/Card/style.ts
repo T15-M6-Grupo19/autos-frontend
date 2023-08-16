@@ -1,8 +1,8 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const ContainerCard = styled.div`
   width: 312px;
-  height: 350px;
+  min-height: 350px;
 
   display: flex;
   flex-direction: column;
@@ -28,22 +28,25 @@ export const ContainerCard = styled.div`
     }
   }
 
-  div {
+  .box-div {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 1rem;
 
     color: var(--color-Grey2);
-    font-family: "Inter";
+    font-family: 'Inter';
     font-weight: 400;
     font-style: normal;
     text-decoration: none;
     text-transform: none;
 
     .fist {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       h2 {
         font-size: 16px;
-        font-family: "Lexend";
+        font-family: 'Lexend';
         font-weight: 600;
         font-style: normal;
         text-decoration: none;
@@ -61,9 +64,7 @@ export const ContainerCard = styled.div`
         position: relative;
         max-height: 2.4rem;
         margin-right: -1rem;
-        margin-bottom: 1rem;
         padding-right: 1rem;
-        padding-bottom: 1rem;
       }
     }
 
@@ -71,9 +72,10 @@ export const ContainerCard = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
+      gap: 0.5rem;
 
       font-size: 14px;
-      font-family: "Inter";
+      font-family: 'Inter';
       font-weight: 500;
       font-style: normal;
       text-decoration: none;
@@ -109,10 +111,15 @@ export const ContainerCard = styled.div`
       .detail {
         display: flex;
         flex-direction: row;
+        gap: 0.5rem;
+        width: fit-content;
 
         span {
           width: 70px;
           height: 30px;
+          padding: 0 5px;
+
+          width: fit-content;
 
           border-radius: 4px;
 
@@ -120,7 +127,7 @@ export const ContainerCard = styled.div`
           color: var(--color-Brand2);
 
           font-size: 14px;
-          font-family: "Inter";
+          font-family: 'Inter';
           font-weight: 500;
           font-style: normal;
           text-decoration: none;
@@ -136,7 +143,7 @@ export const ContainerCard = styled.div`
         justify-content: end;
 
         .price {
-          font-family: "Lexend";
+          font-family: 'Lexend';
           font-size: 16px;
           font-weight: 500;
           line-height: 20px;
@@ -144,6 +151,12 @@ export const ContainerCard = styled.div`
           color: var(--color-Grey1);
         }
       }
+    }
+
+    .fourth {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
     }
   }
 
