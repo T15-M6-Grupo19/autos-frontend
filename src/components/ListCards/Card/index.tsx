@@ -12,17 +12,17 @@ export const Card = ({ car }: ICarProps) => {
         <img src={car.imageURL} />
       </figure>
       <div>
-        <div className="fist">
+        <div className="first">
           <h2> {car.marca} </h2>
           <div> {car.modelo} </div>
         </div>
         <div className="second">
-          <div className="ballon-name">
+          <div className="balloon-name">
             <span>SL</span>
           </div>
           <span>Silva Luiz</span>
         </div>
-        <div className="thirsd">
+        <div className="third">
           <div className="detail">
             <span>{car.km}km</span>
             <span>{car.ano}</span>

@@ -7,7 +7,7 @@ export const StyledButton = styled.button<iButtonStyles>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 279px;
+  width: 230px;
   height: 48px;
 
   border: none;

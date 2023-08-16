@@ -9,15 +9,13 @@ const SimulateComponentHeaderStyle = styled.header`
 
 const MainStructure = styled.main`
 
-  @media (min-width: 1023px) {
-    height: 1460px;
-    width: 95vw;
+   
 
     gap: 20px;
     margin: 20px;
     margin-top: 50px;
     display: flex;
-  }
+  
 `;
 
 const ContainerButtonFilterStyle = styled.div`
