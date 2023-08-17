@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { StyledModal } from "./styles"
 import { useForm} from "react-hook-form"
 import { TCreateContactData, createContactSchema } from "./validator"
@@ -9,8 +9,20 @@ export function ModalCreate(){
 
     const {register, handleSubmit, formState: { errors }} = useForm<TCreateContactData>({resolver:zodResolver(createContactSchema)})
     const { cars} = useContext(CarContext)
+    const [apiCar, setApiCar] = useState<any>([])
     
-  
+    useEffect(()=>{
+        async function getCar(){
+            const request = await fetch("https://kenzie-kars.herokuapp.com/cars")
+            const response = await request.json()
+            setApiCar(response)
+        }
+        getCar()
+
+    },[])
+
+    
+    console.log(apiCar)
 
      return(
 
@@ -26,8 +38,8 @@ export function ModalCreate(){
                         <label htmlFor="fullname">Marca</label>
                         <select>
                             {
-                                cars.map((car)=>(
-                                    <option>{car.marca}</option>
+                                cars.map((car, index)=>(
+                                    <option key={index}>{car.marca}</option>
                                 ))
                             }
                         </select>
