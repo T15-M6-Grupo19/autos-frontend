@@ -2,13 +2,15 @@ import { styled } from "styled-components";
 
 export const ContainerCard = styled.li`
   width: 280px;
-  height: 411px;
-
+  height: 350px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   transition: 1s linear;
   cursor: pointer;
+
+
+  
 
 
   figure {
@@ -97,7 +99,7 @@ export const ContainerCard = styled.li`
       }
     }
 
-    /* .third {
+    .third {
       display: flex;
       flex-direction: row;
 
@@ -143,64 +145,6 @@ export const ContainerCard = styled.li`
           color: var(--color-Grey1);
         }
       }
-    } */
-
-    .thirsd {
-      display: flex;
-      flex-direction: row;
-
-      justify-content: space-between;
-
-      margin-top: 10px;
-
-      .detail {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        width: fit-content;
-
-        span {
-          width: 70px;
-          height: 30px;
-          padding: 0 5px;
-
-          width: fit-content;
-
-          border-radius: 4px;
-
-          background-color: var(--color-Brand4);
-          color: var(--color-Brand2);
-
-          font-size: 14px;
-          font-family: 'Inter';
-          font-weight: 500;
-          font-style: normal;
-          text-decoration: none;
-          text-transform: none;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-
-      .wrap-price {
-        justify-content: end;
-
-        .price {
-          font-family: 'Lexend';
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 20px;
-
-          color: var(--color-Grey1);
-        }
-      }
-    }
-    .fourth {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
     }
   }
 
