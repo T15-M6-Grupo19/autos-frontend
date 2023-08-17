@@ -75,8 +75,8 @@ export const RegisterForm = ({toggleModal}: RegisterType) => {
             <p>Tipo de conta</p>
 
             <DivForm>
-              <Button name="Comprador" variant="secondary" onClick={() => handleClickType("comprador")} type="button"/>
-              <Button name="Anunciante" variant="secondary" onClick={() => handleClickType("anunciante")} type="button"/>
+              <Button name="Comprador" variant="tertiary" onClick={() => handleClickType("comprador")} type="button"/>
+              <Button name="Anunciante" variant="tertiary" onClick={() => handleClickType("anunciante")} type="button"/>
             </DivForm>
 
             <InputComponent label="Senha" type="password" placeholder="Digitar senha" register={register("password")} error={errors.password}/>
