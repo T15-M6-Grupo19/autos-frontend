@@ -7,7 +7,7 @@ export const StyledButton = styled.button<iButton>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 279px;
+  width: 230px;
   height: 48px;
 
   border: none;
@@ -37,54 +37,118 @@ export const StyledButton = styled.button<iButton>`
         `;
       case "secondary":
         return css`
+          height: 48px;
+          width:  160px;
+
+          padding: 12px 20px;
+          margin: 60px 0 0 0;
+
+          border-radius: 4px;
+          border: 1.5px;
+
+          font: 600 16px "inter";
+
           background-color: var(--color-WhiteFixed);
-          color: var(--color-Grey0);
+          color: var(--color-Brand1);
 
-          border: 2px solid var(--color-Grey4);
-          border-radius: 4px;
+          gap: 10px;
 
-          font-size: 1rem;
-          font-family: "Inter";
-          font-weight: 700;
-          font-style: normal;
-          text-decoration: none;
-          text-transform: none;
-
+          border: 1.5px solid #4529E6;
           &:hover {
-            background-color: var(--color-Brand2);
+            background-color: var(--color-Brand1);
             color: var(--color-WhiteFixed);
-            border: none;
           }
         `;
-      case "registerButton":
-        return css`
-          background-color: var(--color-Brand2);
-          color: var(--color-WhiteFixed);
+             case 'Editar':
+              return css`
+      
+                width: 80px;
+                height: 38px;
+              
+                background-color: transparent;
+                border: 2px solid var(--color-Grey1);
+                border-radius: 0.25rem;
+      
+                color: var(--color-Grey1);
+               
+                font-family: Inter;
+                font-size: 0.875rem;
+                font-style: normal;
+                font-weight: 600;
+      
+                
+      
+                &:hover{
+                  background-color: var(--color-Brand1);
+                  border: 2px solid var(--color-Brand1);
+                  color: var(--color-Grey1);
+                }
+              `;
+            case 'Ver Detalhes':
+              return css`
+                width: 126px;
+                height: 38px;
+      
+                background-color: transparent;
+                border: 2px solid var(--color-Grey1);
+                border-radius: 0.25rem;
+      
+                color: var(--color-Grey1);
+      
+                font-family: Inter;
+                font-size: 0.875rem;
+                font-style: normal;
+                font-weight: 600;
 
-          border-radius: 4px;
-
-          font-size: 1.1rem;
-          font-family: "Inter";
-          font-weight: 700;
-          font-style: normal;
-          text-decoration: none;
-          text-transform: none;
-
-          &:hover {
-            background-color: var(--color-Grey1);
-          }
-
-          @media (min-width: 620px) {
-            width: 320px;
-          }
-        `;
-      case "test":
-        return css`
-              XXX
-              &:hover {
-                XXX
-              }
-        `;
+                &:hover{
+                  background-color: var(--color-Brand1);
+                  border: 2px solid var(--color-Brand1);
+                  color: var(--color-Grey1);
+                }
+              `;
+              case "tertiary":
+                return css`
+                  background-color: var(--color-WhiteFixed);
+                  color: var(--color-Grey0);
+        
+                  border: 2px solid var(--color-Grey4);
+                  border-radius: 4px;
+        
+                  font-size: 1rem;
+                  font-family: "Inter";
+                  font-weight: 700;
+                  font-style: normal;
+                  text-decoration: none;
+                  text-transform: none;
+        
+                  &:hover {
+                    background-color: var(--color-Brand2);
+                    color: var(--color-WhiteFixed);
+                    border: none;
+                  }
+                `;
+              case "registerButton":
+                return css`
+                  background-color: var(--color-Brand2);
+                  color: var(--color-WhiteFixed);
+        
+                  border-radius: 4px;
+        
+                  font-size: 1.1rem;
+                  font-family: "Inter";
+                  font-weight: 700;
+                  font-style: normal;
+                  text-decoration: none;
+                  text-transform: none;
+        
+                  &:hover {
+                    background-color: var(--color-Grey1);
+                  }
+        
+                  @media (min-width: 620px) {
+                    width: 320px;
+                  }
+                `;
     }
   }}
 `;
