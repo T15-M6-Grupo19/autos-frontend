@@ -1,5 +1,4 @@
-import { styled } from 'styled-components';
-
+import { styled } from "styled-components";
 
 export const LoginContainer = styled.div`
   top: 0;
@@ -10,12 +9,20 @@ export const LoginContainer = styled.div`
   margin-left: 2.5vw;
   display: flex;
   flex-direction: column;
-  margin-top:52px;
-  margin-bottom:71px;
+  margin-top: 52px;
+  margin-bottom: 71px;
 `;
 
 export const LoginContainerTitle = styled.div`
-margin-top:44px;
-margin-left:28px;
+  margin-top: 44px;
+  margin-left: 28px;
+`;
 
-`
+export const EmailLabel = styled.label`
+  margin-top: 44px;
+  margin-left: 28px;
+  color: var(--color-Grey1);
+  font-size: var(--input-label);
+  margin-top:32px;
+  
+`;
