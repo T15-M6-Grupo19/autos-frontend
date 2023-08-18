@@ -18,6 +18,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
 
 const LoginBar = () => {
   const formSchema = yup.object().shape({
@@ -37,34 +38,34 @@ const LoginBar = () => {
     resolver: yupResolver(formSchema),
   });
 
-  // async function loginForm(data) {
+  const navigate = useNavigate()
+  async function loginForm(data) {
 
-  // console.log(data)
-  //   try {
-  //     const response = await api.post("/login", data);
+  console.log(data)
+    try {
+      const response = await api.post("/login", data);
 
-  //     window.localStorage.clear();
-  //     window.localStorage.setItem(
-  //       "@TOKEN",
-  //       JSON.stringify(response.data.token)
-  //     );
-  //     window.localStorage.setItem(
-  //       "@USERID",
-  //       JSON.stringify(response.data.user.id)
-  //     );
-  //     //   console.log(response.data.token);
-  //     // setUserData(response.data.user)
-  //     console.log(response.data.user);
+      const {token} =await response.data
+      window.localStorage.setItem(
+        "@TOKEN",
+        JSON.stringify(token)
+      );
 
-  //     // navigate("/");
-  //     //   toast.success("Login efetuado!")
-  //   } catch (error) {
-  //     // toast.error(error.response.data.message);
-  //     reset();
-  //   } finally {
-  //     // console.log(error.)
-  //   }
-  // }
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+     
+      //   console.log(response.data.token);
+      // setUserData(response.data.user)
+      console.log(response.data.user);
+
+      navigate("/profile");
+      //   toast.success("Login efetuado!")
+    } catch (error) {
+      // toast.error(error.response.data.message);
+      reset();
+    } finally {
+      // console.log(error.)
+    }
+  }
 
   return (
     <ContainerAlign>
