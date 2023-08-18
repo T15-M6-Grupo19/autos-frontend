@@ -82,6 +82,7 @@ export const ForgetPassword = styled.p`
   font-size: 14px;
   line-height: 24px;
   box-sizing: border-box;
+  cursor:pointer;
 `;
 export const ForgetPasswordAlign = styled.div`
   height: 24px;
@@ -174,3 +175,7 @@ export const RegisterButton = styled.button`
     width: 315px;
   }
 `;
+
+export const ErrorText= styled.p`
+margin-top:5px;
+`
