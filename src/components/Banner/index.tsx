@@ -1,7 +1,8 @@
-import {BackgroundGradientStyle, BannerStyle, TextStyle} from "./style"
+import Button from "../Button"
+import {AdvertiserStyle, BackgroundGradientStyle, BannerColorStyle, BannerStyle, FirstLettersSquareStyle, SellerDataSquareStyle, TextStyle} from "./style"
 
 
-const Banner = () => {
+export const Banner = () => {
      return (
           <BannerStyle>
                <BackgroundGradientStyle>
@@ -14,4 +15,22 @@ const Banner = () => {
      )
 }
 
-export default Banner;
+export const BannerColor = () =>  (
+     <BannerColorStyle>
+          <SellerDataSquareStyle>
+               <FirstLettersSquareStyle>
+                    SL
+               </FirstLettersSquareStyle>
+               <AdvertiserStyle>
+                    <h2 className="advertiser_name ">Samuel Leão</h2>
+                    <div className="advertiser_tag ">Anunciante</div>
+               </AdvertiserStyle>
+               <p className="descripition">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, excepturi neque suscipit sapiente odio omnis labore rerum officia sequi assumenda vero aliquid, nemo fugiat placeat.</p>
+               <Button name={"Criar anuncio"} variant="secondary"/>
+
+          </SellerDataSquareStyle>
+     </BannerColorStyle>
+
+)
+
+
