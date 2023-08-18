@@ -37,34 +37,34 @@ const LoginBar = () => {
     resolver: yupResolver(formSchema),
   });
 
-  async function loginForm(data) {
+  // async function loginForm(data) {
 
-  console.log(data)
-    // try {
-    //   const response = await api.post("/login", data);
+  // console.log(data)
+  //   try {
+  //     const response = await api.post("/login", data);
 
-    //   window.localStorage.clear();
-    //   window.localStorage.setItem(
-    //     "@TOKEN",
-    //     JSON.stringify(response.data.token)
-    //   );
-    //   window.localStorage.setItem(
-    //     "@USERID",
-    //     JSON.stringify(response.data.user.id)
-    //   );
-    //   //   console.log(response.data.token);
-    //   // setUserData(response.data.user)
-    //   console.log(response.data.user);
+  //     window.localStorage.clear();
+  //     window.localStorage.setItem(
+  //       "@TOKEN",
+  //       JSON.stringify(response.data.token)
+  //     );
+  //     window.localStorage.setItem(
+  //       "@USERID",
+  //       JSON.stringify(response.data.user.id)
+  //     );
+  //     //   console.log(response.data.token);
+  //     // setUserData(response.data.user)
+  //     console.log(response.data.user);
 
-    //   // navigate("/");
-    //   //   toast.success("Login efetuado!")
-    // } catch (error) {
-    //   // toast.error(error.response.data.message);
-    //   reset();
-    // } finally {
-    //   // console.log(error.)
-    // }
-  }
+  //     // navigate("/");
+  //     //   toast.success("Login efetuado!")
+  //   } catch (error) {
+  //     // toast.error(error.response.data.message);
+  //     reset();
+  //   } finally {
+  //     // console.log(error.)
+  //   }
+  // }
 
   return (
     <ContainerAlign>
