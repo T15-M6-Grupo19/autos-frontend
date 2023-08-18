@@ -9,6 +9,7 @@ const Login = () => {
     <Container>
 
       <NavBar />
+
       <LoginBar />
       <Footer />
     </Container>

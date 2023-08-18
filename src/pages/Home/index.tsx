@@ -16,7 +16,6 @@ const Home = () => {
       <MainStructure>
         <FilterCars />
         <ListCards  />
-        <ModalCreate />
       </MainStructure>
       <ContainerButtonFilterStyle>
         <Button name="Filtro" variant="primary" />

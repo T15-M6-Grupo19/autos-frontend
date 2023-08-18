@@ -25,7 +25,9 @@ interface ICarContext{
     kmRange: number[],
     setKmRange: React.Dispatch<React.SetStateAction<number[]>>,
     priceRange: number[],
-    setPriceRange: React.Dispatch<React.SetStateAction<number[]>>
+    setPriceRange: React.Dispatch<React.SetStateAction<number[]>>,
+    openCreateModal:boolean,
+    setOpenCreateModal:React.Dispatch<React.SetStateAction<boolean>>
 
 
 }
@@ -37,6 +39,7 @@ export const CarProvider = ({children}: IProviderProps) =>{
     const [filteredCars, setFilteredCars] = useState("")
     const [kmRange, setKmRange] = useState<number[]>([0, 650000])
     const [priceRange, setPriceRange] = useState<number[]>([10000,550000])
+    const [openCreateModal, setOpenCreateModal] = useState(false)
 
     
     let searchResult = cars.filter((car)=>{
@@ -59,7 +62,7 @@ export const CarProvider = ({children}: IProviderProps) =>{
 
     return (
         <CarContext.Provider value={{cars, setCars, filteredCars, setFilteredCars, 
-            searchResult, kmRange, setKmRange, priceRange, setPriceRange
+            searchResult, kmRange, setKmRange, priceRange, setPriceRange, openCreateModal,setOpenCreateModal
         }}>
             {children}
         </CarContext.Provider>

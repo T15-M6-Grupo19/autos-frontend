@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react"
+import {useContext, useEffect, useState } from "react"
 import { StyledModal } from "./styles"
 import { useForm} from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -12,7 +12,7 @@ export function ModalCreate(){
     const [apiModel, setApiModel] = useState<any>()
     const [filteredModel, setFilteredModel] = useState<any[]>([])
     const [fuelType, setFuelType] = useState("")
-    
+    const {setOpenCreateModal} = useContext(CarContext)
 
     useEffect(()=>{
         async function getCar(){
@@ -73,7 +73,7 @@ export function ModalCreate(){
                 <div className="modal-container">
                     <div className="modal-title">
                         <h3>Criar Anúncio</h3>
-                        <button  >X</button>
+                        <button onClick={()=>setOpenCreateModal(false)}  >X</button>
                     </div>
                     <h4>Informações do veículo</h4>
                     <form  onSubmit={handleSubmit(submit)}>
@@ -158,7 +158,7 @@ export function ModalCreate(){
 
                        
                         <div className="div-buttons">
-                            <button type="button">Cancelar</button>
+                            <button onClick={()=>setOpenCreateModal(false)} type="button">Cancelar</button>
                             <button type="submit">Criar Anuncio</button>
                         </div>
                         
