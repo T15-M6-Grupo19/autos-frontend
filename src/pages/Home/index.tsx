@@ -6,6 +6,7 @@ import {Banner} from "../../components/Banner";
 import { Footer } from "../../components/Footer";
 import { NavBar } from "../../components/NavBar";
 import FilterCars from "../../components/Filter";
+import { ModalCreate } from "../../components/ModalCreate";
 
 const Home = () => {
   return (

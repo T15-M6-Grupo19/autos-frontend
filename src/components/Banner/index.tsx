@@ -1,5 +1,8 @@
+import { useContext } from "react"
 import Button from "../Button"
 import {AdvertiserStyle, BackgroundGradientStyle, BannerColorStyle, BannerStyle, FirstLettersSquareStyle, SellerDataSquareStyle, TextStyle} from "./style"
+import { CarContext } from "../../providers/CarContext"
+import { ModalCreate } from "../ModalCreate"
 
 
 export const Banner = () => {
@@ -15,7 +18,13 @@ export const Banner = () => {
      )
 }
 
-export const BannerColor = () =>  (
+export const BannerColor = () =>  {
+
+     const {openCreateModal, setOpenCreateModal} = useContext(CarContext)
+
+
+     return (
+           
      <BannerColorStyle>
           <SellerDataSquareStyle>
                <FirstLettersSquareStyle>
@@ -26,11 +35,14 @@ export const BannerColor = () =>  (
                     <div className="advertiser_tag ">Anunciante</div>
                </AdvertiserStyle>
                <p className="descripition">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, excepturi neque suscipit sapiente odio omnis labore rerum officia sequi assumenda vero aliquid, nemo fugiat placeat.</p>
-               <Button name={"Criar anuncio"} variant="secondary"/>
+               <Button onClick={()=>setOpenCreateModal(true)} name={"Criar anuncio"} variant="secondary" />
 
           </SellerDataSquareStyle>
      </BannerColorStyle>
-
-)
+     )
+     
+     
+     
+}
 
 
