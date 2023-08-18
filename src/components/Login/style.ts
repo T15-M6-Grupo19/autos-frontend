@@ -1,6 +1,16 @@
 import { styled } from "styled-components";
 
+export const ContainerAlign = styled.div`
+  box-sizing: border-box;
+  width:97.9%;
+  @media (min-width: 1023px) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
 export const LoginContainer = styled.div`
+  box-sizing: border-box;
   top: 0;
   background-color: black;
   background-color: var(--color-Grey10);
@@ -14,14 +24,20 @@ export const LoginContainer = styled.div`
   padding-top: 44px;
   padding-left: 28px;
   box-sizing: border-box;
+  @media (min-width: 1023px) {
+    width: 412px;
+  }
 `;
 
-export const LoginContainerTitle = styled.div``;
+export const LoginContainerTitle = styled.div`
+  box-sizing: border-box;
+`;
 
 export const EmailLabel = styled.p`
   color: var(--color-Grey1);
   font-size: var(--input-label);
   margin-top: 32px;
+  box-sizing: border-box;
 `;
 
 export const EmailInput = styled.input`
@@ -33,12 +49,16 @@ export const EmailInput = styled.input`
   padding: 16px;
   border: solid 2px var(--color-Grey7);
   border-radius: 4px;
+  @media (min-width: 1023px) {
+    width: 315px;
+  }
 `;
 
 export const PasswordLabel = styled.p`
   margin-top: 44px;
   color: var(--color-Grey1);
   font-size: var(--input-label);
+  box-sizing: border-box;
 `;
 
 export const PasswordInput = styled.input`
@@ -50,6 +70,10 @@ export const PasswordInput = styled.input`
   padding: 16px;
   border: solid 2px var(--color-Grey7);
   border-radius: 4px;
+  box-sizing: border-box;
+  @media (min-width: 1023px) {
+    width: 315px;
+  }
 `;
 
 export const ForgetPassword = styled.p`
@@ -57,6 +81,7 @@ export const ForgetPassword = styled.p`
   color: var(--color-Grey2);
   font-size: 14px;
   line-height: 24px;
+  box-sizing: border-box;
 `;
 export const ForgetPasswordAlign = styled.div`
   height: 24px;
@@ -64,6 +89,10 @@ export const ForgetPasswordAlign = styled.div`
   justify-content: flex-end;
   width: 74vw;
   max-width: 471px;
+  box-sizing: border-box;
+  @media (min-width: 1023px) {
+    width: 315px;
+  }
 `;
 
 export const LoginButton = styled.button`
@@ -77,6 +106,7 @@ export const LoginButton = styled.button`
   width: 75vw;
   max-width: 471px;
   border: none;
+  box-sizing: border-box;
 
   background-color: var(--color-Brand2);
   color: var(--color-WhiteFixed);
@@ -91,11 +121,15 @@ export const LoginButton = styled.button`
   &:hover {
     background-color: var(--color-Grey1);
   }
+  @media (min-width: 1023px) {
+    width: 315px;
+  }
 `;
 
 export const TextAccount = styled.p`
   color: var(--color-Grey2);
   margin-top: 24px;
+  box-sizing: border-box;
 `;
 
 export const TextAlign = styled.div`
@@ -103,6 +137,10 @@ export const TextAlign = styled.div`
   width: 74vw;
   max-width: 471px;
   justify-content: space-around;
+  box-sizing: border-box;
+  @media (min-width: 1023px) {
+    width: 315px;
+  }
 `;
 
 export const RegisterButton = styled.button`
@@ -116,8 +154,9 @@ export const RegisterButton = styled.button`
   height: 48px;
   width: 75vw;
   max-width: 471px;
-  background-color:white;
+  background-color: white;
   border: solid 2px var(--color-Grey4);
+  box-sizing: border-box;
 
   /* color: var(--color-Gray0); */
 
@@ -130,5 +169,8 @@ export const RegisterButton = styled.button`
 
   &:hover {
     /* background-color: var(--color-Grey10); */
+  }
+  @media (min-width: 1023px) {
+    width: 315px;
   }
 `;
