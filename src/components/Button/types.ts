@@ -1,8 +1,8 @@
-export interface iButton extends iButtonStyles {
-  name: string | JSX.Element;
+import { ButtonHTMLAttributes } from "react";
+
+export interface iButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  name?: string;
   onClick?: () => void;
+  variant?: string;
 }
 
-export interface iButtonStyles {
-  variant: string;
-}
