@@ -1,10 +1,24 @@
-import { EmailLabel, LoginContainer, LoginContainerTitle } from "./style";
+import {
+  EmailInput,
+  EmailLabel,
+  ForgetPassword,
+  ForgetPasswordAlign,
+  LoginButton,
+  LoginContainer,
+  LoginContainerTitle,
+  PasswordInput,
+  PasswordLabel,
+  RegisterButton,
+  TextAccount,
+  TextAlign,
+} from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button";
 
 const LoginBar = () => {
   const formSchema = yup.object().shape({
@@ -24,8 +38,8 @@ const LoginBar = () => {
     resolver: yupResolver(formSchema),
   });
 
-  async function loginForm(data){
-    return console.log(data)
+  async function loginForm(data) {
+    return console.log(data);
   }
 
   return (
@@ -33,21 +47,31 @@ const LoginBar = () => {
       <LoginContainerTitle className="textHeading5500">
         Login
       </LoginContainerTitle>
-      <form onSubmit = {handleSubmit(loginForm)}>
-        <EmailLabel htmlFor="email">Email</EmailLabel>
-        <input
+      <form onSubmit={handleSubmit(loginForm)}>
+        <EmailLabel>Email</EmailLabel>
+        <EmailInput
           id="email"
           placeholder="Digite seu Email"
           {...register("email")}
-        ></input>
+        ></EmailInput>
         <p>{errors.email?.message}</p>
-        <label>Senha</label>
-        <input></input>
+        <PasswordLabel>Senha</PasswordLabel>
+        <PasswordInput
+          id="password"
+          placeholder="Digite sua senha"
+          {...register("password")}
+        ></PasswordInput>
         <p>{errors.password?.message}</p>
-        <p>esqueci minha senha</p>
-        <button>Entrar</button>
-        <p>ainda não possúi conta?</p>
-        <button>Cadastrar</button>
+        <ForgetPasswordAlign>
+          <ForgetPassword>Esqueci minha senha</ForgetPassword>
+        </ForgetPasswordAlign>
+        <LoginButton>Entrar</LoginButton>
+        <TextAlign>
+          <TextAccount className="body2400">
+            Ainda não possui conta?
+          </TextAccount>
+        </TextAlign>
+        <RegisterButton>Cadastrar</RegisterButton>
       </form>
     </LoginContainer>
   );
