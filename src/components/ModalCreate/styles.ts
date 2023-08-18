@@ -16,14 +16,15 @@ export const StyledModal = styled.div`
         }
 
         .modal-container {
-            width: fit-content;
-            height: fit-content;
+            width: 360px;
+            height: 500px;
             background-color: white;
             border-style: none;
             color: black;
             display: flex;
             flex-direction: column;
             border-radius: 0 0 5px 5px;
+            overflow-y: auto;
         }
     
    
@@ -32,7 +33,6 @@ export const StyledModal = styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: blue;
             padding: 1rem;
             border-radius: 5px 5px 0 0 ;
         }
@@ -57,10 +57,6 @@ export const StyledModal = styled.div`
         }
 
 
-        .btn-create {
-            background-color: var(--grey-1);
-        }
-
         .delete-modal-div {
             padding: 1rem;
             display: flex;
@@ -68,4 +64,37 @@ export const StyledModal = styled.div`
             gap: 1rem;
             align-items: center;
         }
+
+        .div-teste {
+            display: flex;
+            
+        }
+
+        h4 {
+            padding: 1rem;
+        }
+
+        .div-filha {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        .div-filha >input {
+            width: 90%;
+        }
+
+        .div-buttons{
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        .div-buttons >button {
+            padding: 0.5rem 1rem;
+            margin-bottom:1rem ;
+        }
+
+
+
 `

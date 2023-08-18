@@ -1,9 +1,14 @@
 import { z } from "zod"
 
-export const createContactSchema = z.object({
-    fullname: z.string().min(2),
-    email: z.string().email(),
-    phoneNumber: z.string().length(11)
+export const createAdSchema = z.object({
+    brand: z.string(),
+    model: z.string(),
+    year: z.string().or(z.date()).optional(),
+    fuel: z.string().optional(),
+    kilometers: z.string(),
+    color: z.string(),
+    price: z.string(),
+    description: z.string(),
 })
 
-export type TCreateContactData = z.infer<typeof createContactSchema>
+export type TCreateAdData = z.infer<typeof createAdSchema>
