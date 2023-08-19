@@ -1,6 +1,6 @@
-import { iButton } from "./types";
+import { iButton } from './types';
 
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const StyledButton = styled.button<iButton>`
   display: flex;
@@ -17,7 +17,7 @@ export const StyledButton = styled.button<iButton>`
   ${({ variant }) => {
     switch (variant) {
       default:
-      case "primary":
+      case 'primary':
         return css`
           background-color: var(--color-Brand2);
           color: var(--color-WhiteFixed);
@@ -25,7 +25,7 @@ export const StyledButton = styled.button<iButton>`
           border-radius: 4px;
 
           font-size: 1.1rem;
-          font-family: "Inter";
+          font-family: 'Inter';
           font-weight: 700;
           font-style: normal;
           text-decoration: none;
@@ -35,10 +35,10 @@ export const StyledButton = styled.button<iButton>`
             background-color: var(--color-Grey1);
           }
         `;
-      case "secondary":
+      case 'secondary':
         return css`
           height: 48px;
-          width:  160px;
+          width: 160px;
 
           padding: 12px 20px;
           margin: 60px 0 0 0;
@@ -46,109 +46,122 @@ export const StyledButton = styled.button<iButton>`
           border-radius: 4px;
           border: 1.5px;
 
-          font: 600 16px "inter";
+          font: 600 16px 'inter';
 
           background-color: var(--color-WhiteFixed);
           color: var(--color-Brand1);
 
           gap: 10px;
 
-          border: 1.5px solid #4529E6;
+          border: 1.5px solid #4529e6;
           &:hover {
             background-color: var(--color-Brand1);
             color: var(--color-WhiteFixed);
           }
         `;
-             case 'Editar':
-              return css`
-      
-                width: 80px;
-                height: 38px;
-              
-                background-color: transparent;
-                border: 2px solid var(--color-Grey1);
-                border-radius: 0.25rem;
-      
-                color: var(--color-Grey1);
-               
-                font-family: Inter;
-                font-size: 0.875rem;
-                font-style: normal;
-                font-weight: 600;
-      
-                
-      
-                &:hover{
-                  background-color: var(--color-Brand1);
-                  border: 2px solid var(--color-Brand1);
-                  color: var(--color-Grey1);
-                }
-              `;
-            case 'Ver Detalhes':
-              return css`
-                width: 126px;
-                height: 38px;
-      
-                background-color: transparent;
-                border: 2px solid var(--color-Grey1);
-                border-radius: 0.25rem;
-      
-                color: var(--color-Grey1);
-      
-                font-family: Inter;
-                font-size: 0.875rem;
-                font-style: normal;
-                font-weight: 600;
+      case 'Editar':
+        return css`
+          width: 80px;
+          height: 38px;
 
-                &:hover{
-                  background-color: var(--color-Brand1);
-                  border: 2px solid var(--color-Brand1);
-                  color: var(--color-Grey1);
-                }
-              `;
-              case "tertiary":
-                return css`
-                  background-color: var(--color-WhiteFixed);
-                  color: var(--color-Grey0);
-        
-                  border: 2px solid var(--color-Grey4);
-                  border-radius: 4px;
-        
-                  font-size: 1rem;
-                  font-family: "Inter";
-                  font-weight: 700;
-                  font-style: normal;
-                  text-decoration: none;
-                  text-transform: none;
-        
-                  &:hover {
-                    background-color: var(--color-Brand2);
-                    color: var(--color-WhiteFixed);
-                    border: none;
-                  }
-                `;
-              case "registerButton":
-                return css`
-                  background-color: var(--color-Brand2);
-                  color: var(--color-WhiteFixed);
-        
-                  border-radius: 4px;
-        
-                  font-size: 1.1rem;
-                  font-family: "Inter";
-                  font-weight: 700;
-                  font-style: normal;
-                  text-decoration: none;
-                  text-transform: none;
-        
-                  &:hover {
-                    background-color: var(--color-Grey1);
-                  }
-        
-                  @media (min-width: 620px) {
-                    width: 320px;
-                  }
-                `;
+          background-color: transparent;
+          border: 2px solid var(--color-Grey1);
+          border-radius: 0.25rem;
+
+          color: var(--color-Grey1);
+
+          font-family: Inter;
+          font-size: 0.875rem;
+          font-style: normal;
+          font-weight: 600;
+
+          &:hover {
+            background-color: var(--color-Brand1);
+            border: 2px solid var(--color-Brand1);
+            color: var(--color-Grey1);
+          }
+        `;
+      case 'Ver Detalhes':
+        return css`
+          width: 126px;
+          height: 38px;
+
+          background-color: transparent;
+          border: 2px solid var(--color-Grey1);
+          border-radius: 0.25rem;
+
+          color: var(--color-Grey1);
+
+          font-family: Inter;
+          font-size: 0.875rem;
+          font-style: normal;
+          font-weight: 600;
+
+          &:hover {
+            background-color: var(--color-Brand1);
+            border: 2px solid var(--color-Brand1);
+            color: var(--color-Grey1);
+          }
+        `;
+      case 'tertiary':
+        return css`
+          background-color: var(--color-WhiteFixed);
+          color: var(--color-Grey0);
+
+          border: 2px solid var(--color-Grey4);
+          border-radius: 4px;
+
+          font-size: 1rem;
+          font-family: 'Inter';
+          font-weight: 700;
+          font-style: normal;
+          text-decoration: none;
+          text-transform: none;
+
+          &:hover {
+            background-color: var(--color-Brand2);
+            color: var(--color-WhiteFixed);
+            border: none;
+          }
+        `;
+      case 'registerButton':
+        return css`
+          background-color: var(--color-Brand2);
+          color: var(--color-WhiteFixed);
+
+          border-radius: 4px;
+
+          font-size: 1.1rem;
+          font-family: 'Inter';
+          font-weight: 700;
+          font-style: normal;
+          text-decoration: none;
+          text-transform: none;
+
+          &:hover {
+            background-color: var(--color-Grey1);
+          }
+
+          @media (min-width: 620px) {
+            width: 320px;
+          }
+        `;
+      case 'addImgGallery':
+        return css`
+          background-color: var(--color-Brand4);
+
+          height: 38px;
+          width: 315px;
+
+          padding: 4px 0px;
+
+          color: var(--color-Brand1);
+
+          font-family: Inter;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+        `;
     }
   }}
 `;
