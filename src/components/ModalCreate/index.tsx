@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, } from 'react';
 import { StyledModal } from './styles';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -69,6 +69,7 @@ export function ModalCreate() {
   const handleClick = () => {
     setInputCount((prev) => [...prev, 'clicou']);
   };
+  console.log(inputCount.length);
 
   function submit(data: any) {
     data.year = filteredModel[1].year;
@@ -178,7 +179,20 @@ export function ModalCreate() {
             <input id='imagem-capa' />
 
             {inputCount.length > 0 &&
-              inputCount.map(() => <input type='text' />)}
+              inputCount.map((_, index) => {
+                return (
+                  <React.Fragment>
+                    <label htmlFor='imagem-gallery'>
+                      {index + 1}ª imagem da galeria
+                    </label>
+                    <input
+                      id='imagem-gallery'
+                      type='url'
+                      placeholder='https://image.com'
+                    />
+                  </React.Fragment>
+                );
+              })}
 
             <div className='box-btn-addImgGal'>
               <Button
