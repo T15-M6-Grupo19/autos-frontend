@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LogoColors from "../../assets/MotorsColors.svg";
 import Bars from "../../assets/bars.svg";
 import X from "../../assets/x.svg";
 import { ContainerNav, ContainerNavSeller } from "./styles";
 import { Link } from "react-router-dom";
+import { CarContext } from "../../providers/CarContext";
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { userData } = useContext(CarContext);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -71,7 +73,6 @@ export const NavBar = () => {
   );
 };
 
-
 export const NavBarAdvertiser = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -92,6 +93,8 @@ export const NavBarAdvertiser = () => {
     };
   }, []);
 
+  const { userData, getNameCharacters } = useContext(CarContext);
+
   return (
     <ContainerNavSeller>
       <figure>
@@ -110,9 +113,9 @@ export const NavBarAdvertiser = () => {
                 <Link to="/login" className="login-link-mobile">
                   <div className="second">
                     <div className="ballon-name">
-                      <span>SL</span>
+                      <span>{getNameCharacters(userData.name)}</span>
                     </div>
-                    <span>Silva Luiz</span>
+                    <span>{userData.name}</span>
                   </div>
                 </Link>
                 {/* <Link to="/register" className="register-link-mobile">
@@ -132,9 +135,9 @@ export const NavBarAdvertiser = () => {
             <Link to="/login" className="user-desktop">
               <div className="second">
                 <div className="ballon-name">
-                  <span>SL</span>
+                  <span>{getNameCharacters(userData.name)}</span>
                 </div>
-                <span className="name_profile">Samuel Leão</span>
+                <span className="name_profile">{userData.name}</span>
               </div>
             </Link>
           </div>
@@ -142,4 +145,4 @@ export const NavBarAdvertiser = () => {
       )}
     </ContainerNavSeller>
   );
-}
+};

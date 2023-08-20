@@ -1,27 +1,24 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { ListCardContainer } from "./style";
-import { CarContext } from "../../providers/CarContext";
 import { useLocation } from "react-router-dom";
 
-
-const ListCards = () => {
-  const { searchResult } = useContext(CarContext)
+const ListCards = ({ carList }) => {
   const [isProfile, setIsProfile] = useState(false);
 
-  
   const page = useLocation();
   useEffect(() => {
-    page.pathname.split('/')[1] === 'Profile' && setIsProfile(true);
+    page.pathname.split("/")[1] === "profile" && setIsProfile(true);
   }, [page]);
- 
 
   return (
-    <ListCardContainer view={ isProfile ? "allSpace" : "spaceTwo"}>
-      {searchResult!.map((car) => (
-        <Card key={car.km} car={car} />
-      ))}
-    </ListCardContainer>
+    carList[0] && (
+      <ListCardContainer view={isProfile ? "allSpace" : "spaceTwo"}>
+        {carList.map((car) => (
+          <Card key={car.kilometers} car={car} />
+        ))}
+      </ListCardContainer>
+    )
   );
 };
 
