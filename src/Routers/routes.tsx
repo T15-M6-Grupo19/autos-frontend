@@ -4,16 +4,16 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
+import ProfileViewUser from "../pages/Profile/ProfileViewUser";
 
 export default function Router() {
   return (
     <Routes>
-      <Route path="/register" element={<Register/>}/>
       <Route path="/" element={<Home />} />
-      <Route path="/profile" element={<Profile />} />
-      {/* <Route path="/home" element={<Home />} /> */}
+      <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route path="/login" element={<Login />} /> */}
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/:userId" element={<ProfileViewUser />} />
     </Routes>
   );
 }
