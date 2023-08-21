@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext, useEffect, useState, } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyledModal } from './styles';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -69,7 +69,6 @@ export function ModalCreate() {
   const handleClick = () => {
     setInputCount((prev) => [...prev, 'clicou']);
   };
-  console.log(inputCount.length);
 
   function submit(data: any) {
     data.year = filteredModel[1].year;
