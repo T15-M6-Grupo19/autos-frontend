@@ -9,22 +9,20 @@ import { CarContext } from "../../providers/CarContext";
 import { ModalCreate } from "../../components/ModalCreate";
 
 const Profile = () => {
+  const { openCreateModal, userData } = useContext(CarContext);
 
-     const {openCreateModal} = useContext(CarContext)
-     return (
-          <>
-               {
-                    openCreateModal && <ModalCreate />
-               }
-               <NavBarAdvertiser />
-               <BannerColor />
-               <MainStructure>
-                    <ListCards />
-               </MainStructure>
-               <Pagination />
-               <Footer />
-          </>
-     );
-   };
-   
+  return (
+    <>
+      {openCreateModal && <ModalCreate />}
+      <NavBarAdvertiser />
+      <BannerColor name={userData.name} account_type={userData.account_type} />
+      <MainStructure>
+        <ListCards carList={userData.ads ? userData.ads : {}} />
+      </MainStructure>
+      <Pagination />
+      <Footer />
+    </>
+  );
+};
+
 export default Profile;

@@ -44,24 +44,22 @@
 
 // export default Card;
 
-
-
-
-import { ContainerCard } from './style';
+import { ContainerCard } from "./style";
 // import { IMockCar } from '../types';
-import Button from '../../Button';
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import Button from "../../Button";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Ferrari from "../../../assets/Ferrari.svg";
 
 export interface MockCar {
   imageURL: string;
-  marca: string;
-  modelo: string;
-  combustivel: string;
-  cor: string;
-  ano: number;
-  km: number;
-  preco: number;
+  brand: string;
+  model: string;
+  fuel: string;
+  color: string;
+  year: number;
+  kilometers: number;
+  price: number;
 }
 
 export interface IMockCarList {
@@ -73,12 +71,12 @@ export interface IMockCar {
 }
 
 export const Card = ({ car }: IMockCar) => {
-
-  console.table(car)
   const [isProfile, setIsProfile] = useState(false);
   const page = useLocation();
   useEffect(() => {
-    page.pathname.split('/')[1] !== '' && setIsProfile(true);
+    if (page.pathname.split("/")[1] === "profile" && !page.pathname.split("/")[2]) {
+      setIsProfile(true);
+    }
 
     return;
   }, [page, isProfile]);
@@ -86,18 +84,18 @@ export const Card = ({ car }: IMockCar) => {
   return (
     <ContainerCard>
       <figure>
-        <img src={car.imageURL} />
+        <img src={car.imageURL ? car.imageURL : Ferrari} />
       </figure>
-      <div className='box-div'>
-        <div className='fist'>
+      <div className="box-div">
+        <div className="fist">
           <h2>
-            {' '}
-            {car.marca} - {car.modelo}{' '}
+            {" "}
+            {car.brand} - {car.model}{" "}
           </h2>
-          <div> {car.modelo} </div>
+          <div> {car.model} </div>
         </div>
-        <div className='second'>
-          <div className='ballon-name'>
+        <div className="second">
+          <div className="ballon-name">
             <span>SL</span>
           </div>
           <span>Silva Luiz</span>
@@ -118,26 +116,26 @@ export const Card = ({ car }: IMockCar) => {
             </span>
           </div>
         </div> */}
-         <div className='thirsd'>
-          <div className='detail'>
+        <div className="thirsd">
+          <div className="detail">
             <span>
-              {car.km} <span>KM</span>
+              {car.kilometers} <span>KM</span>
             </span>
-            <span>{car.ano}</span>
+            <span>{car.year}</span>
           </div>
-          <div className='wrap-price'>
-            <span className='price'>
-              {car.preco.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
+          <div className="wrap-price">
+            <span className="price">
+              {car.price.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
               })}
             </span>
           </div>
         </div>
         {isProfile ? (
-          <div className='fourth'>
-            <Button variant='Editar' name={'Editar'} />
-            <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+          <div className="fourth">
+            <Button variant="Editar" name={"Editar"} />
+            <Button variant="Ver Detalhes" name={"Ver Detalhes"} />
           </div>
         ) : null}
       </div>
