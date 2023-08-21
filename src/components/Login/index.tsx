@@ -41,7 +41,6 @@ const LoginBar = () => {
   const navigate = useNavigate()
   async function loginForm(data) {
 
-  console.log(data)
     try {
       const response = await api.post("/login", data);
 
@@ -55,7 +54,7 @@ const LoginBar = () => {
      
       //   console.log(response.data.token);
       // setUserData(response.data.user)
-      console.log(response.data.user);
+  
 
       navigate("/profile");
       //   toast.success("Login efetuado!")
