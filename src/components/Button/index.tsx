@@ -1,10 +1,15 @@
-import { iButton } from "./types";
+import { iButton } from './types';
 
-import { StyledButton } from "./styles";
+import { StyledButton } from './styles';
 
-const Button = ({ onClick, name, variant, type }: iButton) => {
+const Button = ({ onClick, name, variant, type, clicked }: iButton) => {
   return (
-    <StyledButton variant={variant} onClick={onClick} type={type}>
+    <StyledButton
+      variant={variant}
+      onClick={onClick}
+      type={type}
+      clicked={clicked}
+    >
       {name}
     </StyledButton>
   );

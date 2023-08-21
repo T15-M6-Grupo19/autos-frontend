@@ -14,7 +14,7 @@ export const StyledButton = styled.button<iButton>`
 
   transition: ease 0.3s;
 
-  ${({ variant }) => {
+  ${({ variant, clicked }) => {
     switch (variant) {
       default:
       case 'primary':
@@ -103,10 +103,10 @@ export const StyledButton = styled.button<iButton>`
             color: var(--color-Grey1);
           }
         `;
-      case 'tertiary':
+      case 'tipo de conta':
         return css`
-          background-color: var(--color-WhiteFixed);
-          color: var(--color-Grey0);
+          background-color: ${clicked ? '#4529e6' : '#f8f9fa'};
+          color: ${clicked ? '#edeafd' : '868e96'};
 
           border: 2px solid var(--color-Grey4);
           border-radius: 4px;
@@ -124,9 +124,11 @@ export const StyledButton = styled.button<iButton>`
             border: none;
           }
         `;
+
       case 'registerButton':
         return css`
-          background-color: var(--color-Brand2);
+          background: var(--color-Brand1);
+
           color: var(--color-WhiteFixed);
 
           border-radius: 4px;
