@@ -42,7 +42,9 @@ const LoginBar = () => {
 
   const { setUserData } = useContext(CarContext);
 
+
   async function loginForm(data) {
+
     try {
       const response = await api.post("/login", data);
 
@@ -51,11 +53,18 @@ const LoginBar = () => {
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
+
       const { sub }: string = jwt_decode(token);
 
       const userResponse = await api.get("/users/" + sub);
 
       setUserData(userResponse.data);
+
+     
+      //   console.log(response.data.token);
+      // setUserData(response.data.user)
+  
+
 
       navigate("/profile");
       //   toast.success("Login efetuado!")

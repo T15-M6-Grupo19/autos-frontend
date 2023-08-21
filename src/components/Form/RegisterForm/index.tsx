@@ -31,7 +31,7 @@ export const RegisterForm = ({toggleModal}: RegisterType) => {
     }
  
     try {
-      const response = await api.post<User>("/users/", data);
+      const response = await api.post<User>("/users", data);
       
       setUser(response.data);
       toggleModal()
