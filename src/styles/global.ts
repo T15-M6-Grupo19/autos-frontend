@@ -209,7 +209,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	.textBody2500 {
-		font-size: 1.4rem;
+		font-size: 1rem;
 		font-family: "Inter";
 		font-weight: 500;
 		font-style: normal;
