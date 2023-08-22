@@ -35,7 +35,7 @@ const ListCardContainer = styled.ul<IListCard>`
           return css`
               @media (min-width: 1024px) {
                 height: auto;
-                width: 68vw;
+                width: 100%;
 
                 
                 
@@ -44,10 +44,13 @@ const ListCardContainer = styled.ul<IListCard>`
                 align-items: normal;
 
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
 
                 overflow: hidden;
-              } 
+              };
+              @media (min-width: 1320px) {
+                grid-template-columns: repeat(3, 1fr);
+              }
           `
     }
   }}
