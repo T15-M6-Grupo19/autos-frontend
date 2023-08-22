@@ -5,8 +5,9 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
 import ProfileViewUser from '../pages/Profile/ProfileViewUser';
-import { RecoverPage } from '../pages/RecoverPWD';
-import { MainRecover } from '../pages/RecoverPWD/Main';
+import { DefaulLayout } from '../pages/RecoverPWD';
+import { MainRecover } from '../pages/RecoverPWD/MainSendInfo';
+import { ResetPassWord } from '../pages/RecoverPWD/MainReserPWD/ResetPWDForm';
 
 export default function Router() {
   return (
@@ -16,10 +17,9 @@ export default function Router() {
       <Route path='/login' element={<Login />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/profile/:userId' element={<ProfileViewUser />} />
-      <Route path='/recover' element={<RecoverPage />} />
-      <Route path='/recover' element={<RecoverPage />}>
-        <Route path='/recover/sendInfo' element={<MainRecover />} />
-        <Route path='/recover/resetPassword' />
+      <Route path='/recover' element={<DefaulLayout />}>
+        <Route path='/recover' element={<MainRecover />} />
+        <Route path='/recover/resetpwd/:token' element={<ResetPassWord />} />
       </Route>
     </Routes>
   );
