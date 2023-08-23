@@ -1,8 +1,8 @@
-import { createContext, useEffect, useState } from "react";
-import { mockList } from "../database/Mock2";
-import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { api } from "../services/api";
+import { createContext, useEffect, useState } from 'react';
+import { mockList } from '../database/Mock2';
+import { useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import { api } from '../services/api';
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -45,22 +45,27 @@ export const CarContext = createContext({} as ICarContext);
 
 export const CarProvider = ({ children }: IProviderProps) => {
   const [cars, setCars] = useState<ICar[]>(mockList);
-  const [filteredCars, setFilteredCars] = useState("");
+  const [filteredCars, setFilteredCars] = useState('');
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
-  const [userData, setUserData] = useState({ name: "name", account_type: "anunciante" });
+  const [userData, setUserData] = useState({
+    name: 'name',
+    account_type: 'anunciante',
+  });
 
-  const getNameCharacters = (name: string = "name") => {
-    return name.split(" ")[1] ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0) : name.charAt(0);
+  const getNameCharacters = (name: string = 'name') => {
+    return name.split(' ')[1]
+      ? name.split(' ')[0].charAt(0) + name.split(' ')[1].charAt(0)
+      : name.charAt(0);
   };
 
-  let searchResult = cars.filter((car) => {
+  const searchResult = cars.filter((car) => {
     if (car.kilometers <= kmRange[0] || car.kilometers >= kmRange[1]) {
       return;
     } else if (car.price <= priceRange[0] || car.price >= priceRange[1]) {
       return;
-    } else if (filteredCars == "") {
+    } else if (filteredCars == '') {
       return true;
     }
 
@@ -77,15 +82,16 @@ export const CarProvider = ({ children }: IProviderProps) => {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("@TOKEN");
+      const token = localStorage.getItem('@TOKEN');
 
       if (token) {
         const { sub }: string = jwt_decode(token);
 
-        const userResponse = await api.get("/users/" + sub);
+        const userResponse = await api.get('/users/' + sub);
 
         setUserData(await userResponse.data);
       } else {
+        
         navigate("/login");
       }
     })();

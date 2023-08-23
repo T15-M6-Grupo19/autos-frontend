@@ -12,14 +12,15 @@ import { MainRecoverPWD } from '../pages/RecoverPWD/MainReserPWD';
 export default function Router() {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/profile/:userId' element={<ProfileViewUser />} />
-      <Route path='/recover' element={<DefaulLayout />}>
-        <Route path='/recover' element={<MainRecover />} />
-        <Route path='/recover/resetpwd/:token' element={<MainRecoverPWD />} />
+      <Route path='/' element={<Home />}>
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/:userId' element={<ProfileViewUser />} />
+        <Route path='/recover' element={<DefaulLayout />}>
+          <Route path='/recover' element={<MainRecover />} />
+          <Route path='/recover/resetpwd/:token' element={<MainRecoverPWD />} />
+        </Route>
       </Route>
     </Routes>
   );
