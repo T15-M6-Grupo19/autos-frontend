@@ -1,8 +1,6 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { mockList } from '../database/Mock2';
-import { useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import { api } from '../services/api';
+
 
 export interface IProviderProps {
   children: React.ReactNode;
