@@ -78,23 +78,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
     );
   });
 
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    (async () => {
-      const token = localStorage.getItem("@TOKEN");
-
-      if (token) {
-        const { sub }: string = jwt_decode(token);
-
-        const userResponse = await api.get("/users/" + sub);
-
-        setUserData(await userResponse.data);
-      } else {
-        navigate("/login");
-      }
-    })();
-  }, []);
 
   return (
     <CarContext.Provider
