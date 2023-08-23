@@ -25,7 +25,10 @@ import jwt_decode from "jwt-decode";
 
 const LoginBar = () => {
   const formSchema = yup.object().shape({
-    email: yup.string().required("Informe um email").email("Digite um formato de email válido"),
+    email: yup
+      .string()
+      .required("Informe um email")
+      .email("Digite um formato de email válido"),
     password: yup.string().required("Informe sua senha"),
   });
 
@@ -79,20 +82,32 @@ const LoginBar = () => {
   return (
     <ContainerAlign>
       <LoginContainer>
-        <LoginContainerTitle className="textHeading5500">Login</LoginContainerTitle>
+        <LoginContainerTitle className="textHeading5500">
+          Login
+        </LoginContainerTitle>
         <form onSubmit={handleSubmit(loginForm)}>
           <EmailLabel>Email</EmailLabel>
-          <EmailInput id="email" placeholder="Digite seu Email" {...register("email")}></EmailInput>
+          <EmailInput
+            id="email"
+            placeholder="Digite seu Email"
+            {...register("email")}
+          ></EmailInput>
           <ErrorText>{errors.email?.message}</ErrorText>
           <PasswordLabel>Senha</PasswordLabel>
-          <PasswordInput id="password" placeholder="Digite sua senha" {...register("password")}></PasswordInput>
+          <PasswordInput
+            id="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+          ></PasswordInput>
           <ErrorText>{errors.password?.message}</ErrorText>
           <ForgetPasswordAlign>
             <ForgetPassword>Esqueci minha senha</ForgetPassword>
           </ForgetPasswordAlign>
           <LoginButton type="submit">Entrar</LoginButton>
           <TextAlign>
-            <TextAccount className="body2400">Ainda não possui conta?</TextAccount>
+            <TextAccount className="body2400">
+              Ainda não possui conta?
+            </TextAccount>
           </TextAlign>
           <RegisterButton>Cadastrar</RegisterButton>
         </form>
