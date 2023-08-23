@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import ProfileViewUser from "../pages/Profile/ProfileViewUser";
+import Ad from "../pages/Ad";
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/:userId" element={<ProfileViewUser />} />
+      <Route path="/ad/:adId" element={<Ad />} />
     </Routes>
   );
 }
