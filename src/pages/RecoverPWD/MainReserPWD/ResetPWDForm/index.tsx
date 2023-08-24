@@ -6,13 +6,17 @@ import {
   tResePWD,
 } from '../../../../components/Form/RegisterForm/validator';
 import { useParams } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CarContext } from '../../../../providers/CarContext';
+import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
+import { ShowConfirPassEye, ShowPassEye } from './styles';
 
 export const ResetPassWord = () => {
   const { token } = useParams();
 
   const { resetPassword } = useContext(CarContext);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -36,11 +40,19 @@ export const ResetPassWord = () => {
           </label>
           <input
             id='password'
-            type='password'
+            type={showPassword ? 'text' : 'password'}
             placeholder='******'
             {...register('password')}
           />
           {errors && <p> {errors.password?.message} </p>}
+          <ShowPassEye
+            title='Mostrar senha'
+            onClick={() => {
+              setShowPassword(!showPassword);
+            }}
+          >
+            {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+          </ShowPassEye>
         </div>
         <br />
         <div className='input-wraper'>
@@ -49,11 +61,19 @@ export const ResetPassWord = () => {
           </label>
           <input
             id='ConfirmPassword'
-            type='password'
+            type={showPassword ? 'text' : 'password'}
             placeholder='******'
             {...register('confirmPassword')}
           />
           {errors && <p> {errors.confirmPassword?.message} </p>}
+          <ShowConfirPassEye
+            title='Mostrar senha'
+            onClick={() => {
+              setShowPassword(!showPassword);
+            }}
+          >
+            {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+          </ShowConfirPassEye>
         </div>
         <br />
         <button>Enviar</button>

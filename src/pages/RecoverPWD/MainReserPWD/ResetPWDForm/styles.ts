@@ -39,6 +39,8 @@ export const FormBox = styled.div`
       border-radius: 8px;
       outline: none;
 
+      position: absolute;
+
       &:focus {
         box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.5);
       }
@@ -56,3 +58,15 @@ export const FormBox = styled.div`
     }
   }
 `;
+
+const BaseStyledEye = styled.span`
+  position: relative;
+
+  bottom: 47px;
+  left: 230px;
+
+  cursor: pointer;
+`;
+
+export const ShowPassEye = styled(BaseStyledEye)``;
+export const ShowConfirPassEye = styled(BaseStyledEye)``;

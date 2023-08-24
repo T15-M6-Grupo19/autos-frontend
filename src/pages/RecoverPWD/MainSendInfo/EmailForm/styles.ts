@@ -32,6 +32,8 @@ export const FormBox = styled.div`
     flex-direction: column;
     gap: 10px;
 
+   
+
     input {
       height: 40px;
       padding: 1rem;
