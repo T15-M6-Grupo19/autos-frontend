@@ -49,7 +49,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
-  const [userData, setUserData] = useState({ name: "name", account_type: "anunciante" });
+  const [userData, setUserData] = useState({});
 
   const getNameCharacters = (name: string = "name") => {
     return name.split(" ")[1] ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0) : name.charAt(0);
