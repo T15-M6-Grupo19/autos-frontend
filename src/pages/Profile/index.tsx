@@ -7,13 +7,17 @@ import Pagination from "../../components/Pagination";
 import { MainStructure } from "./style";
 import { CarContext } from "../../providers/CarContext";
 import { ModalCreate } from "../../components/ModalCreate";
+import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 
 const Profile = () => {
-  const { openCreateModal, userData } = useContext(CarContext);
+  const { openCreateModal, userData, EditAddress, setEditAddress } = useContext(CarContext);
+
+  const toggleModalEditAddress = () => setEditAddress(false)
 
   return (
     <>
       {openCreateModal && <ModalCreate />}
+      {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <NavBarAdvertiser />
       <BannerColor name={userData.name} account_type={userData.account_type} />
       <MainStructure>

@@ -9,7 +9,6 @@ import { CarContext } from "../../providers/CarContext";
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const { userData } = useContext(CarContext);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -132,14 +131,14 @@ export const NavBarAdvertiser = () => {
       ) : (
         <>
           <div className="box-handle-desktop">
-            <Link to="/login" className="user-desktop">
+            <button className="user-desktop">
               <div className="second">
                 <div className="ballon-name">
                   <span>{getNameCharacters(userData.name)}</span>
                 </div>
                 <span className="name_profile">{userData.name}</span>
               </div>
-            </Link>
+            </button>
           </div>
         </>
       )}

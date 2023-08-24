@@ -3,6 +3,8 @@ import { mockList } from "../database/Mock2";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { api } from "../services/api";
+import { EditAddress } from "../components/Modal/ModalEditAddress/valdiators";
+import { User } from "../components/Form/RegisterForm/types";  
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -21,6 +23,16 @@ export interface ICar {
 
 interface ICarContext {
   cars: ICar[];
+  EditAddress: boolean;
+  setEditAddress: React.Dispatch<React.SetStateAction<boolean>>
+  updateAddress: (formData: {
+    ZIP_code?: string | undefined;
+    state?: string | undefined;
+    city?: string | undefined;
+    street?: string | undefined;
+    number?: string | undefined;
+    additional_details?: string | null | undefined;
+  }) => Promise<string | void>;
   setCars: React.Dispatch<React.SetStateAction<ICar[]>>;
   filteredCars: string;
   setFilteredCars: React.Dispatch<React.SetStateAction<string>>;
@@ -50,6 +62,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [userData, setUserData] = useState({ name: "name", account_type: "anunciante" });
+  const [ EditAddress, setEditAddress ] = useState(true);
+
 
   const getNameCharacters = (name: string = "name") => {
     return name.split(" ")[1] ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0) : name.charAt(0);
@@ -91,6 +105,29 @@ export const CarProvider = ({ children }: IProviderProps) => {
     })();
   }, []);
 
+  const updateAddress = async (formData: EditAddress) => {
+      const token = localStorage.getItem('@TOKEN');
+      
+      console.log(formData)
+
+      if(token){
+        const { sub }: string = jwt_decode(token);
+
+        api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+
+
+        try {
+          const response = await api.patch(`/users/${sub}`, formData)
+          setEditAddress(false)
+
+          console.log(response)
+        }catch (error) {
+          console.error(error)
+        }
+      }
+  };
+
+
   return (
     <CarContext.Provider
       value={{
@@ -108,6 +145,9 @@ export const CarProvider = ({ children }: IProviderProps) => {
         userData,
         setUserData,
         getNameCharacters,
+        EditAddress, 
+        setEditAddress,
+        updateAddress,
       }}
     >
       {children}
