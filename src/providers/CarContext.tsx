@@ -24,6 +24,16 @@ export interface ICar {
 
 interface ICarContext {
   cars: ICar[];
+  EditAddress: boolean;
+  setEditAddress: React.Dispatch<React.SetStateAction<boolean>>
+  updateAddress: (formData: {
+    number: string;
+    ZIP_code: string;
+    state: string;
+    city: string;
+    street: string;
+    additional_details?: string | null | undefined;
+}) => Promise<void>
   setCars: React.Dispatch<React.SetStateAction<ICar[]>>;
   filteredCars: string;
   setFilteredCars: React.Dispatch<React.SetStateAction<string>>;
@@ -54,10 +64,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
-  const [userData, setUserData] = useState({
-    name: 'name',
-    account_type: 'anunciante',
-  });
+  const [userData, setUserData] = useState({});
+  const [ EditAddress, setEditAddress ] = useState(true);
 
   const navigate = useNavigate();
   const getNameCharacters = (name: string = 'name') => {
@@ -110,6 +118,44 @@ export const CarProvider = ({ children }: IProviderProps) => {
     );
   });
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    (async () => {
+      const token = localStorage.getItem("@TOKEN");
+
+      if (token) {
+        const { sub }: string = jwt_decode(token);
+
+        const userResponse = await api.get("/users/" + sub);
+
+        setUserData(await userResponse.data);
+      } else {
+        navigate("/login");
+      }
+    })();
+  }, []);
+
+  const updateAddress = async (formData: EditAddress) => {
+      const token = localStorage.getItem('@TOKEN');
+      
+      if(token){
+        const { sub }: string = jwt_decode(token);
+
+        api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+
+
+        try {
+         await api.patch(`/users/${sub}`, formData)
+          setEditAddress(false)
+
+        }catch (error) {
+          console.error(error)
+        }
+      }
+  };
+
+
   return (
     <CarContext.Provider
       value={{
@@ -127,6 +173,9 @@ export const CarProvider = ({ children }: IProviderProps) => {
         userData,
         setUserData,
         getNameCharacters,
+        EditAddress, 
+        setEditAddress,
+        updateAddress,
         sendEmail,
         resetPassword,
       }}
