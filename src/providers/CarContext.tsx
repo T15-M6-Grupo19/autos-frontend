@@ -26,13 +26,13 @@ interface ICarContext {
   EditAddress: boolean;
   setEditAddress: React.Dispatch<React.SetStateAction<boolean>>
   updateAddress: (formData: {
-    ZIP_code?: string | undefined;
-    state?: string | undefined;
-    city?: string | undefined;
-    street?: string | undefined;
-    number?: string | undefined;
+    number: string;
+    ZIP_code: string;
+    state: string;
+    city: string;
+    street: string;
     additional_details?: string | null | undefined;
-  }) => Promise<string | void>;
+}) => Promise<void>
   setCars: React.Dispatch<React.SetStateAction<ICar[]>>;
   filteredCars: string;
   setFilteredCars: React.Dispatch<React.SetStateAction<string>>;
@@ -89,6 +89,16 @@ export const CarProvider = ({ children }: IProviderProps) => {
     );
   });
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    (async () => {
+      const token = localStorage.getItem("@TOKEN");
+
+      if (token) {
+        const { sub }: string = jwt_decode(token);
+
+        const userResponse = await api.get("/users/" + sub);
 
         setUserData(await userResponse.data);
       } else {
