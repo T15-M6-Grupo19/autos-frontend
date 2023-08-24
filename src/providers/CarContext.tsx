@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { api } from "../services/api";
 import { EditAddress } from "../components/Modal/ModalEditAddress/valdiators";
-import { User } from "../components/Form/RegisterForm/types";  
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -110,8 +109,6 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const updateAddress = async (formData: EditAddress) => {
       const token = localStorage.getItem('@TOKEN');
       
-      console.log(formData)
-
       if(token){
         const { sub }: string = jwt_decode(token);
 
@@ -119,10 +116,9 @@ export const CarProvider = ({ children }: IProviderProps) => {
 
 
         try {
-          const response = await api.patch(`/users/${sub}`, formData)
+         await api.patch(`/users/${sub}`, formData)
           setEditAddress(false)
 
-          console.log(response)
         }catch (error) {
           console.error(error)
         }
