@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 
 const ProfileViewUser = () => {
-  const [userData, setUserData] = useState({ name: "name", account_type: "anunciante" });
+  const [userDataView, setUserDataView] = useState({ name: "name", account_type: "anunciante", description: "testando123" });
   const [carList, setCarList] = useState({});
   const [listError, setListError] = useState(false);
 
@@ -26,7 +26,7 @@ const ProfileViewUser = () => {
 
         setCarList(userCars);
 
-        setUserData(userData);
+        setUserDataView(userData);
       } catch (error) {
         setListError(true);
       }
@@ -36,7 +36,7 @@ const ProfileViewUser = () => {
   return !listError ? (
     <>
       <NavBarAdvertiser />
-      <BannerColor name={userData.name} account_type={userData.account_type} />
+      <BannerColor name={userDataView.name} account_type={userDataView.account_type} description={userDataView.description}/>
       <MainStructure>
         <ListCards carList={carList} />
       </MainStructure>
