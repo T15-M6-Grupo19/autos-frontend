@@ -47,29 +47,24 @@ const LoginBar = () => {
 
 
   async function loginForm(data) {
-
+    
     try {
       const response = await api.post("/login", data);
 
       const { token } = await response.data;
+      
       window.localStorage.setItem("@TOKEN", JSON.stringify(token));
-
-      api.defaults.headers.common.Authorization = `Bearer ${token}`;
-
 
       const { sub }: string = jwt_decode(token);
 
       const userResponse = await api.get("/users/" + sub);
-
+      
       setUserData(userResponse.data);
-
      
+      navigate("/profile");
       //   console.log(response.data.token);
       // setUserData(response.data.user)
-  
 
-
-      navigate("/profile");
       //   toast.success("Login efetuado!")
     } catch (error) {
       // toast.error(error.response.data.message);

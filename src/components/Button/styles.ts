@@ -164,7 +164,53 @@ export const StyledButton = styled.button<iButton>`
           font-style: normal;
           font-weight: 600;
         `;
-      case 'Disable':
+        case 'editUserCancel':
+          return css`
+          background-color: var(--color-Grey6);
+          border-radius: 4px;
+          color: var(--color-Grey2);
+
+          height: 48px;
+          width: 165px;
+
+          font-family: Inter;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          `
+        case 'editUserDelete':
+            return css`
+            background-color: var(--color-Alert2);
+            border-radius: 4px;
+            color: var(--color-Alert1);
+  
+            height: 48px;
+            width: 165px;
+  
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            `
+          case 'editUserConfirm':
+            return css`
+            background-color: var(--color-Brand1);
+            border-radius: 4px;
+            color: var(--color-WhiteFixed);
+  
+            height: 48px;
+            width: 230px;
+  
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+
+            @media(min-width: 1200px){
+              width: 165px;
+            }
+            `;
+          case 'Disable':
         return css`
         background-color: var(--color-Brand3);
 
@@ -181,7 +227,6 @@ export const StyledButton = styled.button<iButton>`
         font-style: normal;
         font-weight: 600;
       `;
-
     }
   }}
 `;
