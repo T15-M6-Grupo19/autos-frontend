@@ -66,7 +66,9 @@ export const CarProvider = ({ children }: IProviderProps) => {
 
 
   const getNameCharacters = (name: string = "name") => {
-    return name.split(" ")[1] ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0) : name.charAt(0);
+    return name.split(" ")[1]
+      ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)
+      : name.charAt(0);
   };
 
   let searchResult = cars.filter((car) => {
@@ -87,16 +89,6 @@ export const CarProvider = ({ children }: IProviderProps) => {
     );
   });
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    (async () => {
-      const token = localStorage.getItem("@TOKEN");
-
-      if (token) {
-        const { sub }: string = jwt_decode(token);
-
-        const userResponse = await api.get("/users/" + sub);
 
         setUserData(await userResponse.data);
       } else {
