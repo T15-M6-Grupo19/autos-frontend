@@ -209,7 +209,24 @@ export const StyledButton = styled.button<iButton>`
             @media(min-width: 1200px){
               width: 165px;
             }
-            `
+            `;
+          case 'Disable':
+        return css`
+        background-color: var(--color-Brand3);
+
+        height: 38px;
+        width: 315px;
+
+        padding: 4px 0px;
+
+        border-radius: 4px;
+
+        color: #EDEAFD;
+        font-family: "Inter";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+      `;
     }
   }}
 `;
