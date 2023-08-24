@@ -1,6 +1,11 @@
 import { createContext, useState } from 'react';
 import { mockList } from '../database/Mock2';
-
+import { api } from '../services/api';
+import {
+  tResePWD,
+  tResetPWDEmail,
+} from '../components/Form/RegisterForm/validator';
+import { useNavigate } from 'react-router-dom';
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -29,6 +34,8 @@ interface ICarContext {
   setPriceRange: React.Dispatch<React.SetStateAction<number[]>>;
   openCreateModal: boolean;
   setOpenCreateModal: React.Dispatch<React.SetStateAction<boolean>>;
+  sendEmail: (data: tResetPWDEmail) => void;
+  resetPassword: (data: tResePWD, token: string) => void;
   setUserData: React.Dispatch<
     React.SetStateAction<{
       name: string;
@@ -52,10 +59,37 @@ export const CarProvider = ({ children }: IProviderProps) => {
     account_type: 'anunciante',
   });
 
+  const navigate = useNavigate();
   const getNameCharacters = (name: string = 'name') => {
     return name.split(' ')[1]
       ? name.split(' ')[0].charAt(0) + name.split(' ')[1].charAt(0)
       : name.charAt(0);
+  };
+
+  const sendEmail = (data: tResetPWDEmail) => {
+    api
+      .post('/users/resetPassword', data)
+      .then(() => {
+        alert('email enviado, verifique sua caixa de mensagens ou spam');
+        setTimeout(() => navigate('/'), 2000);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Ops, algo deu errado. Favor verifique seus dados');
+      });
+  };
+
+  const resetPassword = (data: tResePWD, token: string) => {
+    api
+      .patch(`/users/resetPassword/${token}`, { password: data.password })
+      .then(() => {
+        alert('Senhas alteradas com sucesso');
+        setTimeout(() => navigate('/login'), 2000);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Erro ao tentar trocar a senha');
+      });
   };
 
   const searchResult = cars.filter((car) => {
@@ -76,8 +110,6 @@ export const CarProvider = ({ children }: IProviderProps) => {
     );
   });
 
-
-
   return (
     <CarContext.Provider
       value={{
@@ -95,6 +127,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
         userData,
         setUserData,
         getNameCharacters,
+        sendEmail,
+        resetPassword,
       }}
     >
       {children}

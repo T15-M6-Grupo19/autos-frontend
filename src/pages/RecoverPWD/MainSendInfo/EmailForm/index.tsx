@@ -5,6 +5,8 @@ import {
   sendEmailResetPWDSchema,
   tResetPWDEmail,
 } from '../../../../components/Form/RegisterForm/validator';
+import { useContext } from 'react';
+import { CarContext } from '../../../../providers/CarContext';
 
 export const RecoverEmailForm = () => {
   const {
@@ -15,8 +17,10 @@ export const RecoverEmailForm = () => {
     resolver: zodResolver(sendEmailResetPWDSchema),
   });
 
+  const { sendEmail } = useContext(CarContext);
+
   const onFormSubmit = (data: tResetPWDEmail) => {
-    console.log(data);
+    sendEmail(data);
   };
 
   return (

@@ -6,15 +6,14 @@ import {
   tResePWD,
 } from '../../../../components/Form/RegisterForm/validator';
 import { useParams } from 'react-router-dom';
-
-interface iResetpwd {
-  token: string;
-}
+import { useContext } from 'react';
+import { CarContext } from '../../../../providers/CarContext';
 
 export const ResetPassWord = () => {
-  const params = useParams();
-  
-  
+  const { token } = useParams();
+
+  const { resetPassword } = useContext(CarContext);
+
   const {
     register,
     handleSubmit,
@@ -24,8 +23,7 @@ export const ResetPassWord = () => {
   });
 
   const onFormSubmit = (data: tResePWD) => {
-    console.log(data);
-    console.log(params);
+    if (token) resetPassword(data, token);
   };
 
   return (
