@@ -97,6 +97,7 @@ const LoginBar = () => {
           <PasswordInput
             id="password"
             placeholder="Digite sua senha"
+            type="password"
             {...register("password")}
           ></PasswordInput>
           <ErrorText>{errors.password?.message}</ErrorText>
