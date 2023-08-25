@@ -8,14 +8,10 @@ const SimulateComponentHeaderStyle = styled.header`
 `;
 
 const MainStructure = styled.main`
-
-   
-
-    gap: 20px;
-    margin: 20px;
-    margin-top: 50px;
-    display: flex;
-  
+  gap: 20px;
+  margin: 20px;
+  margin-top: 50px;
+  display: flex;
 `;
 
 const ContainerButtonFilterStyle = styled.div`
