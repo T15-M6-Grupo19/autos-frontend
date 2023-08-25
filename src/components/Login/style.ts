@@ -1,8 +1,8 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const ContainerAlign = styled.div`
   box-sizing: border-box;
-  width:97.9%;
+  width: 97.9%;
   @media (min-width: 1023px) {
     display: flex;
     justify-content: center;
@@ -76,13 +76,13 @@ export const PasswordInput = styled.input`
   }
 `;
 
-export const ForgetPassword = styled.p`
+export const ForgetPassword = styled.a`
   margin-top: 9px;
   color: var(--color-Grey2);
   font-size: 14px;
   line-height: 24px;
   box-sizing: border-box;
-  cursor:pointer;
+  cursor: pointer;
 `;
 export const ForgetPasswordAlign = styled.div`
   height: 24px;
@@ -113,7 +113,7 @@ export const LoginButton = styled.button`
   color: var(--color-WhiteFixed);
 
   font-size: 1.6rem;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-weight: 700;
   font-style: normal;
   text-decoration: none;
@@ -162,7 +162,7 @@ export const RegisterButton = styled.button`
   /* color: var(--color-Gray0); */
 
   font-size: 1.6rem;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-weight: 700;
   font-style: normal;
   text-decoration: none;
@@ -176,6 +176,6 @@ export const RegisterButton = styled.button`
   }
 `;
 
-export const ErrorText= styled.p`
-margin-top:5px;
-`
+export const ErrorText = styled.p`
+  margin-top: 5px;
+`;

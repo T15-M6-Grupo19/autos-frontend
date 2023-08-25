@@ -13,23 +13,23 @@ import {
   RegisterButton,
   TextAccount,
   TextAlign,
-} from "./style";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
-import { useContext } from "react";
-import { CarContext } from "../../providers/CarContext";
-import jwt_decode from "jwt-decode";
+} from './style';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { useNavigate, Link } from 'react-router-dom';
+import { api } from '../../services/api';
+import { useContext } from 'react';
+import { CarContext } from '../../providers/CarContext';
+import jwt_decode from 'jwt-decode';
 
 const LoginBar = () => {
   const formSchema = yup.object().shape({
     email: yup
       .string()
-      .required("Informe um email")
-      .email("Digite um formato de email válido"),
-    password: yup.string().required("Informe sua senha"),
+      .required('Informe um email')
+      .email('Digite um formato de email válido'),
+    password: yup.string().required('Informe sua senha'),
   });
 
   const {
@@ -45,20 +45,21 @@ const LoginBar = () => {
 
   const { setUserData } = useContext(CarContext);
 
-
   async function loginForm(data) {
-    
+
     try {
-      const response = await api.post("/login", data);
+      const response = await api.post('/login', data);
 
       const { token } = await response.data;
-      
       window.localStorage.setItem("@TOKEN", JSON.stringify(token));
+
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
 
       const { sub }: string = jwt_decode(token);
 
       const userResponse = await api.get("/users/" + sub);
-      
+
       setUserData(userResponse.data);
      
       navigate("/profile");
@@ -77,30 +78,30 @@ const LoginBar = () => {
   return (
     <ContainerAlign>
       <LoginContainer>
-        <LoginContainerTitle className="textHeading5500">
+        <LoginContainerTitle className='textHeading5500'>
           Login
         </LoginContainerTitle>
         <form onSubmit={handleSubmit(loginForm)}>
           <EmailLabel>Email</EmailLabel>
           <EmailInput
-            id="email"
-            placeholder="Digite seu Email"
-            {...register("email")}
+            id='email'
+            placeholder='Digite seu Email'
+            {...register('email')}
           ></EmailInput>
           <ErrorText>{errors.email?.message}</ErrorText>
           <PasswordLabel>Senha</PasswordLabel>
           <PasswordInput
-            id="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
+            id='password'
+            placeholder='Digite sua senha'
+            {...register('password')}
           ></PasswordInput>
           <ErrorText>{errors.password?.message}</ErrorText>
           <ForgetPasswordAlign>
-            <ForgetPassword>Esqueci minha senha</ForgetPassword>
+            <Link to='/recover'>Esqueci minha senha</Link>
           </ForgetPasswordAlign>
-          <LoginButton type="submit">Entrar</LoginButton>
+          <LoginButton type='submit'>Entrar</LoginButton>
           <TextAlign>
-            <TextAccount className="body2400">
+            <TextAccount className='body2400'>
               Ainda não possui conta?
             </TextAccount>
           </TextAlign>
