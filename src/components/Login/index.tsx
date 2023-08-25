@@ -91,9 +91,12 @@ const LoginBar = () => {
           <ErrorText>{errors.email?.message}</ErrorText>
           <PasswordLabel>Senha</PasswordLabel>
           <PasswordInput
-            id='password'
-            placeholder='Digite sua senha'
-            {...register('password')}
+
+            id="password"
+            placeholder="Digite sua senha"
+            type="password"
+            {...register("password")}
+
           ></PasswordInput>
           <ErrorText>{errors.password?.message}</ErrorText>
           <ForgetPasswordAlign>
