@@ -8,18 +8,22 @@ export const DropdownMenu = forwardRef<
   HTMLDivElement,
   React.HTMLProps<HTMLDivElement>
 >((props, ref) => {
-  // const { userData } = useContext(CarContext);
   const navigate = useNavigate();
-  const { specificUser, getUserById, setSpecificUser, loading } =
-    useContext(UserContext);
-  const [numberOfAds, setNumberOfAds] = useState(0);
+  const { specificUser, getUserById, loading } = useContext(UserContext);
+  const [userIsAdvertiser, setUserIsAdvertiser] = useState(false);
 
-  const token = localStorage.getItem("@TOKEN");
-  console.log(specificUser?.ads.length);
+  const getLocalStorageItem = () => {
+    if (localStorage.getItem("@account_type")) {
+      const account_type = localStorage.getItem("@account_type");
+      console.log(account_type);
+      if (account_type === "anunciante") {
+        setUserIsAdvertiser(true);
+      }
+    }
+  };
 
   useEffect(() => {
-    const { ads } = specificUser;
-    // setSpecificUser(null);
+    getLocalStorageItem();
     getUserById();
   }, []);
 
@@ -33,7 +37,8 @@ export const DropdownMenu = forwardRef<
         <DropdownWrapper ref={ref}>
           <Link to="">Editar perfil</Link>
           <Link to="">Editar endereço</Link>
-          {specificUser?.ads.length > 0 && specificUser?.ads != undefined ? (
+          {userIsAdvertiser && <Link to="">Meus anúncios</Link>}
+          {specificUser?.account_type === "anunciante" ? (
             <Link to="">Meus anúncios</Link>
           ) : null}
           <Link to="/login" onClick={handleLogoutClick}>

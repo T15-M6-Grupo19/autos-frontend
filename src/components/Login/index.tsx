@@ -19,11 +19,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CarContext } from "../../providers/CarContext";
 import jwt_decode from "jwt-decode";
+import { UserContext } from "../../providers/UserContext/UserContext";
 
 const LoginBar = () => {
+  const { getUserById } = useContext(UserContext);
+
   const formSchema = yup.object().shape({
     email: yup
       .string()
@@ -59,11 +62,10 @@ const LoginBar = () => {
       const userResponse = await api.get("/users/" + sub);
 
       setUserData(userResponse.data);
-
+      getUserById();
       navigate("/profile");
-      //   toast.success("Login efetuado!")
     } catch (error) {
-      // toast.error(error.response.data.message);
+      console.log(error);
       reset();
     } finally {
       // console.log(error.)

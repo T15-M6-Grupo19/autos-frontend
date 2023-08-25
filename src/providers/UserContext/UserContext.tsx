@@ -21,7 +21,12 @@ export const UserProvider = ({ children }: IUserProps) => {
       setLoading(true);
       const response = await api.get(`/users/${sub}`);
       setSpecificUser(response.data);
-      console.log(response.data);
+      localStorage.setItem(
+        "@account_type",
+        JSON.stringify(response.data.account_type)
+      ),
+        console.log(response.data);
+      return response.data;
     } catch (error) {
       console.log(error);
     } finally {
