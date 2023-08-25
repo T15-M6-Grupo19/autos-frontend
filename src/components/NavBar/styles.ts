@@ -49,6 +49,7 @@ export const ContainerNav = styled.nav`
       font-weight: 600;
       color: var(--color-Grey2);
       transition: ease 0.3s;
+
       &:hover {
         background-color: var(--color-Grey9);
       }
@@ -162,6 +163,11 @@ export const ContainerNavAdvertiser = styled.nav`
       font-weight: 600;
       color: var(--color-Grey2);
       transition: ease 0.3s;
+
+      /* display: flex;
+      flex-direction: column;
+      align-items: center; */
+
       &:hover {
         background-color: var(--color-Grey9);
       }
@@ -278,6 +284,14 @@ export const ContainerNavSeller = styled.nav`
       font-weight: 600;
       color: var(--color-WhiteFixed);
       transition: ease 0.3s;
+
+      position: fixed;
+      top: 5rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       &:hover {
         background-color: var(--color-Grey9);
       }
@@ -313,6 +327,10 @@ export const ContainerNavSeller = styled.nav`
 
       color: var(--color-Grey2);
 
+      min-width: 200px;
+      gap: 10px;
+      justify-content: center;
+
       .ballon-name {
         width: 32px;
         height: 32px;
@@ -346,6 +364,7 @@ export const ContainerNavSeller = styled.nav`
 
     .user-desktop {
       padding: 12px 20px;
+      padding-top: 25px;
 
       border-radius: 4px;
       border: 2px transparent solid;

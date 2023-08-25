@@ -133,17 +133,19 @@ export const NavBarAdvertiser = () => {
 
               <div className="box-handle-mobile">
                 {" "}
-                <Link to="" className="login-link-mobile">
+                <Link
+                  to=""
+                  className="login-link-mobile"
+                  onClick={openDropdownHandler}
+                >
                   <div className="second">
                     <div className="ballon-name">
                       <span>{getNameCharacters(userData.name)}</span>
                     </div>
                     <span>{userData.name}</span>
                   </div>
+                  {openDropdown && <DropdownMenu ref={dropdownRef} />}
                 </Link>
-                {/* <Link to="/register" className="register-link-mobile">
-                Cadastrar
-                </Link> */}
               </div>
             </>
           ) : (
