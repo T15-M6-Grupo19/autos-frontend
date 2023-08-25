@@ -40,6 +40,8 @@ const Ad = () => {
     year: "1",
     user: { name: "..." },
   });
+
+  const [modal, setModal] = useState(false)
   const params = useParams();
 
   useEffect(() => {
@@ -49,8 +51,7 @@ const Ad = () => {
 
         setAdData(response.data);
 
-        //   console.log(response.data.token);
-        // setUserData(response.data.user)
+       
 
         //   toast.success("Login efetuado!")
       } catch (error) {
@@ -132,6 +133,7 @@ const Ad = () => {
           <Footer />
         </FooterAlign>
       </Container>
+        
     </>
   );
 };
