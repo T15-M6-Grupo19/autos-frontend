@@ -28,7 +28,7 @@ export const CarImageContainer = styled.div`
   background-color: var(--color-WhiteFixed);
   border-radius: 4px;
   border: 1px solid #868e9680;
-  margin-top: 275px;
+  margin-top: 400px;
   box-sizing: border-box;
   display: flex;
   z-index: 1;
@@ -44,7 +44,7 @@ export const CarImage = styled.img`
 export const ContainerAlign = styled.div``;
 
 export const CarInfoContainer = styled.div`
-  height: 326px;
+  height: auto;
   width: 93.6vw;
   background-color: var(--color-WhiteFixed);
   border-radius: 4px;
@@ -99,9 +99,32 @@ export const CarBallonPriceAlign = styled.div`
 `;
 
 export const BuyButton = styled.button`
-width:100px;
-height:38px;
-border-radius:4px;
-background-color:var(--color-Brand1);
-color: #FFFFFF;
-`
+  width: 100px;
+  height: 38px;
+  border-radius: 4px;
+  background-color: var(--color-Brand1);
+  color: #ffffff;
+  size: 14px;
+`;
+
+export const DescriptionContainer = styled.div`
+  height: auto;
+  width: 93.6vw;
+  background-color: var(--color-WhiteFixed);
+  border-radius: 4px;
+  border: 1px solid #868e9680;
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  padding: 28px;
+  gap: 32px;
+  box-sizing: border-box;
+`;
+
+export const DescriptionTitle = styled.h2``;
+export const Description = styled.p`
+  color: #495057;
+`;
+
+

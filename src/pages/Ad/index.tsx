@@ -14,13 +14,19 @@ import {
   CarPrice,
   Container,
   ContainerAlign,
+  Description,
+  DescriptionContainer,
+  DescriptionTitle,
 } from "./style";
 import { carImg } from "../../database/Mock2";
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 
 const Ad = () => {
-  const [adData, setAdData] = useState({ photos: [{ photo_url: carImg }], year:"1" });
+  const [adData, setAdData] = useState({
+    photos: [{ photo_url: carImg }],
+    year: "1",
+  });
   const params = useParams();
 
   useEffect(() => {
@@ -43,9 +49,9 @@ const Ad = () => {
     adInfo();
   }, []);
 
-  const formatter = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL' 
+  const formatter = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
   });
 
   console.log(adData);
@@ -63,15 +69,20 @@ const Ad = () => {
             <CarInfoContainer>
               <CarInfoText className="textHeading6600">{`${adData.model} ${adData.brand} ${adData.color}`}</CarInfoText>
               <CarBallonPriceAlign>
-
-              <CarInfoBalloonAlign>
-              <CarInfoBalloon>{`${adData.year[0]}${adData.year[1]}${adData.year[2]}${adData.year[3]}`}</CarInfoBalloon>
-              <CarInfoBalloon>{`${adData.kilometers} KM`}</CarInfoBalloon>
-              </CarInfoBalloonAlign>
-              <CarPrice className="textHeading7500">{`${formatter.format(adData.price)}`}</CarPrice>
+                <CarInfoBalloonAlign>
+                  <CarInfoBalloon>{`${adData.year[0]}${adData.year[1]}${adData.year[2]}${adData.year[3]}`}</CarInfoBalloon>
+                  <CarInfoBalloon>{`${adData.kilometers} KM`}</CarInfoBalloon>
+                </CarInfoBalloonAlign>
+                <CarPrice className="textHeading7500">{`${formatter.format(
+                  adData.price
+                )}`}</CarPrice>
               </CarBallonPriceAlign>
               <BuyButton>Comprar</BuyButton>
             </CarInfoContainer>
+            <DescriptionContainer>
+            <DescriptionTitle className="textHeading6600">Descrição</DescriptionTitle>
+            <Description className="textbody1400" >{`${adData.description}`}</Description>
+            </DescriptionContainer>
           </ContainerAlign>
         </BlueBackground>
 
