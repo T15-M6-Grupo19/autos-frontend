@@ -53,7 +53,6 @@ const Ad = () => {
 
        
 
-        //   toast.success("Login efetuado!")
       } catch (error) {
         // toast.error(error.response.data.message);
       } finally {
