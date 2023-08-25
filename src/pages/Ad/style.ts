@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100vw;
   background-color: var(--color-Grey8);
   position: relative;
+  height:auto;
 `;
 
 export const BlueBackground = styled.div`
@@ -28,7 +29,7 @@ export const CarImageContainer = styled.div`
   background-color: var(--color-WhiteFixed);
   border-radius: 4px;
   border: 1px solid #868e9680;
-  margin-top: 400px;
+  margin-top: 543px;
   box-sizing: border-box;
   display: flex;
   z-index: 1;
@@ -127,4 +128,42 @@ export const Description = styled.p`
   color: #495057;
 `;
 
+export const CarPhotosContainer = styled.div`
+  height: auto;
+  width: 93.6vw;
+  background-color: var(--color-WhiteFixed);
+  border-radius: 4px;
+  border: 1px solid #868e9680;
+  margin-top: 17px;
+  display: flex;
+  z-index: 1;
+  padding: 28px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
 
+export const CarPhotosTitle = styled.h2``;
+
+export const CarPhotosList = styled.ul`
+  display: flex;
+  gap: 5.5px;
+  flex-wrap:wrap;
+`;
+
+export const CarPhotosListItem = styled.li`
+  width: 90px;
+  height: 90px;
+  background-color:#E9ECEF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+`;
+export const CarPhoto = styled.img`
+  width: 70px;
+  height: 54px;
+`;
+
+export const FooterAlign = styled.div`
+margin-top:700px;
+`

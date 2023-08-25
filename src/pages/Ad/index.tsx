@@ -11,12 +11,18 @@ import {
   CarInfoBalloonAlign,
   CarInfoContainer,
   CarInfoText,
+  CarPhoto,
+  CarPhotosContainer,
+  CarPhotosList,
+  CarPhotosListItem,
+  CarPhotosTitle,
   CarPrice,
   Container,
   ContainerAlign,
   Description,
   DescriptionContainer,
   DescriptionTitle,
+  FooterAlign,
 } from "./style";
 import { carImg } from "../../database/Mock2";
 import { api } from "../../services/api";
@@ -80,13 +86,29 @@ const Ad = () => {
               <BuyButton>Comprar</BuyButton>
             </CarInfoContainer>
             <DescriptionContainer>
-            <DescriptionTitle className="textHeading6600">Descrição</DescriptionTitle>
-            <Description className="textbody1400" >{`${adData.description}`}</Description>
+              <DescriptionTitle className="textHeading6600">
+                Descrição
+              </DescriptionTitle>
+              <Description className="textbody1400">{`${adData.description}`}</Description>
             </DescriptionContainer>
+            <CarPhotosContainer>
+              <CarPhotosTitle className="textHeading6600">Fotos</CarPhotosTitle>
+              <CarPhotosList>
+                {adData.photos.map((photo) =>(
+                  <CarPhotosListItem>
+                    <CarPhoto src={photo.photo_url}></CarPhoto>
+                    </CarPhotosListItem>
+                )
+
+                )}
+              </CarPhotosList>
+            </CarPhotosContainer>
           </ContainerAlign>
         </BlueBackground>
+        <FooterAlign>
 
         <Footer />
+        </FooterAlign>
       </Container>
     </>
   );
