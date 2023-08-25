@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const FormContainer = styled.form`
+export const ResetFormContainer = styled.form`
   border: 2px solid var(--color-Grey3);
   border-radius: 8px;
 
@@ -11,7 +11,7 @@ export const FormContainer = styled.form`
   background-color: transparent;
 `;
 
-export const FormBox = styled.div`
+export const ResetFormBox = styled.div`
   min-height: 300px;
   min-width: 300px;
 
@@ -20,7 +20,7 @@ export const FormBox = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 60px 20px;
+  padding: 20px;
 
   h2 {
     color: var(--color-Grey1);
@@ -30,7 +30,8 @@ export const FormBox = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+
+    position: relative;
 
     input {
       height: 40px;
@@ -38,8 +39,6 @@ export const FormBox = styled.div`
       border: 2px solid var(--color-Grey3);
       border-radius: 8px;
       outline: none;
-
-      position: absolute;
 
       &:focus {
         box-shadow: 0 0 5px 2px rgba(0, 0, 255, 0.5);
@@ -62,7 +61,7 @@ export const FormBox = styled.div`
 const BaseStyledEye = styled.span`
   position: relative;
 
-  bottom: 47px;
+  bottom: 28px;
   left: 230px;
 
   cursor: pointer;

@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormBox, FormContainer } from '../../MainSendInfo/EmailForm/styles';
+
 import { useForm } from 'react-hook-form';
 import {
   resetPWDSchema,
@@ -9,7 +9,12 @@ import { useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { CarContext } from '../../../../providers/CarContext';
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
-import { ShowConfirPassEye, ShowPassEye } from './styles';
+import {
+  ResetFormBox,
+  ResetFormContainer,
+  ShowConfirPassEye,
+  ShowPassEye,
+} from './styles';
 
 export const ResetPassWord = () => {
   const { token } = useParams();
@@ -31,8 +36,8 @@ export const ResetPassWord = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(onFormSubmit)}>
-      <FormBox>
+    <ResetFormContainer onSubmit={handleSubmit(onFormSubmit)}>
+      <ResetFormBox>
         <h2 className='textHeading7500'>Recuperar Senha</h2>
         <div className='input-wraper'>
           <label className='textBody2500' htmlFor='password'>
@@ -54,7 +59,7 @@ export const ResetPassWord = () => {
             {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
           </ShowPassEye>
         </div>
-        <br />
+
         <div className='input-wraper'>
           <label className='textBody2500' htmlFor='password'>
             Confirmar Senha
@@ -75,9 +80,9 @@ export const ResetPassWord = () => {
             {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
           </ShowConfirPassEye>
         </div>
-        <br />
+
         <button>Enviar</button>
-      </FormBox>
-    </FormContainer>
+      </ResetFormBox>
+    </ResetFormContainer>
   );
 };
