@@ -131,7 +131,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
 
         setUserData(await userResponse.data);
       } else {
-        navigate('/login');
+        // navigate('/login');
       }
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
