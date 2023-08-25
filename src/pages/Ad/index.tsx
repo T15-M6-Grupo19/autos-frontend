@@ -23,6 +23,12 @@ import {
   DescriptionContainer,
   DescriptionTitle,
   FooterAlign,
+  PhotoAndUserAlign,
+  UserInfoBalloon,
+  UserInfoContainer,
+  UserInfoDescription,
+  UserInfoName,
+  UserInfoShowAdsButton,
 } from "./style";
 import { carImg } from "../../database/Mock2";
 import { api } from "../../services/api";
@@ -32,6 +38,7 @@ const Ad = () => {
   const [adData, setAdData] = useState({
     photos: [{ photo_url: carImg }],
     year: "1",
+    user: { name: "..." },
   });
   const params = useParams();
 
@@ -68,6 +75,7 @@ const Ad = () => {
 
         <BlueBackground>
           <ContainerAlign>
+            <div>
             <CarImageContainer>
               <CarImage src={adData.photos[0].photo_url} />
             </CarImageContainer>
@@ -91,23 +99,37 @@ const Ad = () => {
               </DescriptionTitle>
               <Description className="textbody1400">{`${adData.description}`}</Description>
             </DescriptionContainer>
-            <CarPhotosContainer>
-              <CarPhotosTitle className="textHeading6600">Fotos</CarPhotosTitle>
-              <CarPhotosList>
-                {adData.photos.map((photo) =>(
-                  <CarPhotosListItem>
-                    <CarPhoto src={photo.photo_url}></CarPhoto>
+            </div>
+            <PhotoAndUserAlign>
+              <CarPhotosContainer>
+                <CarPhotosTitle className="textHeading6600">
+                  Fotos
+                </CarPhotosTitle>
+                <CarPhotosList>
+                  {adData.photos.map((photo) => (
+                    <CarPhotosListItem>
+                      <CarPhoto src={photo.photo_url}></CarPhoto>
                     </CarPhotosListItem>
-                )
-
-                )}
-              </CarPhotosList>
-            </CarPhotosContainer>
+                  ))}
+                </CarPhotosList>
+              </CarPhotosContainer>
+              <UserInfoContainer>
+                <UserInfoBalloon>{adData.user.name[0]}</UserInfoBalloon>
+                <UserInfoName className="textHeading6600">
+                  {adData.user.name}
+                </UserInfoName>
+                <UserInfoDescription className="textbody1400">
+                  {adData.user.description}
+                </UserInfoDescription>
+                <UserInfoShowAdsButton>
+                  Ver todos os anúncios
+                </UserInfoShowAdsButton>
+              </UserInfoContainer>
+            </PhotoAndUserAlign>
           </ContainerAlign>
         </BlueBackground>
         <FooterAlign>
-
-        <Footer />
+          <Footer />
         </FooterAlign>
       </Container>
     </>
