@@ -117,9 +117,6 @@ export const NavBarAdvertiser = () => {
                     <span>{userData.name}</span>
                   </div>
                 </Link>
-                {/* <Link to="/register" className="register-link-mobile">
-                Cadastrar
-                </Link> */}
               </div>
             </>
           ) : (
