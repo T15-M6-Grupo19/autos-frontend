@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import LogoColors from "../../assets/MotorsColors.svg";
 import Bars from "../../assets/bars.svg";
 import X from "../../assets/x.svg";
 import { ContainerNav, ContainerNavSeller } from "./styles";
 import { Link } from "react-router-dom";
 import { CarContext } from "../../providers/CarContext";
+import { DropdownMenu } from "../DropdownMenu";
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,10 +76,32 @@ export const NavBar = () => {
 export const NavBarAdvertiser = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLElement>(null);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  const openDropdownHandler = () => {
+    setOpenDropdown(!openDropdown);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setOpenDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -109,17 +132,19 @@ export const NavBarAdvertiser = () => {
 
               <div className="box-handle-mobile">
                 {" "}
-                <Link to="/login" className="login-link-mobile">
+                <Link
+                  to=""
+                  className="login-link-mobile"
+                  onClick={openDropdownHandler}
+                >
                   <div className="second">
                     <div className="ballon-name">
                       <span>{getNameCharacters(userData.name)}</span>
                     </div>
                     <span>{userData.name}</span>
                   </div>
+                  {openDropdown && <DropdownMenu ref={dropdownRef} />}
                 </Link>
-                {/* <Link to="/register" className="register-link-mobile">
-                Cadastrar
-                </Link> */}
               </div>
             </>
           ) : (
@@ -131,14 +156,23 @@ export const NavBarAdvertiser = () => {
       ) : (
         <>
           <div className="box-handle-desktop">
+
+            <Link to="" className="user-desktop" onClick={openDropdownHandler}>
+
             <button className="user-desktop">
+
               <div className="second">
                 <div className="ballon-name">
                   <span>{getNameCharacters(userData.name)}</span>
                 </div>
                 <span className="name_profile">{userData.name}</span>
               </div>
+
+            </Link>
+            {openDropdown && <DropdownMenu ref={dropdownRef} />}
+
             </button>
+
           </div>
         </>
       )}

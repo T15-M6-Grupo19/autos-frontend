@@ -13,17 +13,21 @@ import {
   RegisterButton,
   TextAccount,
   TextAlign,
-} from './style';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { useNavigate, Link } from 'react-router-dom';
-import { api } from '../../services/api';
-import { useContext } from 'react';
-import { CarContext } from '../../providers/CarContext';
-import jwt_decode from 'jwt-decode';
+} from "./style";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import { useContext, useEffect } from "react";
+import { CarContext } from "../../providers/CarContext";
+import jwt_decode from "jwt-decode";
+import { UserContext } from "../../providers/UserContext/UserContext";
+
 
 const LoginBar = () => {
+  const { getUserById } = useContext(UserContext);
+
   const formSchema = yup.object().shape({
     email: yup
       .string()
@@ -46,7 +50,6 @@ const LoginBar = () => {
   const { setUserData } = useContext(CarContext);
 
   async function loginForm(data) {
-
     try {
       const response = await api.post('/login', data);
 
@@ -55,20 +58,15 @@ const LoginBar = () => {
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-
       const { sub }: string = jwt_decode(token);
 
       const userResponse = await api.get("/users/" + sub);
 
       setUserData(userResponse.data);
-     
+      getUserById();
       navigate("/profile");
-      //   console.log(response.data.token);
-      // setUserData(response.data.user)
-
-      //   toast.success("Login efetuado!")
     } catch (error) {
-      // toast.error(error.response.data.message);
+      console.log(error);
       reset();
     } finally {
       // console.log(error.)
@@ -91,9 +89,12 @@ const LoginBar = () => {
           <ErrorText>{errors.email?.message}</ErrorText>
           <PasswordLabel>Senha</PasswordLabel>
           <PasswordInput
-            id='password'
-            placeholder='Digite sua senha'
-            {...register('password')}
+
+            id="password"
+            placeholder="Digite sua senha"
+            type="password"
+            {...register("password")}
+
           ></PasswordInput>
           <ErrorText>{errors.password?.message}</ErrorText>
           <ForgetPasswordAlign>

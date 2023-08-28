@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
 
+import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
@@ -9,7 +9,6 @@ import { DefaulLayout } from '../pages/RecoverPWD';
 import { MainRecover } from '../pages/RecoverPWD/MainSendInfo';
 import { MainRecoverPWD } from '../pages/RecoverPWD/MainReserPWD';
 import Ad from '../pages/Ad';
-
 
 export default function Router() {
   return (
