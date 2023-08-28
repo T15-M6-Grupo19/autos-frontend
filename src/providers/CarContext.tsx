@@ -1,8 +1,13 @@
-import { createContext, useEffect, useState } from "react";
-import { mockList } from "../database/Mock2";
-import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { api } from "../services/api";
+import { createContext, useEffect, useState } from 'react';
+import { mockList } from '../database/Mock2';
+import { api } from '../services/api';
+import {
+  tResePWD,
+  tResetPWDEmail,
+} from '../components/Form/RegisterForm/validator';
+import { useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import { EditAddress } from '../components/Modal/ModalEditAddress/valdiators';
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -21,6 +26,16 @@ export interface ICar {
 
 interface ICarContext {
   cars: ICar[];
+  EditAddress: boolean;
+  setEditAddress: React.Dispatch<React.SetStateAction<boolean>>;
+  updateAddress: (formData: {
+    number: string;
+    ZIP_code: string;
+    state: string;
+    city: string;
+    street: string;
+    additional_details?: string | null | undefined;
+  }) => Promise<void>;
   setCars: React.Dispatch<React.SetStateAction<ICar[]>>;
   filteredCars: string;
   setFilteredCars: React.Dispatch<React.SetStateAction<string>>;
@@ -31,6 +46,8 @@ interface ICarContext {
   setPriceRange: React.Dispatch<React.SetStateAction<number[]>>;
   openCreateModal: boolean;
   setOpenCreateModal: React.Dispatch<React.SetStateAction<boolean>>;
+  sendEmail: (data: tResetPWDEmail) => void;
+  resetPassword: (data: tResePWD, token: string) => void;
   setUserData: React.Dispatch<
     React.SetStateAction<{
       name: string;
@@ -45,27 +62,52 @@ export const CarContext = createContext({} as ICarContext);
 
 export const CarProvider = ({ children }: IProviderProps) => {
   const [cars, setCars] = useState<ICar[]>(mockList);
-  const [filteredCars, setFilteredCars] = useState("");
+  const [filteredCars, setFilteredCars] = useState('');
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
-  const [userData, setUserData] = useState({
-    name: "name",
-    account_type: "anunciante",
-  });
+  const [userData, setUserData] = useState({});
+  const [EditAddress, setEditAddress] = useState(true);
 
-  const getNameCharacters = (name: string = "name") => {
-    return name.split(" ")[1]
-      ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)
+  const navigate = useNavigate();
+  const getNameCharacters = (name: string = 'name') => {
+    return name.split(' ')[1]
+      ? name.split(' ')[0].charAt(0) + name.split(' ')[1].charAt(0)
       : name.charAt(0);
   };
 
-  let searchResult = cars.filter((car) => {
+  const sendEmail = (data: tResetPWDEmail) => {
+    api
+      .post('/users/resetPassword', data)
+      .then(() => {
+        alert('email enviado, verifique sua caixa de mensagens ou spam');
+        setTimeout(() => navigate('/'), 2000);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Ops, algo deu errado. Favor verifique seus dados');
+      });
+  };
+
+  const resetPassword = (data: tResePWD, token: string) => {
+    api
+      .patch(`/users/resetPassword/${token}`, { password: data.password })
+      .then(() => {
+        alert('Senhas alteradas com sucesso');
+        setTimeout(() => navigate('/login'), 2000);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Erro ao tentar trocar a senha');
+      });
+  };
+
+  const searchResult = cars.filter((car) => {
     if (car.kilometers <= kmRange[0] || car.kilometers >= kmRange[1]) {
       return;
     } else if (car.price <= priceRange[0] || car.price >= priceRange[1]) {
       return;
-    } else if (filteredCars == "") {
+    } else if (filteredCars == '') {
       return true;
     }
 
@@ -78,7 +120,41 @@ export const CarProvider = ({ children }: IProviderProps) => {
     );
   });
 
+  useEffect(() => {
+    (async () => {
+      const token = localStorage.getItem('@TOKEN');
 
+      if (token) {
+        const { sub }: string = jwt_decode(token);
+
+        const userResponse = await api.get('/users/' + sub);
+
+        setUserData(await userResponse.data);
+      } else {
+        // navigate('/login');
+      }
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const updateAddress = async (formData: EditAddress) => {
+    const token = localStorage.getItem('@TOKEN');
+
+    if (token) {
+      const { sub }: string = jwt_decode(token);
+
+      api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
+        token!
+      )}`;
+
+      try {
+        await api.patch(`/users/${sub}`, formData);
+        setEditAddress(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   return (
     <CarContext.Provider
@@ -97,6 +173,11 @@ export const CarProvider = ({ children }: IProviderProps) => {
         userData,
         setUserData,
         getNameCharacters,
+        EditAddress,
+        setEditAddress,
+        updateAddress,
+        sendEmail,
+        resetPassword,
       }}
     >
       {children}

@@ -10,7 +10,6 @@ import { DropdownMenu } from "../DropdownMenu";
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const { userData } = useContext(CarContext);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -157,15 +156,23 @@ export const NavBarAdvertiser = () => {
       ) : (
         <>
           <div className="box-handle-desktop">
+
             <Link to="" className="user-desktop" onClick={openDropdownHandler}>
+
+            <button className="user-desktop">
+
               <div className="second">
                 <div className="ballon-name">
                   <span>{getNameCharacters(userData.name)}</span>
                 </div>
                 <span className="name_profile">{userData.name}</span>
               </div>
+
             </Link>
             {openDropdown && <DropdownMenu ref={dropdownRef} />}
+
+            </button>
+
           </div>
         </>
       )}

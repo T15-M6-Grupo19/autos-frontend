@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 const ProfileViewUser = () => {
-  const [userData, setUserData] = useState({ name: "name", account_type: "anunciante" });
+  const [userDataView, setUserDataView] = useState({ name: "name", account_type: "anunciante", description: "testando123" });
   const [carList, setCarList] = useState({});
   const [listError, setListError] = useState(false);
 
@@ -30,7 +30,7 @@ const ProfileViewUser = () => {
 
         setCarList(userCars);
 
-        setUserData(userData);
+        setUserDataView(userData);
       } catch (error) {
         setListError(true);
       }
@@ -46,7 +46,7 @@ const ProfileViewUser = () => {
 
         const userResponse = await api.get("/users/" + sub);
 
-        setUserData(await userResponse.data);
+        setUserDataView(await userResponse.data);
       } else {
         navigate("/login");
       }
@@ -56,7 +56,7 @@ const ProfileViewUser = () => {
   return !listError ? (
     <>
       <NavBarAdvertiser />
-      <BannerColor name={userData.name} account_type={userData.account_type} />
+      <BannerColor name={userDataView.name} account_type={userDataView.account_type} description={userDataView.description}/>
       <MainStructure>
         <ListCards carList={carList} />
       </MainStructure>

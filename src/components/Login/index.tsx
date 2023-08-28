@@ -24,15 +24,16 @@ import { CarContext } from "../../providers/CarContext";
 import jwt_decode from "jwt-decode";
 import { UserContext } from "../../providers/UserContext/UserContext";
 
+
 const LoginBar = () => {
   const { getUserById } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     email: yup
       .string()
-      .required("Informe um email")
-      .email("Digite um formato de email válido"),
-    password: yup.string().required("Informe sua senha"),
+      .required('Informe um email')
+      .email('Digite um formato de email válido'),
+    password: yup.string().required('Informe sua senha'),
   });
 
   const {
@@ -50,7 +51,7 @@ const LoginBar = () => {
 
   async function loginForm(data) {
     try {
-      const response = await api.post("/login", data);
+      const response = await api.post('/login', data);
 
       const { token } = await response.data;
       window.localStorage.setItem("@TOKEN", JSON.stringify(token));
@@ -75,30 +76,33 @@ const LoginBar = () => {
   return (
     <ContainerAlign>
       <LoginContainer>
-        <LoginContainerTitle className="textHeading5500">
+        <LoginContainerTitle className='textHeading5500'>
           Login
         </LoginContainerTitle>
         <form onSubmit={handleSubmit(loginForm)}>
           <EmailLabel>Email</EmailLabel>
           <EmailInput
-            id="email"
-            placeholder="Digite seu Email"
-            {...register("email")}
+            id='email'
+            placeholder='Digite seu Email'
+            {...register('email')}
           ></EmailInput>
           <ErrorText>{errors.email?.message}</ErrorText>
           <PasswordLabel>Senha</PasswordLabel>
           <PasswordInput
+
             id="password"
             placeholder="Digite sua senha"
+            type="password"
             {...register("password")}
+
           ></PasswordInput>
           <ErrorText>{errors.password?.message}</ErrorText>
           <ForgetPasswordAlign>
-            <ForgetPassword>Esqueci minha senha</ForgetPassword>
+            <Link to='/recover'>Esqueci minha senha</Link>
           </ForgetPasswordAlign>
-          <LoginButton type="submit">Entrar</LoginButton>
+          <LoginButton type='submit'>Entrar</LoginButton>
           <TextAlign>
-            <TextAccount className="body2400">
+            <TextAccount className='body2400'>
               Ainda não possui conta?
             </TextAccount>
           </TextAlign>

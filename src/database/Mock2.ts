@@ -124,3 +124,6 @@ export const mockList = [
     price: 32000,
   },
 ];
+
+export const carImgList =[carPic1,carPic1,carPic1,carPic1,carPic1,carPic1]
+export const carImg = carPic1
