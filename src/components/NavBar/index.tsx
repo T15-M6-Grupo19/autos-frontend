@@ -155,14 +155,10 @@ export const NavBarAdvertiser = () => {
         </>
       ) : (
         <>
-          <div className="box-handle-desktop">
-
-            <Link to="" className="user-desktop" onClick={openDropdownHandler}>
-
-            <button className="user-desktop">
-
-              <div className="second">
-                <div className="ballon-name">
+          <div className='box-handle-desktop'>
+            <Link to='' className='user-desktop' onClick={openDropdownHandler}>
+              <div className='second'>
+                <div className='ballon-name'>
                   <span>{getNameCharacters(userData.name)}</span>
                 </div>
                 <span className='name_profile'>{userData.name}</span>
