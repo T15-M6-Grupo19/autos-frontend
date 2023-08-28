@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: var(--color-Grey8);
   position: relative;
   height: auto;
@@ -202,9 +202,9 @@ export const CarPhoto = styled.img`
 `;
 
 export const FooterAlign = styled.div`
-  margin-top: 1100px;
+  margin-top: 45px;
    @media (min-width: 1024px) {
-    margin-top: 400px;
+    margin-top: 45px;
   }
 `;
 
@@ -262,4 +262,44 @@ max-width:auto;
     margin-top: 333px;
     
   }
+`
+export const ContainerComments = styled.ul`
+
+  /* margin: 325px 0 0 11vw; // para desktop */
+  margin-top: 985px; 
+  margin-left: 2vw;
+  
+  min-height: 300px;
+  width: 93vw;
+
+
+  background-color: var(--color-WhiteFixed);
+  border: 1px solid #868e9680;
+
+  @media screen and (min-width: 1024px) {
+    margin: 325px 0 0 11vw; // para desktop
+    width: 47vw;
+  }
+ 
+  
+`
+
+export const ContainerTextAreaComment = styled.form`
+  margin-top: 25px; 
+  margin-left: 2vw;
+
+  padding: 36px 26px;
+  
+  min-height: 300px;
+  width: 93vw;
+
+  /* border: 1px solid #868e9680; */
+  border: 1px solid red;
+
+
+  @media screen and (min-width: 1024px) {
+    margin: 25px 0 0 11vw; // para desktop
+    width: 47vw;
+  }
+
 `
