@@ -3,7 +3,6 @@ import {
   EmailInput,
   EmailLabel,
   ErrorText,
-  ForgetPassword,
   ForgetPasswordAlign,
   LoginButton,
   LoginContainer,
@@ -19,7 +18,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CarContext } from "../../providers/CarContext";
 import jwt_decode from "jwt-decode";
 import { UserContext } from "../../providers/UserContext/UserContext";
