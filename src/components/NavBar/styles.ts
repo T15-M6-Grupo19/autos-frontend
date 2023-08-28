@@ -49,6 +49,7 @@ export const ContainerNav = styled.nav`
       font-weight: 600;
       color: var(--color-Grey2);
       transition: ease 0.3s;
+
       &:hover {
         background-color: var(--color-Grey9);
       }
@@ -73,6 +74,7 @@ export const ContainerNav = styled.nav`
 
   .box-handle-desktop {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 20px;
     position: relative;
@@ -111,11 +113,6 @@ export const ContainerNav = styled.nav`
     }
   }
 `;
-
-
-
-
-
 
 export const ContainerNavAdvertiser = styled.nav`
   display: flex;
@@ -166,6 +163,11 @@ export const ContainerNavAdvertiser = styled.nav`
       font-weight: 600;
       color: var(--color-Grey2);
       transition: ease 0.3s;
+
+      /* display: flex;
+      flex-direction: column;
+      align-items: center; */
+
       &:hover {
         background-color: var(--color-Grey9);
       }
@@ -226,9 +228,6 @@ export const ContainerNavAdvertiser = styled.nav`
         color: var(--color-Grey10);
       }
     }
-
-
-    
   }
 `;
 
@@ -285,6 +284,14 @@ export const ContainerNavSeller = styled.nav`
       font-weight: 600;
       color: var(--color-WhiteFixed);
       transition: ease 0.3s;
+
+      position: fixed;
+      top: 5rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       &:hover {
         background-color: var(--color-Grey9);
       }
@@ -320,6 +327,10 @@ export const ContainerNavSeller = styled.nav`
 
       color: var(--color-Grey2);
 
+      min-width: 200px;
+      gap: 10px;
+      justify-content: center;
+
       .ballon-name {
         width: 32px;
         height: 32px;
@@ -339,10 +350,10 @@ export const ContainerNavSeller = styled.nav`
   }
 
   .box-handle-desktop {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     display: flex;
-    
+
     position: relative;
     border-left: 2.73px solid var(--color-Grey6);
 
@@ -353,10 +364,11 @@ export const ContainerNavSeller = styled.nav`
 
     .user-desktop {
       padding: 12px 20px;
+      padding-top: 25px;
 
       border-radius: 4px;
       border: 2px transparent solid;
-     
+
       background-color: transparent;
       font-family: "Inter", sans-serif;
       font-weight: 600;
@@ -372,7 +384,7 @@ export const ContainerNavSeller = styled.nav`
         align-items: center;
         display: flex;
       }
-      
+
       .ballon-name {
         width: 32px;
         height: 32px;
@@ -395,21 +407,18 @@ export const ContainerNavSeller = styled.nav`
           letter-spacing: 0em;
           text-align: left;
         }
-
       }
 
       .name_profile {
-          color: var(--color-Grey2);
+        color: var(--color-Grey2);
 
-          font-family: "Inter";
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 28px;
-          letter-spacing: 0em;
-          text-align: left;
-
-        }
+        font-family: "Inter";
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
     }
-    
   }
 `;
