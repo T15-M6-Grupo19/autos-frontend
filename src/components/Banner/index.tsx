@@ -28,7 +28,7 @@ export const Banner = () => {
 };
 
 
-export const BannerColor = ({ name, account_type, description }: { name: string; account_type: string, description: string }) => {
+export const BannerColor = ({ name, account_type, description, isOwner }: { name: string; account_type: string, description: string , isOwner:boolean }) => {
   const { openCreateModal, setOpenCreateModal, getNameCharacters } = useContext(CarContext);
 
   return (
@@ -44,11 +44,13 @@ export const BannerColor = ({ name, account_type, description }: { name: string;
         <p className="descripition">
          {description}
         </p>
+        {isOwner &&
         <Button
           onClick={() => setOpenCreateModal(true)}
           name={"Criar anuncio"}
           variant="secondary"
         />
+        }
       </SellerDataSquareStyle>
     </BannerColorStyle>
   );
