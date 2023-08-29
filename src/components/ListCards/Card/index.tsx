@@ -52,7 +52,6 @@ import { useEffect, useState } from "react";
 import Ferrari from "../../../assets/Ferrari.svg";
 
 export interface MockCar {
-  imageURL: string;
   brand: string;
   model: string;
   fuel: string;
@@ -60,6 +59,12 @@ export interface MockCar {
   year: number;
   kilometers: number;
   price: number;
+  photos: Iphotos[]
+}
+
+export interface Iphotos {
+  id: string;
+  photo_url: string
 }
 
 export interface IMockCarList {
@@ -68,11 +73,13 @@ export interface IMockCarList {
 
 export interface IMockCar {
   car: MockCar;
+  isOwner: boolean;
 }
 
-export const Card = ({ car }: IMockCar) => {
+export const Card = ({ car, isOwner }: IMockCar) => {
   const [isProfile, setIsProfile] = useState(false);
   const page = useLocation();
+
   useEffect(() => {
     if (page.pathname.split("/")[1] === "profile" && !page.pathname.split("/")[2]) {
       setIsProfile(true);
@@ -80,11 +87,12 @@ export const Card = ({ car }: IMockCar) => {
 
     return;
   }, [page, isProfile]);
-
+  console.log(car);
+  
   return (
     <ContainerCard>
       <figure>
-        <img src={car.imageURL ? car.imageURL : Ferrari} />
+        <img src={car.photos ? car.photos[0].photo_url : Ferrari} />
       </figure>
       <div className="box-div">
         <div className="fist">
@@ -132,7 +140,7 @@ export const Card = ({ car }: IMockCar) => {
             </span>
           </div>
         </div>
-        {isProfile ? (
+        {isOwner ? (
           <div className="fourth">
             <Button variant="Editar" name={"Editar"} />
             <Button variant="Ver Detalhes" name={"Ver Detalhes"} />

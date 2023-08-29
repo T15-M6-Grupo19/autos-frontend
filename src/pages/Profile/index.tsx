@@ -12,6 +12,7 @@ import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 const Profile = () => {
   const { openCreateModal, userData, EditAddress, setEditAddress } = useContext(CarContext);
   const toggleModalEditAddress = () => setEditAddress(false)
+  const [isOwner, setIsOwner] = useState(true)
   
   const [EditUserModal, setEditUserModal] = useState(false); 
   const toggleModal = () => setEditUserModal(!EditUserModal);
@@ -22,9 +23,9 @@ const Profile = () => {
       {openCreateModal && <ModalCreate />}
       {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <NavBarAdvertiser />
-      <BannerColor name={userData.name} account_type={userData.account_type} description={userData.description}/>
+      <BannerColor name={userData.name} account_type={userData.account_type} description={userData.description} isOwner={isOwner}/>
       <MainStructure>
-        <ListCards carList={userData.ads ? userData.ads : {}} />
+        <ListCards carList={userData.ads ? userData.ads : {}} isOwner={isOwner}/>
       </MainStructure>
       <Pagination />
       <Footer />
