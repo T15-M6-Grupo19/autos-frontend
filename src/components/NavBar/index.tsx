@@ -31,7 +31,9 @@ export const NavBar = () => {
   return (
     <ContainerNav>
       <figure>
-        <img src={LogoColors} alt='Logo' />
+        <Link to='/'>
+          <img src={LogoColors} alt='Logo' />
+        </Link>
       </figure>
       {windowWidth < 620 ? (
         <>
@@ -120,7 +122,9 @@ export const NavBarAdvertiser = () => {
   return (
     <ContainerNavSeller>
       <figure>
-        <img src={LogoColors} alt='Logo' />
+        <Link to='/'>
+          <img src={LogoColors} alt='Logo' />
+        </Link>
       </figure>
       {windowWidth < 620 ? (
         <>
