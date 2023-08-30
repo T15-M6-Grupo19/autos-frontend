@@ -134,6 +134,7 @@ export const BuyButton = styled.button`
   background-color: var(--color-Brand1);
   color: #ffffff;
   size: 14px;
+  font-family: "Inter";
 `;
 
 export const DescriptionContainer = styled.div`

@@ -76,6 +76,11 @@ const Ad = () => {
     currency: "BRL",
   });
 
+  const handleBuyClick = () => {
+    const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <>
       <Container>
@@ -98,13 +103,7 @@ const Ad = () => {
                     adData.price
                   )}`}</CarPrice>
                 </CarBallonPriceAlign>
-                <BuyButton
-                  as={"a"}
-                  target="_blank"
-                  href={`https://api.whatsapp.com/send?phone=55${userData.mobile}`}
-                >
-                  Comprar
-                </BuyButton>
+                <BuyButton onClick={handleBuyClick}>Comprar</BuyButton>
               </CarInfoContainer>
               <DescriptionContainer>
                 <DescriptionTitle className="textHeading6600">
