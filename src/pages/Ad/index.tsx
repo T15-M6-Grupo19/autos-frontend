@@ -17,6 +17,7 @@ import {
   CarPhotosListItem,
   CarPhotosTitle,
   CarPrice,
+  Comment,
   Container,
   ContainerAlign,
   ContainerComments,
@@ -128,13 +129,18 @@ const Ad = () => {
           </ContainerAlign>
         </BlueBackground>
 
-        <ContainerComments>
-          <h2>Comentários</h2>
+        <ContainerComments> {/* COMENTÁRIOS */}
           <ul>
-            <li>
+            <h2>Comentários</h2>
+            <Comment>
               <div>
                 <span>SL</span> <p>Sivanir Lorenzete</p>{' '}
-                <input type='datetime' name='' id='' />
+                <time
+                  title='29 de Agosto as 21:05'
+                  dateTime='2023-08-29 21:05:30'
+                >
+                  há 1 dia
+                </time>
               </div>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
@@ -142,26 +148,61 @@ const Ad = () => {
                 temporibus corrupti dolorem provident maiores veritatis
                 cupiditate nobis odit voluptati
               </p>
-            </li>
+            </Comment>
+
+            <Comment>
+              <div>
+                <span>SL</span> <p>Sivanir Lorenzete</p>{' '}
+                <time
+                  title='29 de Agosto as 21:05'
+                  dateTime='2023-08-29 21:05:30'
+                >
+                  há 1 dia
+                </time>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+                nostrum obcaecati commodi modi? Laudantium cumque, voluptates ad
+                temporibus corrupti dolorem provident maiores veritatis
+                cupiditate nobis odit voluptati
+              </p>
+            </Comment>
+
+            <Comment>
+              <div>
+                <span>SL</span> <p>Sivanir Lorenzete</p>{' '}
+                <time
+                  title='29 de Agosto as 21:05'
+                  dateTime='2023-08-29 21:05:30'
+                >
+                  há 1 dia
+                </time>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+                nostrum obcaecati commodi modi? Laudantium cumque, voluptates ad
+                temporibus corrupti dolorem provident maiores veritatis
+                cupiditate nobis odit voluptati
+              </p>
+            </Comment>
           </ul>
         </ContainerComments>
 
-        <ContainerTextAreaComment>
-          <div>
+        <ContainerTextAreaComment>  {/*ESSA É A TAG FORM */}
+          <div className='text-area-header'>
             <span>SL</span>
             <p>Silva Leonel</p>
           </div>
-          <input
-            type='text'
-            placeholder='Escreva seu comentário relatio ao carro aqui...'
-          />
-          <button type='submit'>Comentar</button>
-          <div>
+          <div className='text-comment-area'>
+            <textarea name='coment' placeholder='Escreva seu comentário ...' />
+            <button type='submit'>Comentar</button>
+          </div>
+          <div className='text-precoment-option'>
             <span>Gostei muito!</span>
             <span>Incrível</span>
             <span>Recomendarei para meus amigos!</span>
           </div>
-        </ContainerTextAreaComment>
+        </ContainerTextAreaComment> {/*ADICIONAR COMENTÁRIOS */}
 
         <FooterAlign>
           <Footer />
