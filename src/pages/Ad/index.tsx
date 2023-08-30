@@ -50,8 +50,6 @@ const Ad = () => {
   const navigate = useNavigate();
 
   const userPage = () => {
-    console.log(adData);
-
     navigate(`/profile/${adData.user.id}`);
   };
 

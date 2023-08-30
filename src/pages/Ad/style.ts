@@ -186,6 +186,8 @@ export const CarPhotosList = styled.ul`
   display: flex;
   gap: 5.5px;
   flex-wrap: wrap;
+  max-height:200px;
+  overflow:auto;
 `;
 
 export const CarPhotosListItem = styled.li`
