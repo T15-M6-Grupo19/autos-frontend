@@ -85,7 +85,7 @@ export const CarInfoContainer = styled.div`
 
 export const CarInfoText = styled.h2``;
 
-export const CarInfoBalloon = styled.text`
+export const CarInfoBalloon = styled.p`
   width: 70px;
   height: 30px;
   padding: 0 5px;
