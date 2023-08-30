@@ -4,16 +4,10 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
 import ProfileViewUser from '../pages/Profile/ProfileViewUser';
+import { DefaulLayout } from '../pages/RecoverPWD';
 import { MainRecover } from '../pages/RecoverPWD/MainSendInfo';
 import { MainRecoverPWD } from '../pages/RecoverPWD/MainReserPWD';
 import Ad from '../pages/Ad';
-import { lazy } from 'react';
-
-const DefaulLayout = lazy(() =>
-  import('../pages/RecoverPWD').then((module) => {
-    return { default: module.DefaulLayout };
-  })
-);
 
 export default function Router() {
   return (
