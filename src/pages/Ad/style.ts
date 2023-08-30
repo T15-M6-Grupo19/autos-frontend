@@ -427,22 +427,6 @@ export const ContainerTextAreaComment = styled.form`
       line-height: 26px;
     }
 
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      
-      height: 38px;
-      width: 108px;
-      
-      padding: 12px 20px;
-      border-radius: 4px;
-
-      background-color: var(--color-Brand1);
-      color: var(--color-WhiteFixed);
-    }
-
     @media screen and (min-width: 1024px) {
       border: 1.5px solid var(--color-Grey7);
       align-items: end;
