@@ -11,6 +11,7 @@ export const DropdownMenu = forwardRef<
   const navigate = useNavigate();
   const { specificUser, getUserById, loading } = useContext(UserContext);
   const [userIsAdvertiser, setUserIsAdvertiser] = useState(false);
+  const {setEditAddress, setEditUserModal} = useContext(CarContext)
 
   const getLocalStorageItem = () => {
     if (localStorage.getItem("@account_type")) {
@@ -35,8 +36,8 @@ export const DropdownMenu = forwardRef<
     return (
       !loading && (
         <DropdownWrapper ref={ref}>
-          <Link to="">Editar perfil</Link>
-          <Link to="">Editar endereço</Link>
+          <Link to="" onClick={() => setEditUserModal(true)}>Editar perfil</Link>
+          <Link to="" onClick={() => setEditAddress(true)}>Editar endereço</Link>
           {userIsAdvertiser && <Link to="">Meus anúncios</Link>}
           {specificUser?.account_type === "anunciante" ? (
             <Link to="">Meus anúncios</Link>
