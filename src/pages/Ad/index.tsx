@@ -52,7 +52,7 @@ const Ad = () => {
   const userPage = () => {
     console.log(adData);
 
-    navigate(`/profile/${adData.user.id}`, { replace: true });
+    navigate(`/profile/${adData.user.id}`);
   };
 
   useEffect(() => {
