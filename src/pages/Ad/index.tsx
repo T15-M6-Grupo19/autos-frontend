@@ -1,6 +1,6 @@
-import { NavBar } from '../../components/NavBar';
-import { Footer } from '../../components/Footer';
-import { useParams } from 'react-router-dom';
+import { NavBar } from "../../components/NavBar";
+import { Footer } from "../../components/Footer";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   BlueBackground,
   BuyButton,
@@ -32,20 +32,28 @@ import {
   UserInfoDescription,
   UserInfoName,
   UserInfoShowAdsButton,
-} from './style';
-import { carImg } from '../../database/Mock2';
-import { api } from '../../services/api';
-import { useEffect, useState } from 'react';
+} from "./style";
+import { carImg } from "../../database/Mock2";
+import { api } from "../../services/api";
+import { useEffect, useState } from "react";
 
 const Ad = () => {
   const [adData, setAdData] = useState({
     photos: [{ photo_url: carImg }],
-    year: '1',
-    user: { name: '...' },
+    year: "1",
+    user: { name: "..." },
   });
 
   const [modal, setModal] = useState(false);
   const params = useParams();
+
+  const navigate = useNavigate();
+
+  const userPage = () => {
+    console.log(adData.id);
+
+    navigate(`/profile/${adData.id}`, { replace: true });
+  };
 
   useEffect(() => {
     async function adInfo() {
@@ -62,16 +70,15 @@ const Ad = () => {
     adInfo();
   }, []);
 
-  const formatter = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
+  const formatter = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
   });
 
   return (
     <>
       <Container>
         <NavBar />
-
         <BlueBackground>
           <ContainerAlign>
             <div>
@@ -80,29 +87,29 @@ const Ad = () => {
               </CarImageContainer>
 
               <CarInfoContainer>
-                <CarInfoText className='textHeading6600'>{`${adData.model} ${adData.brand} ${adData.color}`}</CarInfoText>
+                <CarInfoText className="textHeading6600">{`${adData.model} ${adData.brand} ${adData.color}`}</CarInfoText>
                 <CarBallonPriceAlign>
                   <CarInfoBalloonAlign>
                     <CarInfoBalloon>{`${adData.year[0]}${adData.year[1]}${adData.year[2]}${adData.year[3]}`}</CarInfoBalloon>
                     <CarInfoBalloon>{`${adData.kilometers} KM`}</CarInfoBalloon>
                   </CarInfoBalloonAlign>
-                  <CarPrice className='textHeading7500'>{`${formatter.format(
+                  <CarPrice className="textHeading7500">{`${formatter.format(
                     adData.price
                   )}`}</CarPrice>
                 </CarBallonPriceAlign>
                 <BuyButton>Comprar</BuyButton>
               </CarInfoContainer>
               <DescriptionContainer>
-                <DescriptionTitle className='textHeading6600'>
+                <DescriptionTitle className="textHeading6600">
                   Descrição
                 </DescriptionTitle>
-                <Description className='textbody1400'>{`${adData.description}`}</Description>
+                <Description className="textbody1400">{`${adData.description}`}</Description>
               </DescriptionContainer>
             </div>
 
             <PhotoAndUserAlign>
               <CarPhotosContainer>
-                <CarPhotosTitle className='textHeading6600'>
+                <CarPhotosTitle className="textHeading6600">
                   Fotos
                 </CarPhotosTitle>
                 <CarPhotosList>
@@ -115,29 +122,30 @@ const Ad = () => {
               </CarPhotosContainer>
               <UserInfoContainer>
                 <UserInfoBalloon>{adData.user.name[0]}</UserInfoBalloon>
-                <UserInfoName className='textHeading6600'>
+                <UserInfoName className="textHeading6600">
                   {adData.user.name}
                 </UserInfoName>
-                <UserInfoDescription className='textbody1400'>
+                <UserInfoDescription className="textbody1400">
                   {adData.user.description}
                 </UserInfoDescription>
-                <UserInfoShowAdsButton>
+                <UserInfoShowAdsButton onClick={() => userPage()}>
                   Ver todos os anúncios
                 </UserInfoShowAdsButton>
               </UserInfoContainer>
             </PhotoAndUserAlign>
           </ContainerAlign>
         </BlueBackground>
-
-        <ContainerComments> {/* COMENTÁRIOS */}
+        <ContainerComments>
+          {" "}
+          {/* COMENTÁRIOS */}
           <ul>
             <h2>Comentários</h2>
             <Comment>
               <div>
-                <span>SL</span> <p>Sivanir Lorenzete</p>{' '}
+                <span>SL</span> <p>Sivanir Lorenzete</p>{" "}
                 <time
-                  title='29 de Agosto as 21:05'
-                  dateTime='2023-08-29 21:05:30'
+                  title="29 de Agosto as 21:05"
+                  dateTime="2023-08-29 21:05:30"
                 >
                   há 1 dia
                 </time>
@@ -152,10 +160,10 @@ const Ad = () => {
 
             <Comment>
               <div>
-                <span>SL</span> <p>Sivanir Lorenzete</p>{' '}
+                <span>SL</span> <p>Sivanir Lorenzete</p>{" "}
                 <time
-                  title='29 de Agosto as 21:05'
-                  dateTime='2023-08-29 21:05:30'
+                  title="29 de Agosto as 21:05"
+                  dateTime="2023-08-29 21:05:30"
                 >
                   há 1 dia
                 </time>
@@ -170,10 +178,10 @@ const Ad = () => {
 
             <Comment>
               <div>
-                <span>SL</span> <p>Sivanir Lorenzete</p>{' '}
+                <span>SL</span> <p>Sivanir Lorenzete</p>{" "}
                 <time
-                  title='29 de Agosto as 21:05'
-                  dateTime='2023-08-29 21:05:30'
+                  title="29 de Agosto as 21:05"
+                  dateTime="2023-08-29 21:05:30"
                 >
                   há 1 dia
                 </time>
@@ -187,23 +195,24 @@ const Ad = () => {
             </Comment>
           </ul>
         </ContainerComments>
-
-        <ContainerTextAreaComment>  {/*ESSA É A TAG FORM */}
-          <div className='text-area-header'>
+        <ContainerTextAreaComment>
+          {" "}
+          {/*ESSA É A TAG FORM */}
+          <div className="text-area-header">
             <span>SL</span>
             <p>Silva Leonel</p>
           </div>
-          <div className='text-comment-area'>
-            <textarea name='coment' placeholder='Escreva seu comentário ...' />
-            <button type='submit'>Comentar</button>
+          <div className="text-comment-area">
+            <textarea name="coment" placeholder="Escreva seu comentário ..." />
+            <button type="submit">Comentar</button>
           </div>
-          <div className='text-precoment-option'>
+          <div className="text-precoment-option">
             <span>Gostei muito!</span>
             <span>Incrível</span>
             <span>Recomendarei para meus amigos!</span>
           </div>
-        </ContainerTextAreaComment> {/*ADICIONAR COMENTÁRIOS */}
-
+        </ContainerTextAreaComment>{" "}
+        {/*ADICIONAR COMENTÁRIOS */}
         <FooterAlign>
           <Footer />
         </FooterAlign>
