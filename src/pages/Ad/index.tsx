@@ -50,9 +50,9 @@ const Ad = () => {
   const navigate = useNavigate();
 
   const userPage = () => {
-    console.log(adData.id);
+    console.log(adData);
 
-    navigate(`/profile/${adData.id}`, { replace: true });
+    navigate(`/profile/${adData.user.id}`, { replace: true });
   };
 
   useEffect(() => {
