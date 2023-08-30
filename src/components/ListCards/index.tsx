@@ -15,7 +15,7 @@ const ListCards = ({ carList, isOwner }) => {
     carList[0] && (
       <ListCardContainer view={isProfile ? "allSpace" : "spaceTwo"}>
         {carList.map((car) => (
-          <Card key={car.kilometers} car={car} isOwner={isOwner}/>
+          <Card key={car.id} car={car} isOwner={isOwner}/>
         ))}
       </ListCardContainer>
     )
