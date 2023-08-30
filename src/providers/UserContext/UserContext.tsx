@@ -1,8 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { IUserContext, IUserProps, User } from "./interfaces";
 import { api } from "../../services/api";
 import jwt_decode from "jwt-decode";
-import { get } from "react-hook-form";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -21,11 +20,7 @@ export const UserProvider = ({ children }: IUserProps) => {
       setLoading(true);
       const response = await api.get(`/users/${sub}`);
       setSpecificUser(response.data);
-      localStorage.setItem(
-        "@account_type",
-        JSON.stringify(response.data.account_type)
-      ),
-        console.log(response.data);
+      localStorage.setItem("@account_type",JSON.stringify(response.data.account_type));
       return response.data;
     } catch (error) {
       console.log(error);
