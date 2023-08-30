@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: var(--color-Grey8);
   position: relative;
   height: auto;
@@ -202,9 +202,9 @@ export const CarPhoto = styled.img`
 `;
 
 export const FooterAlign = styled.div`
-  margin-top: 1100px;
+  margin-top: 45px;
    @media (min-width: 1024px) {
-    margin-top: 400px;
+    margin-top: 45px;
   }
 `;
 
@@ -262,4 +262,222 @@ max-width:auto;
     margin-top: 333px;
     
   }
+`
+export const ContainerComments = styled.div`
+
+  margin-top: 985px; 
+  margin-left: 2vw;
+  
+  min-height: 300px;
+  width: 93vw;
+
+  padding: 36px 26px;
+
+  background-color: var(--color-WhiteFixed);
+  border: 1px solid #868e9680;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    h2 {
+      font-family: Lexend;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      color: var(--color-Grey1);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 325px 0 0 11vw; 
+    width: 47vw;
+  }
+ 
+  
+`
+export const Comment = styled.li`
+
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  div {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    span {
+      background-color: var(--color-Random1);
+      color: var(--color-WhiteFixed);
+      
+      height: 32px;
+      width: 32px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 0px; 
+    }
+
+    p {
+      &::after{
+      content:'';
+      border-radius: 50%;
+      height: 0.5rem;
+      width: 0.5rem;
+      background-color: var(--color-Grey4);
+      }
+    }
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    color: var(--color-Grey2);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+`
+
+export const ContainerTextAreaComment = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-top: 25px; 
+  margin-left: 2vw;
+
+  padding: 26px 36px;
+  
+  min-height: 300px;
+  width: 93vw;
+
+  background-color: var(--color-Grey10);
+
+  .text-area-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      background-color: var(--color-Brand1);
+      color: var(--color-WhiteFixed);
+      
+      height: 32px;
+      width: 32px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 0px; 
+    }
+  }
+
+  .text-comment-area {
+    display: flex;
+    flex-direction: column;
+    gap:24px;
+
+    width: 100%;
+    height: 160px;
+    flex-shrink: 0;
+
+
+    textarea{
+      flex: 1;
+      border: 1.5px solid var(--color-Grey7);
+
+      outline: none;
+
+      width: 90%;
+      resize: none;
+      padding: 13px 0 0 16px;
+
+      color: var(--color-Grey3);
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      
+      height: 38px;
+      width: 108px;
+      
+      padding: 12px 20px;
+      border-radius: 4px;
+
+      background-color: var(--color-Brand1);
+      color: var(--color-WhiteFixed);
+    }
+
+    @media screen and (min-width: 1024px) {
+      border: 1.5px solid var(--color-Grey7);
+      align-items: end;
+      padding: 10px;
+
+      textarea {
+        border: none;
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
+
+  .text-precoment-option {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    span {
+      background-color: var(--color-Grey7);
+      border-radius: 24px;
+      padding-inline: 12px;
+
+      width: fit-content;
+
+      color: var(--color-Grey3);
+      font-family: Inter;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 25px 0 0 11vw; 
+    width: 47vw;
+  }
+
 `
