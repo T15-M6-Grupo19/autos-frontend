@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState, useRef } from "react";
-import LogoColors from "../../assets/MotorsColors.svg";
-import Bars from "../../assets/bars.svg";
-import X from "../../assets/x.svg";
-import { ContainerNav, ContainerNavSeller } from "./styles";
-import { Link } from "react-router-dom";
-import { CarContext } from "../../providers/CarContext";
-import { DropdownMenu } from "../DropdownMenu";
+import { useContext, useEffect, useState, useRef } from 'react';
+import LogoColors from '../../assets/MotorsColors.svg';
+import Bars from '../../assets/bars.svg';
+import X from '../../assets/x.svg';
+import { ContainerNav, ContainerNavSeller } from './styles';
+import { Link } from 'react-router-dom';
+import { CarContext } from '../../providers/CarContext';
+import { DropdownMenu } from '../DropdownMenu';
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,49 +21,49 @@ export const NavBar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
     <ContainerNav>
       <figure>
-        <img src={LogoColors} alt="Logo" />
+        <img src={LogoColors} alt='Logo' />
       </figure>
       {windowWidth < 620 ? (
         <>
           {isOpen ? (
             <>
               <span onClick={() => toggleModal()}>
-                <img title="opções" src={X} />
+                <img title='opções' src={X} />
               </span>
 
-              <div className="box-handle-mobile">
-                {" "}
-                <Link to="/login" className="login-link-mobile">
+              <div className='box-handle-mobile'>
+                {' '}
+                <Link to='/login' className='login-link-mobile'>
                   Fazer Login
                 </Link>
-                <Link to="/register" className="register-link-mobile">
+                <Link to='/register' className='register-link-mobile'>
                   Cadastrar
                 </Link>
               </div>
             </>
           ) : (
             <span onClick={() => toggleModal()}>
-              <img title="opções" src={Bars} />
+              <img title='opções' src={Bars} />
             </span>
           )}
         </>
       ) : (
         <>
-          <div className="box-handle-desktop">
-            <Link to="/login" className="login-link">
+          <div className='box-handle-desktop'>
+            <Link to='/login' className='login-link'>
               Fazer Login
             </Link>
-            <Link to="/register" className="register-link">
+            <Link to='/register' className='register-link'>
               Cadastrar
             </Link>
           </div>
@@ -97,9 +97,9 @@ export const NavBarAdvertiser = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -108,10 +108,10 @@ export const NavBarAdvertiser = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -120,25 +120,25 @@ export const NavBarAdvertiser = () => {
   return (
     <ContainerNavSeller>
       <figure>
-        <img src={LogoColors} alt="Logo" />
+        <img src={LogoColors} alt='Logo' />
       </figure>
       {windowWidth < 620 ? (
         <>
           {isOpen ? (
             <>
               <span onClick={() => toggleModal()}>
-                <img title="opções" src={X} />
+                <img title='opções' src={X} />
               </span>
 
-              <div className="box-handle-mobile">
-                {" "}
+              <div className='box-handle-mobile'>
+                {' '}
                 <Link
-                  to=""
-                  className="login-link-mobile"
+                  to=''
+                  className='login-link-mobile'
                   onClick={openDropdownHandler}
                 >
-                  <div className="second">
-                    <div className="ballon-name">
+                  <div className='second'>
+                    <div className='ballon-name'>
                       <span>{getNameCharacters(userData.name)}</span>
                     </div>
                     <span>{userData.name}</span>
@@ -149,19 +149,19 @@ export const NavBarAdvertiser = () => {
             </>
           ) : (
             <span onClick={() => toggleModal()}>
-              <img title="opções" src={Bars} />
+              <img title='opções' src={Bars} />
             </span>
           )}
         </>
       ) : (
         <>
-          <div className="box-handle-desktop">
-            <Link to="" className="user-desktop" onClick={openDropdownHandler}>
-              <div className="second">
-                <div className="ballon-name">
+          <div className='box-handle-desktop'>
+            <Link to='' className='user-desktop' onClick={openDropdownHandler}>
+              <div className='second'>
+                <div className='ballon-name'>
                   <span>{getNameCharacters(userData.name)}</span>
                 </div>
-                <span className="name_profile">{userData.name}</span>
+                <span className='name_profile'>{userData.name}</span>
               </div>
             </Link>
             {openDropdown && <DropdownMenu ref={dropdownRef} />}
