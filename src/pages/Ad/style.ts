@@ -85,7 +85,7 @@ export const CarInfoContainer = styled.div`
 
 export const CarInfoText = styled.h2``;
 
-export const CarInfoBalloon = styled.text`
+export const CarInfoBalloon = styled.p`
   width: 70px;
   height: 30px;
   padding: 0 5px;
@@ -186,6 +186,8 @@ export const CarPhotosList = styled.ul`
   display: flex;
   gap: 5.5px;
   flex-wrap: wrap;
+  max-height:200px;
+  overflow:auto;
 `;
 
 export const CarPhotosListItem = styled.li`
