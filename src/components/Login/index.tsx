@@ -47,11 +47,12 @@ const LoginBar = () => {
 
   const { setUserData } = useContext(CarContext);
 
-  async function loginForm(data) {
+  async function loginForm(data:any) {
     try {
       const response = await api.post("/login", data);
 
       const { token } = await response.data;
+  
       window.localStorage.setItem("@TOKEN", JSON.stringify(token));
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
