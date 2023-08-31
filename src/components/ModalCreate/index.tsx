@@ -68,36 +68,41 @@ export function ModalCreate() {
   }
 
   const handleClick = () => {
-    setInputCount((prev) => [...prev, 'clicou']);
+    setInputCount((prev) => [...prev, 'insira nova imagem']);
   };
+
 
   const submit = async (data: any) => {
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
     data.kilometers = Number(data.kilometers)
     data.price = Number(data.price)
-    /* data.photos = ["https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg","https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg","https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg"] */
-    console.log(data);
-    const photosGallery = []
-    photosGallery.push(data.image)
+
+    const photoArr = []
+    photoArr.push(data.photos)
+    if(data.morePhotos?.length >0){
+      data.morePhotos.forEach((photo:any)=>{
+        photoArr.push(photo)
+      })
+    }
+    data.photos = photoArr
     
-    data.photos = photosGallery
-    const token = localStorage.getItem('@TOKEN');    
-        
-       
-        api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
-        
-        if(token){
-            try {
-              const response = await api.post(`/salesAd`, data);
-              console.log(response.data);
+    try {
+        await api.post(`/salesAd`, data);
+        setOpenCreateModal(false)
+        window.location.reload()
                 
-        } catch (error) {
-            console.log(error);
+    } catch (error) {
+        console.log(error);
             
-        }
-      }
+    }
   }
+
+  if(apiCar[0] !== "Selecione a marca"){
+    apiCar.unshift("Selecione a marca")
+  }
+
+    
 
   return (
     <StyledModal>
@@ -105,7 +110,7 @@ export function ModalCreate() {
         <div className='modal-container'>
           <div className='modal-title'>
             <h3>Criar Anúncio</h3>
-            <button onClick={() => setOpenCreateModal(false)}>X</button>
+            <button className='close-button' onClick={() => setOpenCreateModal(false)}>X</button>
           </div>
           <h4>Informações do veículo</h4>
           <form onSubmit={handleSubmit(submit)}>
@@ -145,12 +150,7 @@ export function ModalCreate() {
                   {...register('year')}
                   readOnly
                 />
-                {/* {
-                                    filteredModel.length >0 && <input defaultValue={filteredModel[0][1].year}
-                                    readOnly
-                                    {...register("year")}
-                                    />
-                                } */}
+
                 <p>{errors.year?.message}</p>
               </div>
               <div className='div-filha'>
@@ -198,8 +198,9 @@ export function ModalCreate() {
             <input id='description' {...register('description')} />
             <p>{errors.description?.message}</p>
 
-            <label htmlFor='image'>Imagem da capa</label>
-            <input id='image' {...register("image")} placeholder='é esse aqui'/>
+            <label htmlFor='photos'>Imagem da capa</label>
+            <input id='photos' {...register("photos")} placeholder='insira a imagem de capa aqui'/>
+            <p>{errors.photos?.message}</p>
 
             {inputCount.length > 0 &&
               inputCount.map((_, index) => {
@@ -210,15 +211,19 @@ export function ModalCreate() {
                     </label>
                     <input
                       placeholder='https://image.com'
-                      
+                      {...register(`morePhotos.${index}`)}
                       />
-                      {/* <p>{errors.photos?.message}</p> */}
+                      <p>{errors.morePhotos?.message}</p>
+                      
+                    
+                      
                   </React.Fragment>
                 );
               })}
 
             <div className='box-btn-addImgGal'>
               <Button
+                type='button'
                 onClick={handleClick}
                 name='Adicionar campo para imagem da galeria'
                 variant='addImgGallery'
@@ -229,7 +234,7 @@ export function ModalCreate() {
               <button onClick={() => setOpenCreateModal(false)} type='button'>
                 Cancelar
               </button>
-              <button type='submit'>Criar Anuncio</button>
+              <button className='create-button' type='submit'>Criar Anuncio</button>
             </div>
           </form>
         </div>

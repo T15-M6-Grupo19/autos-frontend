@@ -16,7 +16,7 @@ export const DropdownMenu = forwardRef<
   const getLocalStorageItem = () => {
     if (localStorage.getItem("@account_type")) {
       const account_type = localStorage.getItem("@account_type");
-      console.log(account_type);
+    
       if (account_type === "anunciante") {
         setUserIsAdvertiser(true);
       }

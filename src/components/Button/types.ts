@@ -5,4 +5,5 @@ export interface iButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   variant?: string;
   clicked?: boolean;
+  disable?: boolean
 }
