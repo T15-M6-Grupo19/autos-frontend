@@ -35,7 +35,8 @@ import {
 } from "./style";
 import { carImg } from "../../database/Mock2";
 import { api } from "../../services/api";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CarContext } from "../../providers/CarContext";
 
 const Ad = () => {
   const [adData, setAdData] = useState({
@@ -43,6 +44,8 @@ const Ad = () => {
     year: "1",
     user: { name: "..." },
   });
+
+  const { userData } = useContext(CarContext);
 
   const [modal, setModal] = useState(false);
   const params = useParams();
@@ -73,6 +76,11 @@ const Ad = () => {
     currency: "BRL",
   });
 
+  const handleBuyClick = () => {
+    const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <>
       <Container>
@@ -81,7 +89,7 @@ const Ad = () => {
           <ContainerAlign>
             <div>
               <CarImageContainer>
-                <CarImage src={adData.photos[0].photo_url} />
+                <CarImage src={adData.photos[0]?.photo_url} />
               </CarImageContainer>
 
               <CarInfoContainer>
@@ -95,7 +103,7 @@ const Ad = () => {
                     adData.price
                   )}`}</CarPrice>
                 </CarBallonPriceAlign>
-                <BuyButton>Comprar</BuyButton>
+                <BuyButton onClick={handleBuyClick}>Comprar</BuyButton>
               </CarInfoContainer>
               <DescriptionContainer>
                 <DescriptionTitle className="textHeading6600">

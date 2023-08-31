@@ -89,7 +89,7 @@ export function ModalCreate() {
     try {
         await api.post(`/salesAd`, data);
         setOpenCreateModal(false)
-        
+        window.location.reload()
                 
     } catch (error) {
         console.log(error);
