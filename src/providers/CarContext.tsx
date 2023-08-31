@@ -28,6 +28,8 @@ interface ICarContext {
   cars: ICar[];
   EditAddress: boolean;
   setEditAddress: React.Dispatch<React.SetStateAction<boolean>>;
+  EditUserModal: boolean;
+  setEditUserModal: React.Dispatch<React.SetStateAction<boolean>>;
   updateAddress: (formData: {
     number: string;
     ZIP_code: string;
@@ -67,7 +69,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [userData, setUserData] = useState({});
-  const [EditAddress, setEditAddress] = useState(true);
+  const [EditAddress, setEditAddress] = useState(false);
+  const [EditUserModal, setEditUserModal] = useState(false); 
 
   const navigate = useNavigate();
   const getNameCharacters = (name: string = 'name') => {
@@ -178,6 +181,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
         updateAddress,
         sendEmail,
         resetPassword,
+        EditUserModal,
+        setEditUserModal
       }}
     >
       {children}
