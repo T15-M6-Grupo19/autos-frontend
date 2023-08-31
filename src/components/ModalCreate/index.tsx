@@ -77,6 +77,7 @@ export function ModalCreate() {
     data.fuel = fuelType;
     data.kilometers = Number(data.kilometers)
     data.price = Number(data.price)
+
     const photoArr = []
     photoArr.push(data.photos)
     if(data.morePhotos.length >0){

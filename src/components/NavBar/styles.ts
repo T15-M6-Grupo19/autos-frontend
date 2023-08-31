@@ -8,6 +8,7 @@ export const ContainerNav = styled.nav`
   z-index: 3;
 
   height: 80px;
+  width: 100%;
 
   border-bottom: 2px solid var(--color-Grey6);
 
