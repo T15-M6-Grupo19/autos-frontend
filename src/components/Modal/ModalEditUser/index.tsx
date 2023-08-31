@@ -35,9 +35,7 @@ export const ModalEditUser = ({toggleModal}: TModalEditUserProp) => {
     
     const updateUser = async (updatedData: UpdateData) => {
         const token = localStorage.getItem('@TOKEN');    
-        console.log(updatedData);
         
-       
         api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
         
         if(token){

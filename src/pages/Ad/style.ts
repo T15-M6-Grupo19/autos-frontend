@@ -5,6 +5,14 @@ export const Container = styled.div`
   background-color: var(--color-Grey8);
   position: relative;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 1024px) {
+    display: block;
+  }
 `;
 
 export const BlueBackground = styled.div`
@@ -203,8 +211,15 @@ export const CarPhoto = styled.img`
 `;
 
 export const FooterAlign = styled.div`
-  margin-top: 45px;
-  @media (min-width: 1024px) {
+
+  margin-top: 20px;
+  width: 100%;
+
+  @media screen and (min-width: 600px) {
+    width: 100%;
+    margin-top: 20px;
+  } 
+   @media (min-width: 1024px) {
     margin-top: 45px;
   }
 `;
@@ -264,16 +279,24 @@ export const PhotoAndUserAlign = styled.section`
   }
 `;
 export const ContainerComments = styled.div`
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
   margin-top: 985px;
   margin-left: 2vw;
 
+
   min-height: 300px;
-  width: 93vw;
+  width: 93.6vw;
 
   padding: 36px 26px;
 
   background-color: var(--color-WhiteFixed);
   border: 1px solid #868e9680;
+  border-radius: 4px;
 
   ul {
     display: flex;
@@ -290,11 +313,21 @@ export const ContainerComments = styled.div`
     }
   }
 
+  @media screen and (min-width: 600px) {
+    margin-top: 955px;
+  }
+
   @media screen and (min-width: 1024px) {
-    margin: 325px 0 0 11vw;
+
+    margin: 345px 0 0 11vw; 
     width: 47vw;
   }
+  @media screen and (min-width: 1195px) {
+    margin: 325px 0 0 11vw; 
+  }
 `;
+
+
 export const Comment = styled.li`
   margin-bottom: 20px;
   display: flex;
@@ -356,13 +389,17 @@ export const ContainerTextAreaComment = styled.form`
   flex-direction: column;
   justify-content: space-between;
 
-  margin-top: 25px;
-  margin-left: 2vw;
+  border: 1px solid #868e9680;
+  border-radius: 4px;
+
+  margin-top: 17px; 
+  /* margin-left: 2vw; */
+
 
   padding: 26px 36px;
 
   min-height: 300px;
-  width: 93vw;
+  width: 93.6vw;
 
   background-color: var(--color-Grey10);
 
@@ -453,6 +490,8 @@ export const ContainerTextAreaComment = styled.form`
     flex-wrap: wrap;
     gap: 8px;
 
+    margin-top: 10px;
+
     span {
       background-color: var(--color-Grey7);
       border-radius: 24px;
@@ -470,7 +509,8 @@ export const ContainerTextAreaComment = styled.form`
   }
 
   @media screen and (min-width: 1024px) {
-    margin: 25px 0 0 11vw;
+    margin: 18px 0 0 11vw; 
+
     width: 47vw;
   }
 `;
