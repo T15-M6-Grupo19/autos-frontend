@@ -45,31 +45,30 @@ const Ad = () => {
     user: { name: '...' },
   });
 
-  const [modal, setModal] = useState(false);
-  const [hasToken, setHasToken] = useState(false);
+  // const [modal, setModal] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   const params = useParams();
-  console.log(params);
-  const navigate = useNavigate();
+
   const token = localStorage.getItem('@TOKEN');
+  useEffect(() => {
+    if (token) {
+      setIsLogged(true);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+  const navigate = useNavigate();
 
   const userPage = () => {
     navigate(`/profile/${adData.user.id}`);
-  };
-
-  const verifyHasToken = () => {
-    if (token) setHasToken(true);
-    else null;
   };
 
   useEffect(() => {
     async function adInfo() {
       try {
         const response = await api.get(`/salesAd/${params.adId}`);
-
-        verifyHasToken();
         setAdData(response.data);
-        console.log(adData);
       } catch (error) {
         // toast.error(error.response.data.message);
       } finally {
@@ -84,7 +83,6 @@ const Ad = () => {
     style: 'currency',
     currency: 'BRL',
   });
-  console.log(typeof hasToken);
 
   return (
     <>
@@ -94,7 +92,7 @@ const Ad = () => {
           <ContainerAlign>
             <div>
               <CarImageContainer>
-                <CarImage src={adData.photos[0].photo_url} />
+                <CarImage src={adData.photos} />
               </CarImageContainer>
 
               <CarInfoContainer>
@@ -218,7 +216,7 @@ const Ad = () => {
             <Button
               name='comentar'
               variant='comment'
-              disabled={hasToken ? false : true}
+              disabled={isLogged ? false : true}
             >
               Comentar
             </Button>

@@ -14,7 +14,7 @@ export const StyledButton = styled.button<iButton>`
 
   transition: ease 0.3s;
 
-  ${({ variant, clicked }) => {
+  ${({ variant, clicked, disabled }) => {
     switch (variant) {
       default:
       case 'primary':
@@ -238,7 +238,7 @@ export const StyledButton = styled.button<iButton>`
 
           font: 600 16px 'inter';
 
-          background-color: var(--color-Brand1);
+          background-color: ${disabled ? "#CED4DA" : "#4529E6"};
           color: var(--color-WhiteFixed);
 
           gap: 10px;

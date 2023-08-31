@@ -77,7 +77,7 @@ export function ModalCreate() {
     data.kilometers = Number(data.kilometers)
     data.price = Number(data.price)
     /* data.photos = ["https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg","https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg","https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg"] */
-    console.log(data);
+   
     const photosGallery = []
     photosGallery.push(data.image)
     
