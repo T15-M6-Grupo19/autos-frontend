@@ -79,7 +79,7 @@ export function ModalCreate() {
     data.price = Number(data.price)
     const photoArr = []
     photoArr.push(data.photos)
-    if(data.morePhotos.length >0){
+    if(data.morePhotos?.length >0){
       data.morePhotos.forEach((photo:any)=>{
         photoArr.push(photo)
       })
@@ -87,7 +87,7 @@ export function ModalCreate() {
     data.photos = photoArr
     
     try {
-        const response = await api.post(`/salesAd`, data);
+        await api.post(`/salesAd`, data);
         setOpenCreateModal(false)
         
                 
@@ -98,7 +98,7 @@ export function ModalCreate() {
   }
 
   if(apiCar[0] !== "Selecione a marca"){
-    apiCar[0] = "Selecione a marca"
+    apiCar.unshift("Selecione a marca")
   }
 
     
