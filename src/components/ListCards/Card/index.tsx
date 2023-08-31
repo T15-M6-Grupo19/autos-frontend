@@ -90,7 +90,8 @@ export const Card = ({ car, isOwner }: IMockCar) => {
 
     return;
   }, [page, isProfile]);
-
+  
+  
   return (
     <ContainerCard>
       <figure>
