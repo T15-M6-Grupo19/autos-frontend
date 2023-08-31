@@ -42,7 +42,16 @@ const Ad = () => {
     photos: [{ photo_url: carImg }],
     year: "1",
     user: { name: "..." },
-  });
+    comments: [
+      {
+        id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
+        comment_text: "novo comentário de Arthur",
+        created_at: "2023-08-29T14:19:50.390Z",
+        user: {
+          name: "teste"
+        }
+      }
+    ]});
 
   const [modal, setModal] = useState(false);
   const params = useParams();
@@ -73,6 +82,23 @@ const Ad = () => {
     currency: "BRL",
   });
 
+  const CalculateTimeDifference = (referenceDate) => {
+    const now = new Date();
+    const refDate = new Date(referenceDate)
+    
+    const diff = now - refDate
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+    if(days == 0){
+      return "Hoje"
+    }
+    else {
+      return `há ${days} dias`
+    }
+    
+  }
+
   return (
     <>
       <Container>
@@ -81,7 +107,7 @@ const Ad = () => {
           <ContainerAlign>
             <div>
               <CarImageContainer>
-                <CarImage src={adData.photos[0].photo_url} />
+                {<CarImage src={adData.photos[0].photo_url} />}
               </CarImageContainer>
 
               <CarInfoContainer>
@@ -138,59 +164,22 @@ const Ad = () => {
           {/* COMENTÁRIOS */}
           <ul>
             <h2>Comentários</h2>
-            <Comment>
+            {adData.comments.map((comment) => (
+              <Comment>
               <div>
-                <span>SL</span> <p>Sivanir Lorenzete</p>{" "}
+                <span>SL</span> <p>{comment.user.name}</p>{" "}
                 <time
                   title="29 de Agosto as 21:05"
                   dateTime="2023-08-29 21:05:30"
                 >
-                  há 1 dia
+                  {CalculateTimeDifference(comment.created_at.substring(0,10))}
                 </time>
               </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                nostrum obcaecati commodi modi? Laudantium cumque, voluptates ad
-                temporibus corrupti dolorem provident maiores veritatis
-                cupiditate nobis odit voluptati
+                {comment.comment_text}
               </p>
             </Comment>
-
-            <Comment>
-              <div>
-                <span>SL</span> <p>Sivanir Lorenzete</p>{" "}
-                <time
-                  title="29 de Agosto as 21:05"
-                  dateTime="2023-08-29 21:05:30"
-                >
-                  há 1 dia
-                </time>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                nostrum obcaecati commodi modi? Laudantium cumque, voluptates ad
-                temporibus corrupti dolorem provident maiores veritatis
-                cupiditate nobis odit voluptati
-              </p>
-            </Comment>
-
-            <Comment>
-              <div>
-                <span>SL</span> <p>Sivanir Lorenzete</p>{" "}
-                <time
-                  title="29 de Agosto as 21:05"
-                  dateTime="2023-08-29 21:05:30"
-                >
-                  há 1 dia
-                </time>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                nostrum obcaecati commodi modi? Laudantium cumque, voluptates ad
-                temporibus corrupti dolorem provident maiores veritatis
-                cupiditate nobis odit voluptati
-              </p>
-            </Comment>
+            ))}
           </ul>
         </ContainerComments>
         <ContainerTextAreaComment>
