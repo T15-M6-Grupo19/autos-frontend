@@ -1,0 +1,244 @@
+[33mcommit ff4cf06470126161f2104e09a57526757b7d3477[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m)[m
+Merge: 7c1c74d af82b6b
+Author: Robson Luna <114628351+Robson-Luna-BR@users.noreply.github.com>
+Date:   Mon Aug 21 17:49:49 2023 +0000
+
+    Merge pull request #31 from T15-M6-Grupo19/feat/profileView
+    
+    feat: ProfileViewUser & general major fixes
+
+[33mcommit af82b6b9a7df942d0384b88fa2db29f5c9a6edb5[m[33m ([m[1;31morigin/feat/profileView[m[33m)[m
+Merge: 587eb6c 7c1c74d
+Author: Robson Luna <114628351+Robson-Luna-BR@users.noreply.github.com>
+Date:   Mon Aug 21 14:49:37 2023 -0300
+
+    Merge branch 'develop' into feat/profileView
+
+[33mcommit 7c1c74d609e902d89ee8ed0830d2521294534caf[m
+Merge: 89bdcb3 5d3f1b3
+Author: Marcelo Meirelles <104871095+meiraa13@users.noreply.github.com>
+Date:   Mon Aug 21 17:31:00 2023 +0000
+
+    Merge pull request #30 from T15-M6-Grupo19/feat/ModalCreateAdGalleryBtn
+    
+    Feat/modal create ad gallery btn
+
+[33mcommit 587eb6c91b9e6439c1265ff6151795c573658eaf[m
+Author: leandro <contas.center@gmail.com>
+Date:   Sun Aug 20 17:25:20 2023 -0300
+
+    feat: ProfileViewUser & general major fixes
+
+[33mcommit 5d3f1b3e91ace2a1885318186aac1c027fe377ba[m[33m ([m[1;31morigin/feat/ModalCreateAdGalleryBtn[m[33m)[m
+Author: iurych <iury.vibe@gmail.com>
+Date:   Sat Aug 19 18:08:05 2023 -0300
+
+    feat: cria logica de add botão img galeria
+
+[33mcommit a72576f75c7346f420121fe7b49daeff5eb9c80e[m
+Author: iurych <iury.vibe@gmail.com>
+Date:   Sat Aug 19 00:33:52 2023 -0300
+
+    feat: cria a logica de renderizar input por click
+
+[33mcommit 89bdcb37ef86ac82d0fd8d226e0844aa0ab15e44[m
+Merge: 4445687 782e06a
+Author: iurychiga <iury.vibe@gmail.com>
+Date:   Fri Aug 18 21:52:37 2023 +0000
+
+    Merge pull request #29 from T15-M6-Grupo19/feat/createAdModal
+    
+    Feat/create ad modal
+
+[33mcommit 782e06a079c099d50f7d658d9b1b5845e91ff945[m[33m ([m[1;31morigin/feat/createAdModal[m[33m, [m[1;32mfeat/createAdModal[m[33m)[m
+Author: Marcelo Meirelles <meirellesm@hotmail.com>
+Date:   Fri Aug 18 15:49:18 2023 -0300
+
+    feat:abrir e fechar modal
+
+[33mcommit ec35d752a83df381c654b5e0b96132f572df5c0a[m
+Merge: d5ed56c 4445687
+Author: Marcelo Meirelles <meirellesm@hotmail.com>
+Date:   Fri Aug 18 14:58:32 2023 -0300
+
+    Merge branch 'develop' of https://github.com/T15-M6-Grupo19/autos-frontend into feat/createAdModal
+
+[33mcommit d5ed56c2352c62b473d087bdf7c89c4ecbc12448[m
+Author: Marcelo Meirelles <meirellesm@hotmail.com>
+Date:   Fri Aug 18 14:57:23 2023 -0300
+
+    feat:pegar dados do form de criação pelo register
+
+[33mcommit 444568773a84175b23f5fd27ca3a835b5618ed22[m
+Merge: 1a5722b 73fb196
+Author: Robson Luna <114628351+Robson-Luna-BR@users.noreply.github.com>
+Date:   Fri Aug 18 13:52:48 2023 -0300
+
+    Merge pull request #28 from T15-M6-Grupo19/feat/login
+    
+    feat: adiciona token salvo na headers como default e lógica de login …
+
+[33mcommit 73fb1963ac208b5e2708f2a274215cef694f6865[m[33m ([m[1;31morigin/feat/login[m[33m)[m
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 13:51:31 2023 -0300
+
+    feat: adiciona token salvo na headers como default e lógica de login funcional
+
+[33mcommit 1a5722b5343faa47c5f96d51e75df06a367ee141[m
+Merge: 35980a5 6d4b08f
+Author: Robson Luna <114628351+Robson-Luna-BR@users.noreply.github.com>
+Date:   Fri Aug 18 13:26:13 2023 -0300
+
+    Merge pull request #27 from T15-M6-Grupo19/feat/login
+    
+    Feat/login
+
+[33mcommit 6d4b08f7efa6e368653d85d1d912e4a72612c3a2[m
+Merge: 5929fd6 35980a5
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 13:24:30 2023 -0300
+
+    Merge branch 'develop' of github.com:T15-M6-Grupo19/autos-frontend into feat/login
+
+[33mcommit 35980a59d34056320c23b38a8ca757d00dd2e185[m
+Merge: 1e67e3c 10d9de2
+Author: Robson Luna <114628351+Robson-Luna-BR@users.noreply.github.com>
+Date:   Fri Aug 18 16:23:58 2023 +0000
+
+    Merge pull request #25 from T15-M6-Grupo19/feat/Register
+    
+    Feat/register
+
+[33mcommit 5929fd66dbd7b87af164f2abe9a419228f521135[m
+Merge: 2a0a71d 1e67e3c
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 11:10:19 2023 -0300
+
+    Faz pull da atual developer e conserta o merge
+
+[33mcommit 2a0a71d118d6a36c7e063c50dc88cad18d8e1566[m
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 11:06:06 2023 -0300
+
+    Feat: adiciona lógica da login page, e aguarda merge de outras branch para adicionar recursos.
+
+[33mcommit 60770daeff5c4085c7c953488428e6e71fa1884f[m
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 10:32:25 2023 -0300
+
+    feat: adiciona estilização na mensagem de erros dos inputs, e aguarda atualização do backend para inserir a lógica.
+
+[33mcommit ed5adacc5119f35e41af508f496c4c6635f666a4[m
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 10:02:16 2023 -0300
+
+    feat: adiciona estilização de tela cheia
+
+[33mcommit f819d9dd8a699807becc3dcb1c270b69d5c07e01[m
+Author: Robson-Luna-BR <robson.luna@outlook.com>
+Date:   Fri Aug 18 09:44:47 2023 -0300
+
+    feat: adiciona mobile first estilizado da página de login
+
+[33mcommit 154e1ae4fd5eb58626fe4c295a3c0ba4e9687220[m
+Author: Marcelo Meirelles <meirellesm@hotmail.com>
+Date:   Thu Aug 17 18:35:49 2023 -0300
+
+    feat:em construção
+
+[33mcommit 10d9de2ea0b289873d71388063d0583f994381a5[m[33m ([m[1;31morigin/feat/Register[m[33m)[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:45:37 2023 -0300
+
+    fix: RegisterForm variant
+
+[33mcommit 7b97b4c5d55a3270f6b7c48458e8d503ee2fdcf4[m
+Merge: 475d1e0 1e67e3c
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:45:04 2023 -0300
+
+    feat: update develop
+
+[33mcommit 475d1e022ec271af49099d75581371eabf743afb[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:35:46 2023 -0300
+
+    feat: services api
+
+[33mcommit 7c1c3423835647b3989a9a2edf6ae5758e2bb5c2[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:35:34 2023 -0300
+
+    feat: Register Route
+
+[33mcommit 8f55d92e3676a434dc73fd46f4139ebbe278d67e[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:35:18 2023 -0300
+
+    feat: Page Register
+
+[33mcommit 6eb03436597ab58a4868b76cb8be175e0f441d3a[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:34:58 2023 -0300
+
+    feat: Component InputAndLabel
+
+[33mcommit ff777454aed79155aead73728cfb25c2a3efd03e[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:32:28 2023 -0300
+
+    feat: Component RegisterForm
+
+[33mcommit 3c1beaba0d5595289930dac05b8a2d5387522fa5[m
+Author: lucaslamas-13 <lucaslamas13@gmail.com>
+Date:   Thu Aug 17 15:31:44 2023 -0300
+
+    fix: Component Button
+
+[33mcommit 8ed02072848d71e6d61b8bf75972e3a42223d1cb[m
+Author: Marcelo Meirelles <meirellesm@hotmail.com>
+Date:   Thu Aug 17 14:40:37 2023 -0300
+
+    feat:modal em construção
+
+[33mcommit 1e67e3cfb5f1999a904636fb38609bd9d1298fba[m
+Merge: f2aaced b0a9b6e
+Author: Marcelo Meirelles <104871095+meiraa13@users.noreply.github.com>
+Date:   Thu Aug 17 14:39:25 2023 -0300
+
+    Merge pull request #23 from T15-M6-Grupo19/fix/pageViewAdmin
+    
+    Fix/page view admin
+
+[33mcommit b0a9b6e65550f0a68463286b976c105d34c75298[m[33m ([m[1;31morigin/fix/pageViewAdmin[m[33m)[m
+Author: Bruno120Ab <abreubruno499@gmail.com>
+Date:   Thu Aug 17 14:11:57 2023 -0300
+
+    feat: add new features
+
+[33mcommit 9fce0ddc006f4c11cd2f1fd386a2483bfb7a3762[m
+Author: Bruno120Ab <abreubruno499@gmail.com>
+Date:   Thu Aug 17 14:11:32 2023 -0300
+
+    feat: add profile
+
+[33mcommit 974e6772e5daf0e0acec4225fd5fdb0edec376b6[m
+Author: Bruno120Ab <abreubruno499@gmail.com>
+Date:   Thu Aug 17 14:11:16 2023 -0300
+
+    feat: add Nav bar details
+
+[33mcommit 5800ed856c84fa4bed6aba9838ff4c3bb66e7a45[m
+Author: Bruno120Ab <abreubruno499@gmail.com>
+Date:   Thu Aug 17 14:10:57 2023 -0300
+
+    feat: add Card details
+
+[33mcommit 6e24ecffa618022889be4df61900b40b36f5ca78[m
+Author: Bruno120Ab <abreubruno499@gmail.com>
+Date:   Thu Aug 17 14:10:43 2023 -0300
+
+    feat: add list
+
+[33mcommit 4164d576026f0effc0eaf6f349315bed9356ee98[m
+Author: Bruno120Ab <abreu

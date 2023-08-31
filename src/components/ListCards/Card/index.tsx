@@ -59,12 +59,12 @@ export interface MockCar {
   year: number;
   kilometers: number;
   price: number;
-  photos: Iphotos[]
+  photos: Iphotos[];
 }
 
 export interface Iphotos {
   id: string;
-  photo_url: string
+  photo_url: string;
 }
 
 export interface IMockCarList {
@@ -81,17 +81,21 @@ export const Card = ({ car, isOwner }: IMockCar) => {
   const page = useLocation();
 
   useEffect(() => {
-    if (page.pathname.split("/")[1] === "profile" && !page.pathname.split("/")[2]) {
+    if (
+      page.pathname.split("/")[1] === "profile" &&
+      !page.pathname.split("/")[2]
+    ) {
       setIsProfile(true);
     }
 
     return;
   }, [page, isProfile]);
   
+  
   return (
     <ContainerCard>
       <figure>
-        <img src={car.photos ? car.photos[0].photo_url : Ferrari} />
+        <img src={car.photos ? car.photos[0]?.photo_url : Ferrari} />
       </figure>
       <div className="box-div">
         <div className="fist">
