@@ -109,7 +109,7 @@ const Ad = () => {
                 <CarInfoText className='textHeading6600'>{`${adData.model} ${adData.brand} ${adData.color}`}</CarInfoText>
                 <CarBallonPriceAlign>
                   <CarInfoBalloonAlign>
-                    <CarInfoBalloon>{`${adData.year[0]}${adData.year[1]}${adData.year[2]}${adData.year[3]}`}</CarInfoBalloon>
+                    <CarInfoBalloon>{`${adData.year[6]}${adData.year[7]}${adData.year[8]}${adData.year[9]}`}</CarInfoBalloon>
                     <CarInfoBalloon>{`${adData.kilometers} KM`}</CarInfoBalloon>
                   </CarInfoBalloonAlign>
                   <CarPrice className='textHeading7500'>{`${formatter.format(
