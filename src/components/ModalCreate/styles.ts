@@ -15,15 +15,15 @@ export const StyledModal = styled.div`
   }
 
   .modal-container {
-    width: 360px;
-    height: 500px;
+    width: 450px;
+    height: 550px;
     background-color: white;
     border-style: none;
     color: black;
     display: flex;
     flex-direction: column;
-    border-radius: 0 0 5px 5px;
-    overflow-y: auto;
+    border-radius: 0.5rem;
+    font-family: "Inter";
   }
 
   .modal-title {
@@ -31,7 +31,6 @@ export const StyledModal = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    border-radius: 5px 5px 0 0;
   }
 
   form {
@@ -39,18 +38,16 @@ export const StyledModal = styled.div`
     flex-direction: column;
     padding: 1rem;
     gap: 0.5rem;
-    height: 80%;
-    justify-content: space-between;
-    border: 100px;
+    overflow-y: auto;
+    border-radius: 0.5rem;
   }
 
-  input,
-  select {
+  input, select {
     padding: 0.5rem;
-    background-color: var(--grey-1);
-    width: 300px;
+    color: var(--color-Grey3);
     border: 1px solid;
     border-radius: 5px;
+    font-weight: 200;
   }
 
   .delete-modal-div {
@@ -63,6 +60,7 @@ export const StyledModal = styled.div`
 
   .div-teste {
     display: flex;
+    gap: 1rem;
   }
 
   h4 {
@@ -75,9 +73,7 @@ export const StyledModal = styled.div`
     width: 50%;
   }
 
-  .div-filha > input {
-    width: 90%;
-  }
+
 
   .addImgGal {
     width: 100%;
@@ -90,7 +86,21 @@ export const StyledModal = styled.div`
   }
 
   .div-buttons > button {
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.3rem;
+  }
+
+  .close-button {
+
+    background-color: white;
+    font-size: 18px;
+    color: var(--color-Grey4);
+
+  }
+
+  .create-button {
+    background-color: var(--color-Brand3);
+    color: white;
   }
 `;
