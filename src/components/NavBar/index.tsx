@@ -13,7 +13,7 @@ export const NavBar = () => {
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
+    
   };
 
   const handleResize = () => {
