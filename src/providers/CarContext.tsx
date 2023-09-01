@@ -58,6 +58,7 @@ interface ICarContext {
   >;
   userData: any;
   getNameCharacters: (name: string) => string;
+  refreshPage: () => void;
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -159,6 +160,10 @@ export const CarProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const refreshPage = () => {
+    window.location.reload()
+}
+
   return (
     <CarContext.Provider
       value={{
@@ -182,7 +187,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
         sendEmail,
         resetPassword,
         EditUserModal,
-        setEditUserModal
+        setEditUserModal,
+        refreshPage,
       }}
     >
       {children}
