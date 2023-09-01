@@ -32,17 +32,20 @@ import {
   UserInfoDescription,
   UserInfoName,
   UserInfoShowAdsButton,
-} from "./style";
-import { carImg } from "../../database/Mock2";
-import { api } from "../../services/api";
-import { useContext, useEffect, useState } from "react";
-import { CarContext } from "../../providers/CarContext";
+} from './style';
+import { api } from '../../services/api';
+import { useContext, useEffect, useState } from 'react';
+import { CarContext } from '../../providers/CarContext';
 import Button from '../../components/Button';
-
 
 const Ad = () => {
   const [adData, setAdData] = useState({
-    photos: [{ photo_url: carImg }],
+    photos: [
+      {
+        photo_url:
+          'https://img.freepik.com/psd-premium/carro-da-cidade-em-fundo-transparente-renderizacao-em-3d-ilustracao_494250-34780.jpg',
+      },
+    ],
     year: '1',
     user: { name: '...' },
   });
@@ -91,7 +94,7 @@ const Ad = () => {
 
   const handleBuyClick = () => {
     const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
-    window.open(url, "_blank");
+    window.open(url, '_blank');
   };
 
   return (

@@ -97,54 +97,6 @@ export const ContainerCard = styled.li`
       }
     }
 
-    /* .third {
-      display: flex;
-      flex-direction: row;
-
-      justify-content: space-between;
-
-      margin-top: 10px;
-
-      .detail {
-        display: flex;
-        flex-direction: row;
-
-        span {
-          width: 70px;
-          height: 30px;
-
-          border-radius: 4px;
-
-          background-color: var(--color-Brand4);
-          color: var(--color-Brand2);
-
-          font-size: 14px;
-          font-family: "Inter";
-          font-weight: 500;
-          font-style: normal;
-          text-decoration: none;
-          text-transform: none;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-
-      .wrap-price {
-        justify-content: end;
-
-        .price {
-          font-family: "Lexend";
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 20px;
-
-          color: var(--color-Grey1);
-        }
-      }
-    } */
-
     .thirsd {
       display: flex;
       flex-direction: row;
@@ -207,6 +159,7 @@ export const ContainerCard = styled.li`
   &:hover img {
     animation: ClickImage 1s linear both;
   }
+  
   &:hover figure {
     border: 1px solid var(--color-Brand2);
     overflow: hidden;
@@ -227,10 +180,10 @@ export const ContainerCard = styled.li`
 
   @keyframes NotCLickImage {
     0% {
-      transform: scale(1.5);
+      transform: scale(1.2);
     }
     100% {
-      transform: scale(0.9);
+      transform: scale(1);
     }
-  }
+  } 
 `;

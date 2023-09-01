@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from 'react';
-import { mockList } from '../database/Mock2';
 import { api } from '../services/api';
 import {
   tResePWD,
@@ -13,8 +12,12 @@ export interface IProviderProps {
   children: React.ReactNode;
 }
 
+interface iPhotos {
+  photos: string[];
+}
+
 export interface ICar {
-  imageURL: string;
+  photos: iPhotos;
   brand: string;
   model: string;
   fuel: string;
@@ -63,14 +66,15 @@ interface ICarContext {
 export const CarContext = createContext({} as ICarContext);
 
 export const CarProvider = ({ children }: IProviderProps) => {
-  const [cars, setCars] = useState<ICar[]>(mockList);
+  const [cars, setCars] = useState<ICar[]>([]);
   const [filteredCars, setFilteredCars] = useState('');
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [userData, setUserData] = useState({});
   const [EditAddress, setEditAddress] = useState(false);
-  const [EditUserModal, setEditUserModal] = useState(false); 
+  const [EditUserModal, setEditUserModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const getNameCharacters = (name: string = 'name') => {
@@ -124,6 +128,23 @@ export const CarProvider = ({ children }: IProviderProps) => {
   });
 
   useEffect(() => {
+    const getAllAds = async () => {
+      try {
+        setLoading(!loading);
+        const response = await api.get('/salesAd');
+        setCars([...response.data]);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(!loading);
+      }
+    };
+    console.log(cars);
+    getAllAds();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     (async () => {
       const token = localStorage.getItem('@TOKEN');
 
@@ -137,7 +158,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
         // navigate('/login');
       }
     })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateAddress = async (formData: EditAddress) => {
@@ -182,7 +203,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
         sendEmail,
         resetPassword,
         EditUserModal,
-        setEditUserModal
+        setEditUserModal,
       }}
     >
       {children}

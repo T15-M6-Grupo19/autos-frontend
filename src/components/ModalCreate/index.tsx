@@ -149,12 +149,7 @@ export function ModalCreate() {
                   {...register('year')}
                   readOnly
                 />
-                {/* {
-                                    filteredModel.length >0 && <input defaultValue={filteredModel[0][1].year}
-                                    readOnly
-                                    {...register("year")}
-                                    />
-                                } */}
+
                 <p>{errors.year?.message}</p>
               </div>
               <div className='div-filha'>

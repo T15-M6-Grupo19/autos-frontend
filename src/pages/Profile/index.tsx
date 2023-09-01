@@ -19,7 +19,7 @@ const Profile = () => {
     setEditUserModal,
   } = useContext(CarContext);
   const toggleModalEditAddress = () => setEditAddress(false);
-  const [isOwner, setIsOwner] = useState(false);
+  const [isOwner, setIsOwner] = useState(true);
 
   const toggleModal = () => setEditUserModal(!EditUserModal);
 
