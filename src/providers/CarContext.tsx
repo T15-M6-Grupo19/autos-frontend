@@ -27,6 +27,27 @@ export interface ICar {
   price: number;
 }
 
+export interface IPhoto{
+  id: string,
+  photo_url: string
+}
+
+export interface IEditCar{
+  brand: string,
+  color: string,
+  description: string,
+  fuel: string,
+  good_deal: boolean,
+  id: string,
+  kilometers: number,
+  model: string,
+  photos: IPhoto[],
+  price: number,
+  published: boolean,
+  year: string
+
+}
+
 interface ICarContext {
   cars: ICar[];
   EditAddress: boolean;
@@ -61,6 +82,8 @@ interface ICarContext {
   >;
   userData: any;
   getNameCharacters: (name: string) => string;
+  editAdModal: any;
+  setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -75,6 +98,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [EditAddress, setEditAddress] = useState(false);
   const [EditUserModal, setEditUserModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [editAdModal, setEditAdModal] = useState<any>(null)
 
   const navigate = useNavigate();
   const getNameCharacters = (name: string = 'name') => {
@@ -204,6 +228,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
         resetPassword,
         EditUserModal,
         setEditUserModal,
+        editAdModal,
+        setEditAdModal
       }}
     >
       {children}
