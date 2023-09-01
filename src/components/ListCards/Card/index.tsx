@@ -1,51 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { ICar } from "../../../providers/CarContext";
-// import { ContainerCard } from "./style";
-
-// interface ICarProps {
-//   car: ICar
-// }
-
-// export const Card = ({ car }: ICarProps) => {
-//   return (
-//     <ContainerCard>
-//       <figure>
-//         <img src={car.imageURL} />
-//       </figure>
-//       <div>
-//         <div className="first">
-//           <h2> {car.marca} </h2>
-//           <div> {car.modelo} </div>
-//         </div>
-//         <div className="second">
-//           <div className="balloon-name">
-//             <span>SL</span>
-//           </div>
-//           <span>Silva Luiz</span>
-//         </div>
-//         <div className="third">
-//           <div className="detail">
-//             <span>{car.km}km</span>
-//             <span>{car.ano}</span>
-//           </div>
-//           <div className="wrap-price">
-//             <span className="price">
-//               {car.preco.toLocaleString("pt-BR", {
-//                 style: "currency",
-//                 currency: "BRL",
-//               })}
-//             </span>
-//           </div>
-//         </div>
-//       </div>
-//     </ContainerCard>
-//   );
-// };
-
-// export default Card;
 
 import { ContainerCard } from "./style";
-// import { IMockCar } from '../types';
 import Button from "../../Button";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -59,12 +13,12 @@ export interface MockCar {
   year: number;
   kilometers: number;
   price: number;
-  photos: Iphotos[]
+  photos: Iphotos[];
 }
 
 export interface Iphotos {
   id: string;
-  photo_url: string
+  photo_url: string;
 }
 
 export interface IMockCarList {
@@ -81,18 +35,20 @@ export const Card = ({ car, isOwner }: IMockCar) => {
   const page = useLocation();
 
   useEffect(() => {
-    if (page.pathname.split("/")[1] === "profile" && !page.pathname.split("/")[2]) {
+    if (
+      page.pathname.split("/")[1] === "profile" &&
+      !page.pathname.split("/")[2]
+    ) {
       setIsProfile(true);
     }
 
     return;
   }, [page, isProfile]);
-
   
   return (
     <ContainerCard>
       <figure>
-        <img src={car.photos ? car.photos[0].photo_url : Ferrari} />
+        <img src={car.photos ? car.photos[0]?.photo_url : Ferrari} />
       </figure>
       <div className="box-div">
         <div className="fist">
@@ -108,22 +64,6 @@ export const Card = ({ car, isOwner }: IMockCar) => {
           </div>
           <span>Silva Luiz</span>
         </div>
-        {/* <div className='thirsd'>
-          <div className='detail'>
-            <span>
-              {car.km} <span>KM</span>
-            </span>
-            <span>{car.ano}</span>
-          </div>
-          <div className='wrap-price'>
-            <span className='price'>
-              {car.preco.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
-            </span>
-          </div>
-        </div> */}
         <div className="thirsd">
           <div className="detail">
             <span>

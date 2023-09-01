@@ -26,7 +26,7 @@ export const BlueBackground = styled.div`
   position: relative;
   z-index: 0;
   @media (min-width: 1024px) {
-    justify-content:normal;
+    justify-content: normal;
   }
 `;
 
@@ -48,7 +48,7 @@ export const CarImageContainer = styled.div`
   align-items: center;
   @media (min-width: 1024px) {
     width: 47vw;
-    margin-left:11vw;
+    margin-left: 11vw;
     margin-top: 350px;
   }
 `;
@@ -83,7 +83,7 @@ export const CarInfoContainer = styled.div`
   justify-content: space-evenly;
   @media (min-width: 1024px) {
     width: 47vw;
-    margin-left:11vw;
+    margin-left: 11vw;
   }
 `;
 
@@ -129,7 +129,7 @@ export const CarBallonPriceAlign = styled.div`
     justify-content: space-between;
 
     flex-direction: row;
-    align-items:center;
+    align-items: center;
   }
 `;
 
@@ -140,6 +140,7 @@ export const BuyButton = styled.button`
   background-color: var(--color-Brand1);
   color: #ffffff;
   size: 14px;
+  font-family: "Inter";
 `;
 
 export const DescriptionContainer = styled.div`
@@ -157,7 +158,7 @@ export const DescriptionContainer = styled.div`
   box-sizing: border-box;
   @media (min-width: 1024px) {
     width: 47vw;
-    margin-left:11vw;
+    margin-left: 11vw;
   }
 `;
 
@@ -190,8 +191,8 @@ export const CarPhotosList = styled.ul`
   display: flex;
   gap: 5.5px;
   flex-wrap: wrap;
-  max-height:200px;
-  overflow:auto;
+  max-height: 200px;
+  overflow: auto;
 `;
 
 export const CarPhotosListItem = styled.li`
@@ -208,6 +209,7 @@ export const CarPhoto = styled.img`
 `;
 
 export const FooterAlign = styled.div`
+
   margin-top: 20px;
   width: 100%;
 
@@ -267,21 +269,24 @@ export const UserInfoShowAdsButton = styled.button`
 `;
 
 export const PhotoAndUserAlign = styled.section`
-margin-top:0px;
-max-width:auto;
+  margin-top: 0px;
+  max-width: auto;
   @media (min-width: 1024px) {
     max-width: 27.5vw;
     margin-top: 333px;
-    
   }
-`
+`;
 export const ContainerComments = styled.div`
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin-top: 980px; 
-  
+
+  margin-top: 985px;
+  margin-left: 2vw;
+
+
   min-height: 300px;
   width: 93.6vw;
 
@@ -312,15 +317,17 @@ export const ContainerComments = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
+
     margin: 345px 0 0 11vw; 
     width: 47vw;
   }
   @media screen and (min-width: 1195px) {
     margin: 325px 0 0 11vw; 
-  }  
-`
-export const Comment = styled.li`
+  }
+`;
 
+
+export const Comment = styled.li`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -335,7 +342,7 @@ export const Comment = styled.li`
     span {
       background-color: var(--color-Random1);
       color: var(--color-WhiteFixed);
-      
+
       height: 32px;
       width: 32px;
 
@@ -349,16 +356,16 @@ export const Comment = styled.li`
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
-      line-height: 0px; 
+      line-height: 0px;
     }
 
     p {
-      &::after{
-      content:'';
-      border-radius: 50%;
-      height: 0.5rem;
-      width: 0.5rem;
-      background-color: var(--color-Grey4);
+      &::after {
+        content: "";
+        border-radius: 50%;
+        height: 0.5rem;
+        width: 0.5rem;
+        background-color: var(--color-Grey4);
       }
     }
   }
@@ -375,8 +382,7 @@ export const Comment = styled.li`
     font-weight: 400;
     line-height: 24px;
   }
-
-`
+`;
 
 export const ContainerTextAreaComment = styled.form`
   display: flex;
@@ -389,8 +395,9 @@ export const ContainerTextAreaComment = styled.form`
   margin-top: 17px; 
   /* margin-left: 2vw; */
 
+
   padding: 26px 36px;
-  
+
   min-height: 300px;
   width: 93.6vw;
 
@@ -404,7 +411,7 @@ export const ContainerTextAreaComment = styled.form`
     span {
       background-color: var(--color-Brand1);
       color: var(--color-WhiteFixed);
-      
+
       height: 32px;
       width: 32px;
 
@@ -418,21 +425,20 @@ export const ContainerTextAreaComment = styled.form`
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
-      line-height: 0px; 
+      line-height: 0px;
     }
   }
 
   .text-comment-area {
     display: flex;
     flex-direction: column;
-    gap:24px;
+    gap: 24px;
 
     width: 100%;
     height: 160px;
     flex-shrink: 0;
 
-
-    textarea{
+    textarea {
       flex: 1;
       border: 1.5px solid var(--color-Grey7);
 
@@ -448,6 +454,22 @@ export const ContainerTextAreaComment = styled.form`
       font-style: normal;
       font-weight: 400;
       line-height: 26px;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      height: 38px;
+      width: 108px;
+
+      padding: 12px 20px;
+      border-radius: 4px;
+
+      background-color: var(--color-Brand1);
+      color: var(--color-WhiteFixed);
     }
 
     @media screen and (min-width: 1024px) {
@@ -482,13 +504,13 @@ export const ContainerTextAreaComment = styled.form`
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
-      line-height: 24px
+      line-height: 24px;
     }
   }
 
   @media screen and (min-width: 1024px) {
     margin: 18px 0 0 11vw; 
+
     width: 47vw;
   }
-
-`
+`;

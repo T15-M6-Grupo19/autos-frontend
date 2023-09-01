@@ -32,11 +32,13 @@ import {
   UserInfoDescription,
   UserInfoName,
   UserInfoShowAdsButton,
-} from './style';
-import { carImg } from '../../database/Mock2';
-import { api } from '../../services/api';
-import { useEffect, useState } from 'react';
+} from "./style";
+import { carImg } from "../../database/Mock2";
+import { api } from "../../services/api";
+import { useContext, useEffect, useState } from "react";
+import { CarContext } from "../../providers/CarContext";
 import Button from '../../components/Button';
+
 
 const Ad = () => {
   const [adData, setAdData] = useState({
@@ -45,8 +47,11 @@ const Ad = () => {
     user: { name: '...' },
   });
 
-  // const [modal, setModal] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+
+  const { userData } = useContext(CarContext);
+
+  const [modal, setModal] = useState(false);
 
   const params = useParams();
 
@@ -84,6 +89,11 @@ const Ad = () => {
     currency: 'BRL',
   });
 
+  const handleBuyClick = () => {
+    const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <>
       <Container>
@@ -92,21 +102,21 @@ const Ad = () => {
           <ContainerAlign>
             <div>
               <CarImageContainer>
-                <CarImage src={adData.photos} />
+                <CarImage src={adData.photos[0]?.photo_url} />
               </CarImageContainer>
 
               <CarInfoContainer>
                 <CarInfoText className='textHeading6600'>{`${adData.model} ${adData.brand} ${adData.color}`}</CarInfoText>
                 <CarBallonPriceAlign>
                   <CarInfoBalloonAlign>
-                    <CarInfoBalloon>{`${adData.year[0]}${adData.year[1]}${adData.year[2]}${adData.year[3]}`}</CarInfoBalloon>
+                    <CarInfoBalloon>{`${adData.year[6]}${adData.year[7]}${adData.year[8]}${adData.year[9]}`}</CarInfoBalloon>
                     <CarInfoBalloon>{`${adData.kilometers} KM`}</CarInfoBalloon>
                   </CarInfoBalloonAlign>
                   <CarPrice className='textHeading7500'>{`${formatter.format(
                     adData.price
                   )}`}</CarPrice>
                 </CarBallonPriceAlign>
-                <BuyButton>Comprar</BuyButton>
+                <BuyButton onClick={handleBuyClick}>Comprar</BuyButton>
               </CarInfoContainer>
               <DescriptionContainer>
                 <DescriptionTitle className='textHeading6600'>
