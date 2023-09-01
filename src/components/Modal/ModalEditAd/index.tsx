@@ -27,7 +27,6 @@ export function ModalEditAd() {
 
     });
 
-    console.log(editAdModal)
 
   const [apiCar, setApiCar] = useState<string[]>([]);
   const [apiModel, setApiModel] = useState<any>();
@@ -46,7 +45,6 @@ export function ModalEditAd() {
   }, []);
 
   let teste = apiCar.filter((car) => car == editAdModal.brand)
-  console.log(teste[0])
 
   useEffect(() => {
     async function getModel() {
@@ -89,29 +87,30 @@ export function ModalEditAd() {
 
 
   const submit = async (data: any) => {
-    data.year = filteredModel[1].year;
-    data.fuel = fuelType;
-    data.kilometers = Number(data.kilometers)
-    data.price = Number(data.price)
+    // data.year = filteredModel[1].year;
+    // data.fuel = fuelType;
+    // data.kilometers = Number(data.kilometers)
+    // data.price = Number(data.price)
 
-    const photoArr = []
-    photoArr.push(data.photos)
-    if(data.morePhotos?.length >0){
-      data.morePhotos.forEach((photo:any)=>{
-        photoArr.push(photo)
-      })
-    }
-    data.photos = photoArr
+    // const photoArr = []
+    // photoArr.push(data.photos)
+    // if(data.morePhotos?.length >0){
+    //   data.morePhotos.forEach((photo:any)=>{
+    //     photoArr.push(photo)
+    //   })
+    // }
+    // data.photos = photoArr
     
-    try {
-        await api.post(`/salesAd`, data);
-        setEditAdModal(null)
-        window.location.reload()
+    // try {
+    //     await api.post(`/salesAd`, data);
+    //     setEditAdModal(null)
+    //     window.location.reload()
                 
-    } catch (error) {
-        console.log(error);
+    // } catch (error) {
+    //     console.log(error);
             
-    }
+    // }
+    console.log(data)
   }
 
   if(apiCar[0] !== "Selecione a marca"){
@@ -135,10 +134,22 @@ export function ModalEditAd() {
               id='brand'
               {...register('brand')}
               onChange={handleBrandChange}
-            > <option selected>{editAdModal.brand}</option>
-              {apiCar.map((car, index) => (
+            > 
+            {/* <option selected>{editAdModal.brand}</option> */}
+            {apiCar.map(
+                (car, index) => (
+                  editAdModal.brand == car ? (
+                    <option selected key={index}>
+                      {car}
+                    </option>
+                  ) : (
+                    <option key={index}>{car}</option>
+                  )
+                )
+              )}
+              {/* {apiCar.map((car, index) => (
                 <option key={index}>{car}</option>
-              ))}
+              ))} */}
             </select>
             <p>{errors.brand?.message}</p>
 
@@ -152,6 +163,7 @@ export function ModalEditAd() {
                 apiModel.map((model: any, index: number) => (
                   <option key={index}>{model[1].name}</option>
                 ))}
+           
             </select>
             <p>{errors.model?.message}</p>
 
