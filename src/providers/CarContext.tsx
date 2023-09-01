@@ -165,17 +165,18 @@ export const CarProvider = ({ children }: IProviderProps) => {
   }, []);
 
   const updateAddress = async (formData: EditAddress) => {
-    const token = localStorage.getItem('@TOKEN');
+    let token = localStorage.getItem('@TOKEN');
+    token = JSON.parse(token!)
 
     if (token) {
       const { sub }: string = jwt_decode(token);
 
-      api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
-        token!
-      )}`;
-
       try {
-        await api.patch(`/users/${sub}`, formData);
+        await api.patch(`/users/${sub}`, formData,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        });
         setEditAddress(false);
       } catch (error) {
         console.error(error);

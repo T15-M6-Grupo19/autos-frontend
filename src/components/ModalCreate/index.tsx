@@ -88,9 +88,19 @@ export function ModalCreate() {
     data.photos = photoArr
     
     try {
-        await api.post(`/salesAd`, data);
-        setOpenCreateModal(false)
-        window.location.reload()
+        let token = localStorage.getItem("@TOKEN")
+        token = JSON.parse(token!)
+        if(token){
+          console.log(token)
+          await api.post(`/salesAd`, data,{
+            headers:{
+              Authorization: `Bearer ${token}`
+            }
+          });
+          setOpenCreateModal(false)
+          window.location.reload()
+
+        }
                 
     } catch (error) {
         console.log(error);

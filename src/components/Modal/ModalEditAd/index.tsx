@@ -172,6 +172,7 @@ export function ModalEditAd() {
                 <label htmlFor='year'>Ano</label>
                 <input
                   id='year'
+                  placeholder={editAdModal.year}
                   defaultValue={
                     filteredModel.length > 0 ? filteredModel[1].year : ''
                   }
@@ -185,6 +186,7 @@ export function ModalEditAd() {
                 <label htmlFor='fuel'>Combustivel</label>
                 <input
                   id='fuel'
+                  placeholder={fuelType}
                   {...register('fuel')}
                   defaultValue={fuelType}
                   readOnly
