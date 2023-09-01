@@ -65,11 +65,7 @@ export const ContainerAlign = styled.div`
  @media (min-width: 1024px) {
    display:flex;
    gap:2.9vw;
-    
   }
-/* flex-direction:column; */
-/* flex-wrap:wrap; */
-
 `;
 
 export const CarInfoContainer = styled.div`
@@ -299,6 +295,7 @@ export const ContainerComments = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
 
     h2 {
       font-family: Lexend;
@@ -320,11 +317,7 @@ export const ContainerComments = styled.div`
   }
   @media screen and (min-width: 1195px) {
     margin: 325px 0 0 11vw; 
-  }
-
-
- 
-  
+  }  
 `
 export const Comment = styled.li`
 
@@ -332,6 +325,7 @@ export const Comment = styled.li`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
 
   div {
     display: flex;

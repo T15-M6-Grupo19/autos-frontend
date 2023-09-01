@@ -20,8 +20,7 @@ export function ModalCreate() {
   const [filteredModel, setFilteredModel] = useState<any[]>([]);
   const [fuelType, setFuelType] = useState('');
   const [inputCount, setInputCount] = useState<string[]>([]);
-  const { setOpenCreateModal } = useContext(CarContext)
-
+  const { setOpenCreateModal } = useContext(CarContext);
 
   useEffect(() => {
     async function getCar() {
@@ -74,30 +73,26 @@ export function ModalCreate() {
   const submit = async (data: any) => {
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
-    data.kilometers = Number(data.kilometers)
-    data.price = Number(data.price)
-    /* data.photos = ["https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg","https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg","https://images.cars.com/in/v2/stock_photos/7f212472-c429-4681-882b-29e52f4d52b5/884b28bd-d67f-4c90-a7e5-a066090db8f7.png?w=1000","https://img.sixt.com/1600/f3f01a1a-cecb-4dc4-a68c-5dc26fadbe37.jpg"] */
-   
-    const photosGallery = []
-    photosGallery.push(data.image)
-    
-    data.photos = photosGallery
-    const token = localStorage.getItem('@TOKEN');    
-        
-       
-        api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
-        
-        if(token){
-            try {
-              const response = await api.post(`/salesAd`, data);
-              console.log(response.data);
-                
-        } catch (error) {
-            console.log(error);
-            
-        }
+    data.kilometers = Number(data.kilometers);
+    data.price = Number(data.price);
+
+    const photosGallery = [];
+    photosGallery.push(data.image);
+
+    data.photos = photosGallery;
+    const token = localStorage.getItem('@TOKEN');
+
+    api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+
+    if (token) {
+      try {
+        const response = await api.post(`/salesAd`, data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
       }
-  }
+    }
+  };
 
   return (
     <StyledModal>
@@ -145,12 +140,6 @@ export function ModalCreate() {
                   {...register('year')}
                   readOnly
                 />
-                {/* {
-                                    filteredModel.length >0 && <input defaultValue={filteredModel[0][1].year}
-                                    readOnly
-                                    {...register("year")}
-                                    />
-                                } */}
                 <p>{errors.year?.message}</p>
               </div>
               <div className='div-filha'>
@@ -199,7 +188,11 @@ export function ModalCreate() {
             <p>{errors.description?.message}</p>
 
             <label htmlFor='image'>Imagem da capa</label>
-            <input id='image' {...register("image")} placeholder='é esse aqui'/>
+            <input
+              id='image'
+              {...register('image')}
+              placeholder='é esse aqui'
+            />
 
             {inputCount.length > 0 &&
               inputCount.map((_, index) => {
@@ -208,11 +201,7 @@ export function ModalCreate() {
                     <label htmlFor='image'>
                       {index + 1}ª imagem da galeria
                     </label>
-                    <input
-                      placeholder='https://image.com'
-                      
-                      />
-                      {/* <p>{errors.photos?.message}</p> */}
+                    <input placeholder='https://image.com' />
                   </React.Fragment>
                 );
               })}
