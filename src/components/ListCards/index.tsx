@@ -3,7 +3,7 @@ import Card from "./Card";
 import { ListCardContainer } from "./style";
 import { useLocation } from "react-router-dom";
 
-const ListCards = ({ carList, isOwner }) => {
+const ListCards = ({ carList, isOwner }:any) => {
   const [isProfile, setIsProfile] = useState(false);
 
   const page = useLocation();
@@ -14,7 +14,7 @@ const ListCards = ({ carList, isOwner }) => {
   return (
     carList[0] && (
       <ListCardContainer view={isProfile ? "allSpace" : "spaceTwo"}>
-        {carList.map((car) => (
+        {carList.map((car:any) => (
           <Card key={car.id} car={car} isOwner={isOwner}/>
         ))}
       </ListCardContainer>

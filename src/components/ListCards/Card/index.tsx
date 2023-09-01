@@ -2,8 +2,9 @@
 import { ContainerCard } from "./style";
 import Button from "../../Button";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Ferrari from "../../../assets/Ferrari.svg";
+import { CarContext } from "../../../providers/CarContext";
 
 export interface MockCar {
   brand: string;
@@ -33,6 +34,7 @@ export interface IMockCar {
 export const Card = ({ car, isOwner }: IMockCar) => {
   const [isProfile, setIsProfile] = useState(false);
   const page = useLocation();
+  const { setEditAdModal } = useContext(CarContext)
 
   useEffect(() => {
     if (
@@ -82,7 +84,7 @@ export const Card = ({ car, isOwner }: IMockCar) => {
         </div>
         {isOwner ? (
           <div className="fourth">
-            <Button variant="Editar" name={"Editar"} />
+            <Button onClick={()=> setEditAdModal(car)} variant="Editar" name={"Editar"} />
             <Button variant="Ver Detalhes" name={"Ver Detalhes"} />
           </div>
         ) : null}
