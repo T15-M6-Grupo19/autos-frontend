@@ -131,6 +131,7 @@ export function ModalCreate() {
               {...register('model')}
               onChange={handleModelChange}
             >
+              
               {apiModel &&
                 apiModel.map((model: any, index: number) => (
                   <option key={index}>{model[1].name}</option>
