@@ -38,19 +38,31 @@ import { api } from "../../services/api";
 import { useContext, useEffect, useState } from "react";
 import { CarContext } from "../../providers/CarContext";
 import Button from '../../components/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { commentData } from './types';
+import { schema } from './validator';
 
 
 const Ad = () => {
+  const {
+    register,
+    handleSubmit,
+} = useForm<commentData>({
+    resolver: zodResolver(schema),
+});
+
   const [adData, setAdData] = useState({
     photos: [{ photo_url: carImg }],
     year: "1",
-    user: { name: "..." },
+    user: { id: "1234", name: "...", },
     comments: [
       {
         id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
         comment_text: "novo comentário de Arthur",
         created_at: "2023-08-29T14:19:50.390Z",
         user: {
+          id: "5f717058-a380-4694-8932-28390578c28d",
           name: "teste"
         }
       }
@@ -58,7 +70,7 @@ const Ad = () => {
   });
   const [isLogged, setIsLogged] = useState(false);
 
-  const { userData } = useContext(CarContext);
+  const { userData, refreshPage } = useContext(CarContext);
 
 
   const params = useParams();
@@ -76,6 +88,7 @@ const Ad = () => {
   const userPage = () => {
     navigate(`/profile/${adData.user.id}`);
   };
+  
 
   useEffect(() => {
     async function adInfo() {
@@ -96,7 +109,31 @@ const Ad = () => {
     style: 'currency',
     currency: 'BRL',
   });
-  const CalculateTimeDifference = (referenceDate) => {
+
+  const CreateComment = async (Data: commentData) => {
+    api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+    try {
+      await api.post(`/comment/${params.adId}`, Data)
+      refreshPage()
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  const DeleteComment = async (commentId: string) => {
+    api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+    try {
+      await api.delete(`/comment/${commentId}`)
+      refreshPage()
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+  
+  
+  const CalculateTimeDifference = (referenceDate: string) => {
     const now = new Date();
     const refDate = new Date(referenceDate)
     
@@ -106,6 +143,9 @@ const Ad = () => {
 
     if(days == 0){
       return "Hoje"
+    }
+    else if (days == 1){
+      return `há ${days} dia`
     }
     else {
       return `há ${days} dias`
@@ -182,38 +222,37 @@ const Ad = () => {
           {' '}
           {/* COMENTÁRIOS */}
           <ul>
-            <h2>Comentários</h2>
+          {adData.comments.length !== 0 ? <h2>Comentários</h2> : <h2>Sem Comentários</h2>}
             {adData.comments.map((comment) => (
               <Comment>
               <div>
                 <span>SL</span> <p>{comment.user.name}</p>{" "}
-                <time
-                  title='29 de Agosto as 21:05'
-                  dateTime='2023-08-29 21:05:30'
-                >
+                <time>
                   {CalculateTimeDifference(comment.created_at.substring(0,10))}
                 </time>
               </div>
               <p>
                 {comment.comment_text}
               </p>
+              {(comment.user.id == userData.id || adData.user.id == userData.id) && (<button onClick={() => DeleteComment(comment.id)}>Excluir</button>)}
             </Comment>
             ))}
           </ul>
         </ContainerComments>
-        <ContainerTextAreaComment>
+        <ContainerTextAreaComment onSubmit={handleSubmit(CreateComment)}>
           {' '}
           {/*ESSA É A TAG FORM */}
           <div className='text-area-header'>
             <span>SL</span>
-            <p>Silva Leonel</p>
+            <p>{userData.name}</p>
           </div>
           <div className='text-comment-area'>
-            <textarea name='coment' placeholder='Escreva seu comentário ...' />
+            <textarea placeholder='Escreva seu comentário ...' {...register("comment_text")}/>
             <Button
               name='comentar'
               variant='comment'
               disabled={isLogged ? false : true}
+              type='submit'
             >
               Comentar
             </Button>
