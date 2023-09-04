@@ -24,6 +24,27 @@ export interface ICar {
   price: number;
 }
 
+export interface IPhoto{
+  id: string,
+  photo_url: string
+}
+
+export interface IEditCar{
+  brand: string,
+  color: string,
+  description: string,
+  fuel: string,
+  good_deal: boolean,
+  id: string,
+  kilometers: number,
+  model: string,
+  photos: IPhoto[],
+  price: number,
+  published: boolean,
+  year: string
+
+}
+
 interface ICarContext {
   cars: ICar[];
   EditAddress: boolean;
@@ -58,7 +79,12 @@ interface ICarContext {
   >;
   userData: any;
   getNameCharacters: (name: string) => string;
+
+  editAdModal: any;
+  setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
+
   refreshPage: () => void;
+
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -72,6 +98,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [userData, setUserData] = useState({});
   const [EditAddress, setEditAddress] = useState(false);
   const [EditUserModal, setEditUserModal] = useState(false); 
+  const [editAdModal, setEditAdModal] = useState<any>(null)
 
   const navigate = useNavigate();
   const getNameCharacters = (name: string = 'name') => {
@@ -142,17 +169,18 @@ export const CarProvider = ({ children }: IProviderProps) => {
   }, []);
 
   const updateAddress = async (formData: EditAddress) => {
-    const token = localStorage.getItem('@TOKEN');
+    let token = localStorage.getItem('@TOKEN');
+    token = JSON.parse(token!)
 
     if (token) {
       const { sub }: string = jwt_decode(token);
 
-      api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
-        token!
-      )}`;
-
       try {
-        await api.patch(`/users/${sub}`, formData);
+        await api.patch(`/users/${sub}`, formData,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        });
         setEditAddress(false);
       } catch (error) {
         console.error(error);
@@ -188,7 +216,10 @@ export const CarProvider = ({ children }: IProviderProps) => {
         resetPassword,
         EditUserModal,
         setEditUserModal,
+        editAdModal,
+        setEditAdModal
         refreshPage,
+
       }}
     >
       {children}

@@ -9,8 +9,9 @@ import { CarContext } from "../../providers/CarContext";
 import { ModalCreate } from "../../components/ModalCreate";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
+import { ModalEditAd } from "../../components/Modal/ModalEditAd";
 const Profile = () => {
-  const { openCreateModal, userData, EditAddress, setEditAddress, EditUserModal, setEditUserModal } = useContext(CarContext);
+  const { openCreateModal, userData, EditAddress, setEditAddress, EditUserModal, setEditUserModal, editAdModal } = useContext(CarContext);
   const toggleModalEditAddress = () => setEditAddress(false)
   const [isOwner, setIsOwner] = useState(true)
   
@@ -20,6 +21,7 @@ const Profile = () => {
   return (
     <>
       {EditUserModal && <ModalEditUser toggleModal={toggleModal}/>}
+      {editAdModal && <ModalEditAd />}
       {openCreateModal && <ModalCreate />}
       {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <NavBarAdvertiser />
