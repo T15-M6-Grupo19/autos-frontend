@@ -93,6 +93,7 @@ export const ContainerCard = styled.li`
 
         span {
           color: var(--color-WhiteFixed);
+                  
         }
       }
     }

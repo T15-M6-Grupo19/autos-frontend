@@ -39,6 +39,7 @@ const ProfileViewUser = () => {
         setListError(true);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -61,6 +62,7 @@ const ProfileViewUser = () => {
     if(owner == user.id){
     setIsOwner(true)
    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[owner])
  
   return !listError ? (
