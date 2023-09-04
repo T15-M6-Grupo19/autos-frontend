@@ -62,12 +62,10 @@ export const CarImage = styled.img`
 `;
 
 export const ContainerAlign = styled.div`
-  @media (min-width: 1024px) {
-    display: flex;
-    gap: 2.9vw;
+ @media (min-width: 1024px) {
+   display:flex;
+   gap:2.9vw;
   }
-  /* flex-direction:column; */
-  /* flex-wrap:wrap; */
 `;
 
 export const CarInfoContainer = styled.div`
@@ -302,6 +300,7 @@ export const ContainerComments = styled.div`
     flex-direction: column;
     width: 100%;
     gap: 24px;
+    width: 100%;
 
     h2 {
       font-family: Lexend;
@@ -334,6 +333,7 @@ export const Comment = styled.li`
   overflow: auto;
   flex-direction: column;
   gap: 12px;
+
 
   div {
     display: flex;

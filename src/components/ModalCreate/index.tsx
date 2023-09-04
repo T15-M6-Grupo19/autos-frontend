@@ -20,8 +20,7 @@ export function ModalCreate() {
   const [filteredModel, setFilteredModel] = useState<any[]>([]);
   const [fuelType, setFuelType] = useState('');
   const [inputCount, setInputCount] = useState<string[]>([]);
-  const { setOpenCreateModal } = useContext(CarContext)
-
+  const { setOpenCreateModal } = useContext(CarContext);
 
   useEffect(() => {
     async function getCar() {
@@ -71,48 +70,41 @@ export function ModalCreate() {
     setInputCount((prev) => [...prev, 'insira nova imagem']);
   };
 
-
   const submit = async (data: any) => {
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
-    data.kilometers = Number(data.kilometers)
-    data.price = Number(data.price)
+    data.kilometers = Number(data.kilometers);
+    data.price = Number(data.price);
 
-    const photoArr = []
-    photoArr.push(data.photos)
-    if(data.morePhotos?.length >0){
-      data.morePhotos.forEach((photo:any)=>{
-        photoArr.push(photo)
-      })
+    const photoArr = [];
+    photoArr.push(data.photos);
+    if (data.morePhotos?.length > 0) {
+      data.morePhotos.forEach((photo: any) => {
+        photoArr.push(photo);
+      });
     }
-    data.photos = photoArr
-    
+    data.photos = photoArr;
+
     try {
-        let token = localStorage.getItem("@TOKEN")
-        token = JSON.parse(token!)
-        if(token){
-          console.log(token)
-          await api.post(`/salesAd`, data,{
-            headers:{
-              Authorization: `Bearer ${token}`
-            }
-          });
-          setOpenCreateModal(false)
-          window.location.reload()
 
-        }
-                
+      console.log(token);
+      await api.post(`/salesAd`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setOpenCreateModal(false);
+      window.location.reload();
+      console.log(api.defaults.headers);
+
     } catch (error) {
-        console.log(error);
-            
+      console.log(error);
     }
-  }
+  };
 
-  if(apiCar[0] !== "Selecione a marca"){
-    apiCar.unshift("Selecione a marca")
+  if (apiCar[0] !== 'Selecione a marca') {
+    apiCar.unshift('Selecione a marca');
   }
-
-    
 
   return (
     <StyledModal>
@@ -120,7 +112,12 @@ export function ModalCreate() {
         <div className='modal-container'>
           <div className='modal-title'>
             <h3>Criar Anúncio</h3>
-            <button className='close-button' onClick={() => setOpenCreateModal(false)}>X</button>
+            <button
+              className='close-button'
+              onClick={() => setOpenCreateModal(false)}
+            >
+              X
+            </button>
           </div>
           <h4>Informações do veículo</h4>
           <form onSubmit={handleSubmit(submit)}>
@@ -209,7 +206,11 @@ export function ModalCreate() {
             <p>{errors.description?.message}</p>
 
             <label htmlFor='photos'>Imagem da capa</label>
-            <input id='photos' {...register("photos")} placeholder='insira a imagem de capa aqui'/>
+            <input
+              id='photos'
+              {...register('photos')}
+              placeholder='insira a imagem de capa aqui'
+            />
             <p>{errors.photos?.message}</p>
 
             {inputCount.length > 0 &&
@@ -222,11 +223,8 @@ export function ModalCreate() {
                     <input
                       placeholder='https://image.com'
                       {...register(`morePhotos.${index}`)}
-                      />
-                      <p>{errors.morePhotos?.message}</p>
-                      
-                    
-                      
+                    />
+                    <p>{errors.morePhotos?.message}</p>
                   </React.Fragment>
                 );
               })}
@@ -244,7 +242,9 @@ export function ModalCreate() {
               <button onClick={() => setOpenCreateModal(false)} type='button'>
                 Cancelar
               </button>
-              <button className='create-button' type='submit'>Criar Anuncio</button>
+              <button className='create-button' type='submit'>
+                Criar Anuncio
+              </button>
             </div>
           </form>
         </div>

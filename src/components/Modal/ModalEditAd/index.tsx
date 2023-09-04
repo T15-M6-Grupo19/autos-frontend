@@ -8,24 +8,23 @@ import Button from '../../Button';
 import { api } from '../../../services/api';
 
 export function ModalEditAd() {
-  const { editAdModal, setEditAdModal } = useContext(CarContext)
+  const { editAdModal, setEditAdModal } = useContext(CarContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TCreateAdData>({ 
-        resolver: zodResolver(createAdSchema),
-        defaultValues:{
-            brand:editAdModal?.brand,
-            model:editAdModal?.model,
-            kilometers:editAdModal?.kilometers,
-            price:editAdModal?.price,
-            description:editAdModal?.description,
-            color:editAdModal?.color,
-        } 
-
-    });
+  } = useForm<TCreateAdData>({
+    resolver: zodResolver(createAdSchema),
+    defaultValues: {
+      brand: editAdModal?.brand,
+      model: editAdModal?.model,
+      kilometers: editAdModal?.kilometers,
+      price: editAdModal?.price,
+      description: editAdModal?.description,
+      color: editAdModal?.color,
+    },
+  });
 
 
   const [apiCar, setApiCar] = useState<string[]>([]);
@@ -33,7 +32,6 @@ export function ModalEditAd() {
   const [filteredModel, setFilteredModel] = useState<any[]>([]);
   const [fuelType, setFuelType] = useState('');
   const [inputCount, setInputCount] = useState<string[]>([]);
-
 
   useEffect(() => {
     async function getCar() {
@@ -44,7 +42,9 @@ export function ModalEditAd() {
     getCar();
   }, []);
 
-  let teste = apiCar.filter((car) => car == editAdModal.brand)
+
+  let teste = apiCar.filter((car) => car == editAdModal.brand);
+
 
   useEffect(() => {
     async function getModel() {
@@ -85,39 +85,35 @@ export function ModalEditAd() {
     setInputCount((prev) => [...prev, 'insira nova imagem']);
   };
 
-
   const submit = async (data: any) => {
-    // data.year = filteredModel[1].year;
-    // data.fuel = fuelType;
-    // data.kilometers = Number(data.kilometers)
-    // data.price = Number(data.price)
 
-    // const photoArr = []
-    // photoArr.push(data.photos)
-    // if(data.morePhotos?.length >0){
-    //   data.morePhotos.forEach((photo:any)=>{
-    //     photoArr.push(photo)
-    //   })
-    // }
-    // data.photos = photoArr
-    
-    // try {
-    //     await api.post(`/salesAd`, data);
-    //     setEditAdModal(null)
-    //     window.location.reload()
-                
-    // } catch (error) {
-    //     console.log(error);
-            
-    // }
-    console.log(data)
+    data.year = filteredModel[1].year;
+    data.fuel = fuelType;
+    data.kilometers = Number(data.kilometers);
+    data.price = Number(data.price);
+
+    const photoArr = [];
+    photoArr.push(data.photos);
+    if (data.morePhotos?.length > 0) {
+      data.morePhotos.forEach((photo: any) => {
+        photoArr.push(photo);
+      });
+    }
+    data.photos = photoArr;
+
+    try {
+      await api.post(`/salesAd`, data);
+      setEditAdModal(null);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  if (apiCar[0] !== 'Selecione a marca') {
+    apiCar.unshift('Selecione a marca');
   }
-
-  if(apiCar[0] !== "Selecione a marca"){
-    apiCar.unshift("Selecione a marca")
-  }
-
-    
 
   return (
     <StyledModal>
@@ -125,7 +121,12 @@ export function ModalEditAd() {
         <div className='modal-container'>
           <div className='modal-title'>
             <h3>Editar Anúncio</h3>
-            <button className='close-button' onClick={() => setEditAdModal(null)}>X</button>
+            <button
+              className='close-button'
+              onClick={() => setEditAdModal(null)}
+            >
+              X
+            </button>
           </div>
           <h4>Informações do veículo</h4>
           <form onSubmit={handleSubmit(submit)}>
@@ -134,22 +135,19 @@ export function ModalEditAd() {
               id='brand'
               {...register('brand')}
               onChange={handleBrandChange}
-            > 
-            {/* <option selected>{editAdModal.brand}</option> */}
-            {apiCar.map(
-                (car, index) => (
-                  editAdModal.brand == car ? (
-                    <option selected key={index}>
-                      {car}
-                    </option>
-                  ) : (
-                    <option key={index}>{car}</option>
-                  )
+
+            >
+              {/*<option selected>{editAdModal.brand}</option> */}
+              {apiCar.map((car, index) =>
+                editAdModal.brand == car ? (
+                  <option selected key={index}>
+                    {car}
+                  </option>
+                ) : (
+                  <option key={index}>{car}</option>
                 )
               )}
-              {/* {apiCar.map((car, index) => (
-                <option key={index}>{car}</option>
-              ))} */}
+
             </select>
             <p>{errors.brand?.message}</p>
 
@@ -177,7 +175,7 @@ export function ModalEditAd() {
                     filteredModel.length > 0 ? filteredModel[1].year : ''
                   }
                   {...register('year')}
-                  readOnly
+                  disabled
                 />
 
                 <p>{errors.year?.message}</p>
@@ -229,7 +227,11 @@ export function ModalEditAd() {
             <p>{errors.description?.message}</p>
 
             <label htmlFor='photos'>Imagem da capa</label>
-            <input id='photos' {...register("photos")} placeholder='insira a imagem de capa aqui'/>
+            <input
+              id='photos'
+              {...register('photos')}
+              placeholder='insira a imagem de capa aqui'
+            />
             <p>{errors.photos?.message}</p>
 
             {inputCount.length > 0 &&
@@ -242,11 +244,8 @@ export function ModalEditAd() {
                     <input
                       placeholder='https://image.com'
                       {...register(`morePhotos.${index}`)}
-                      />
-                      <p>{errors.morePhotos?.message}</p>
-                      
-                    
-                      
+                    />
+                    <p>{errors.morePhotos?.message}</p>
                   </React.Fragment>
                 );
               })}
@@ -264,7 +263,9 @@ export function ModalEditAd() {
               <button onClick={() => setEditAdModal(null)} type='button'>
                 Cancelar
               </button>
-              <button className='create-button' type='submit'>Criar Anuncio</button>
+              <button className='create-button' type='submit'>
+                Criar Anuncio
+              </button>
             </div>
           </form>
         </div>

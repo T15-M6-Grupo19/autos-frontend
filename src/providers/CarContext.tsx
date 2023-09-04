@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from 'react';
-import { mockList } from '../database/Mock2';
 import { api } from '../services/api';
 import {
   tResePWD,
@@ -13,8 +12,13 @@ export interface IProviderProps {
   children: React.ReactNode;
 }
 
+interface iPhotos {
+  photos: string[];
+}
+
 export interface ICar {
-  imageURL: string;
+  id: string;
+  photos: iPhotos;
   brand: string;
   model: string;
   fuel: string;
@@ -24,25 +28,24 @@ export interface ICar {
   price: number;
 }
 
-export interface IPhoto{
-  id: string,
-  photo_url: string
+export interface IPhoto {
+  id: string;
+  photo_url: string;
 }
 
-export interface IEditCar{
-  brand: string,
-  color: string,
-  description: string,
-  fuel: string,
-  good_deal: boolean,
-  id: string,
-  kilometers: number,
-  model: string,
-  photos: IPhoto[],
-  price: number,
-  published: boolean,
-  year: string
-
+export interface IEditCar {
+  brand: string;
+  color: string;
+  description: string;
+  fuel: string;
+  good_deal: boolean;
+  id: string;
+  kilometers: number;
+  model: string;
+  photos: IPhoto[];
+  price: number;
+  published: boolean;
+  year: string;
 }
 
 interface ICarContext {
@@ -83,24 +86,39 @@ interface ICarContext {
   editAdModal: any;
   setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
 
+  getNextAmount: () => void;
+  getPrevAmount: () => void;
+  prevAmount: string | null;
+  nextAmount: string | null;
+  count: number | null;
+  page: number;
+
+
   refreshPage: () => void;
+
 
 }
 
 export const CarContext = createContext({} as ICarContext);
 
 export const CarProvider = ({ children }: IProviderProps) => {
-  const [cars, setCars] = useState<ICar[]>(mockList);
+  const [cars, setCars] = useState<ICar[]>([]);
   const [filteredCars, setFilteredCars] = useState('');
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [userData, setUserData] = useState({});
   const [EditAddress, setEditAddress] = useState(false);
-  const [EditUserModal, setEditUserModal] = useState(false); 
-  const [editAdModal, setEditAdModal] = useState<any>(null)
+  const [EditUserModal, setEditUserModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [editAdModal, setEditAdModal] = useState<any>(null);
+  const [nextAmount, setNextAmount] = useState('');
+  const [prevAmount, setPrevAmount] = useState('');
+  const [count, setCount] = useState<number | null>(0);
+  const [page, setPage] = useState(0);
 
   const navigate = useNavigate();
+
   const getNameCharacters = (name: string = 'name') => {
     return name.split(' ')[1]
       ? name.split(' ')[0].charAt(0) + name.split(' ')[1].charAt(0)
@@ -152,6 +170,69 @@ export const CarProvider = ({ children }: IProviderProps) => {
   });
 
   useEffect(() => {
+    const getAllAds = async () => {
+      try {
+        setLoading(!loading);
+        const response = await api.get('/salesAd');
+        if (response.data.data) {
+          setCars([...response.data.data]);
+        } else {
+          setCars([...response.data]);
+        }
+        setNextAmount(response.data.nextAmount);
+        setCount(Math.ceil(response.data.count / 9));
+        setPage(response.data.page);
+      } catch (error) {
+        alert(error);
+        console.error(error);
+      } finally {
+        setLoading(!loading);
+      }
+    };
+
+    getAllAds();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getPrevAmount = async () => {
+    try {
+      setLoading(!loading);
+      if (prevAmount !== null) {
+        const response = await api.get(prevAmount);
+
+        setPrevAmount(response.data.prevAmount);
+        setNextAmount(response.data.nextAmount);
+        setPage(response.data.page);
+
+        setCars([...response.data.data]);
+      }
+    } catch (error) {
+      alert(error);
+      console.error(error);
+    } finally {
+      setLoading(!loading);
+    }
+  };
+
+  const getNextAmount = async () => {
+    try {
+      setLoading(!loading);
+
+      const response = await api.get(nextAmount);
+
+      setNextAmount(response.data.nextAmount);
+      setPrevAmount(response.data.prevAmount);
+      setPage(response.data.page);
+      setCars([...response.data.data]);
+    } catch (error) {
+      alert(error);
+      console.error(error);
+    } finally {
+      setLoading(!loading);
+    }
+  };
+
+  useEffect(() => {
     (async () => {
       const token = localStorage.getItem('@TOKEN');
 
@@ -165,12 +246,14 @@ export const CarProvider = ({ children }: IProviderProps) => {
         // navigate('/login');
       }
     })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateAddress = async (formData: EditAddress) => {
+
     let token = localStorage.getItem('@TOKEN');
     token = JSON.parse(token!)
+
 
     if (token) {
       const { sub }: string = jwt_decode(token);
@@ -217,8 +300,16 @@ export const CarProvider = ({ children }: IProviderProps) => {
         EditUserModal,
         setEditUserModal,
         editAdModal,
+        setEditAdModal,
+        getNextAmount,
+        getPrevAmount,
+        prevAmount,
+        nextAmount,
+        count,
+        page,
         setEditAdModal
         refreshPage,
+
 
       }}
     >
