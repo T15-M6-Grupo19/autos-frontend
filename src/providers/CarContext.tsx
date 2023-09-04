@@ -79,8 +79,12 @@ interface ICarContext {
   >;
   userData: any;
   getNameCharacters: (name: string) => string;
+
   editAdModal: any;
   setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
+
+  refreshPage: () => void;
+
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -184,6 +188,10 @@ export const CarProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const refreshPage = () => {
+    window.location.reload()
+}
+
   return (
     <CarContext.Provider
       value={{
@@ -210,6 +218,8 @@ export const CarProvider = ({ children }: IProviderProps) => {
         setEditUserModal,
         editAdModal,
         setEditAdModal
+        refreshPage,
+
       }}
     >
       {children}
