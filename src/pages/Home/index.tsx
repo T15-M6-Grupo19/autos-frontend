@@ -11,14 +11,13 @@ import { CarContext } from '../../providers/CarContext';
 
 const Home = () => {
   const { searchResult } = useContext(CarContext);
-
   return (
     <>
       <NavBar />
       <Banner />
       <MainStructure>
         <FilterCars />
-        <ListCards carList={searchResult} />;
+        <ListCards carList={searchResult} />
       </MainStructure>
       <ContainerButtonFilterStyle>
         <Button name='Filtro' variant='primary' />

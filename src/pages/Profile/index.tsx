@@ -10,6 +10,8 @@ import { ModalCreate } from '../../components/ModalCreate';
 import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
 import { ModalEditUser } from '../../components/Modal/ModalEditUser';
 import { ModalEditAd } from '../../components/Modal/ModalEditAd';
+
+
 const Profile = () => {
   const {
     openCreateModal,
@@ -20,8 +22,10 @@ const Profile = () => {
     setEditUserModal,
     editAdModal,
   } = useContext(CarContext);
+
+  
   const toggleModalEditAddress = () => setEditAddress(false);
-  const [isOwner, setIsOwner] = useState(true);
+  const [isOwner, ] = useState(true);
 
   const toggleModal = () => setEditUserModal(!EditUserModal);
 

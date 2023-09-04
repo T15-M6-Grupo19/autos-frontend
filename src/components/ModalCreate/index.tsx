@@ -86,9 +86,15 @@ export function ModalCreate() {
     data.photos = photoArr;
 
     try {
-      await api.post(`/salesAd`, data);
+      console.log(token);
+      await api.post(`/salesAd`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setOpenCreateModal(false);
       window.location.reload();
+      console.log(api.defaults.headers);
     } catch (error) {
       console.log(error);
     }
@@ -131,7 +137,6 @@ export function ModalCreate() {
               {...register('model')}
               onChange={handleModelChange}
             >
-              
               {apiModel &&
                 apiModel.map((model: any, index: number) => (
                   <option key={index}>{model[1].name}</option>

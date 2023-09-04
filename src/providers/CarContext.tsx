@@ -17,6 +17,7 @@ interface iPhotos {
 }
 
 export interface ICar {
+  id: string;
   photos: iPhotos;
   brand: string;
   model: string;
@@ -27,25 +28,24 @@ export interface ICar {
   price: number;
 }
 
-export interface IPhoto{
-  id: string,
-  photo_url: string
+export interface IPhoto {
+  id: string;
+  photo_url: string;
 }
 
-export interface IEditCar{
-  brand: string,
-  color: string,
-  description: string,
-  fuel: string,
-  good_deal: boolean,
-  id: string,
-  kilometers: number,
-  model: string,
-  photos: IPhoto[],
-  price: number,
-  published: boolean,
-  year: string
-
+export interface IEditCar {
+  brand: string;
+  color: string;
+  description: string;
+  fuel: string;
+  good_deal: boolean;
+  id: string;
+  kilometers: number;
+  model: string;
+  photos: IPhoto[];
+  price: number;
+  published: boolean;
+  year: string;
 }
 
 interface ICarContext {
@@ -84,6 +84,12 @@ interface ICarContext {
   getNameCharacters: (name: string) => string;
   editAdModal: any;
   setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
+  getNextAmount: () => void;
+  getPrevAmount: () => void;
+  prevAmount: string | null;
+  nextAmount: string | null;
+  count: number | null;
+  page: number;
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -98,9 +104,14 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [EditAddress, setEditAddress] = useState(false);
   const [EditUserModal, setEditUserModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [editAdModal, setEditAdModal] = useState<any>(null)
+  const [editAdModal, setEditAdModal] = useState<any>(null);
+  const [nextAmount, setNextAmount] = useState('');
+  const [prevAmount, setPrevAmount] = useState('');
+  const [count, setCount] = useState<number | null>(0);
+  const [page, setPage] = useState(0);
 
   const navigate = useNavigate();
+
   const getNameCharacters = (name: string = 'name') => {
     return name.split(' ')[1]
       ? name.split(' ')[0].charAt(0) + name.split(' ')[1].charAt(0)
@@ -156,17 +167,59 @@ export const CarProvider = ({ children }: IProviderProps) => {
       try {
         setLoading(!loading);
         const response = await api.get('/salesAd');
-        setCars([...response.data]);
+        setCars([...response.data.data]);
+        setNextAmount(response.data.nextAmount);
+        setCount(Math.ceil(response.data.count / 9));
+        setPage(response.data.page);
       } catch (error) {
+        alert(error);
         console.error(error);
       } finally {
         setLoading(!loading);
       }
     };
-    console.log(cars);
+
     getAllAds();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getPrevAmount = async () => {
+    try {
+      setLoading(!loading);
+      if (prevAmount !== null) {
+        const response = await api.get(prevAmount);
+
+        setPrevAmount(response.data.prevAmount);
+        setNextAmount(response.data.nextAmount);
+        setPage(response.data.page);
+
+        setCars([...response.data.data]);
+      }
+    } catch (error) {
+      alert(error);
+      console.error(error);
+    } finally {
+      setLoading(!loading);
+    }
+  };
+
+  const getNextAmount = async () => {
+    try {
+      setLoading(!loading);
+
+      const response = await api.get(nextAmount);
+
+      setNextAmount(response.data.nextAmount);
+      setPrevAmount(response.data.prevAmount);
+      setPage(response.data.page);
+      setCars([...response.data.data]);
+    } catch (error) {
+      alert(error);
+      console.error(error);
+    } finally {
+      setLoading(!loading);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -187,6 +240,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
 
   const updateAddress = async (formData: EditAddress) => {
     const token = localStorage.getItem('@TOKEN');
+    console.log(token);
 
     if (token) {
       const { sub }: string = jwt_decode(token);
@@ -229,7 +283,13 @@ export const CarProvider = ({ children }: IProviderProps) => {
         EditUserModal,
         setEditUserModal,
         editAdModal,
-        setEditAdModal
+        setEditAdModal,
+        getNextAmount,
+        getPrevAmount,
+        prevAmount,
+        nextAmount,
+        count,
+        page,
       }}
     >
       {children}

@@ -20,9 +20,9 @@ const ListCards = ({ carList, isOwner }: tListCarsProps) => {
   return (
     carList[0] && (
       <ListCardContainer view={isProfile ? 'allSpace' : 'spaceTwo'}>
-        {carList.map((car) => (
-          <Card key={car.id} car={car} isOwner={isOwner} />
-        ))}
+        {carList.map((car) => {
+          return <Card key={car.id} car={car} isOwner={isOwner} />;
+        })}
       </ListCardContainer>
     )
   );

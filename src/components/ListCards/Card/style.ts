@@ -52,7 +52,7 @@ export const ContainerCard = styled.li`
       }
 
       div {
-        display: block;
+        display: flex;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -84,7 +84,7 @@ export const ContainerCard = styled.li`
         width: 32px;
         height: 32px;
 
-        background-color: var(--color-Brand1);
+        background-color: var(--color-Brand1) ;
         border-radius: 50%;
 
         display: flex;

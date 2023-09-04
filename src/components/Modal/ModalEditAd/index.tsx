@@ -44,7 +44,6 @@ export function ModalEditAd() {
   }, []);
 
   let teste = apiCar.filter((car) => car == editAdModal.brand);
-  console.log(teste[0]);
 
   useEffect(() => {
     async function getModel() {
@@ -135,16 +134,13 @@ export function ModalEditAd() {
               onChange={handleBrandChange}
             >
               {/*<option selected>{editAdModal.brand}</option> */}
-              {apiCar.map(
-                (car, index) => (
-                  console.log('brand:', editAdModal.brand, 'car: ', car),
-                  editAdModal.brand == car ? (
-                    <option selected key={index}>
-                      {car}
-                    </option>
-                  ) : (
-                    <option key={index}>{car}</option>
-                  )
+              {apiCar.map((car, index) =>
+                editAdModal.brand == car ? (
+                  <option selected key={index}>
+                    {car}
+                  </option>
+                ) : (
+                  <option key={index}>{car}</option>
                 )
               )}
             </select>
@@ -172,7 +168,7 @@ export function ModalEditAd() {
                     filteredModel.length > 0 ? filteredModel[1].year : ''
                   }
                   {...register('year')}
-                  readOnly
+                  disabled
                 />
 
                 <p>{errors.year?.message}</p>
