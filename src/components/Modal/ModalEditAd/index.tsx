@@ -26,7 +26,6 @@ export function ModalEditAd() {
     },
   });
 
-  console.log(editAdModal);
 
   const [apiCar, setApiCar] = useState<string[]>([]);
   const [apiModel, setApiModel] = useState<any>();
@@ -43,7 +42,9 @@ export function ModalEditAd() {
     getCar();
   }, []);
 
+
   let teste = apiCar.filter((car) => car == editAdModal.brand);
+
 
   useEffect(() => {
     async function getModel() {
@@ -85,6 +86,7 @@ export function ModalEditAd() {
   };
 
   const submit = async (data: any) => {
+
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
     data.kilometers = Number(data.kilometers);
@@ -107,6 +109,7 @@ export function ModalEditAd() {
       console.log(error);
     }
   };
+
 
   if (apiCar[0] !== 'Selecione a marca') {
     apiCar.unshift('Selecione a marca');
@@ -132,6 +135,7 @@ export function ModalEditAd() {
               id='brand'
               {...register('brand')}
               onChange={handleBrandChange}
+
             >
               {/*<option selected>{editAdModal.brand}</option> */}
               {apiCar.map((car, index) =>
@@ -143,6 +147,7 @@ export function ModalEditAd() {
                   <option key={index}>{car}</option>
                 )
               )}
+
             </select>
             <p>{errors.brand?.message}</p>
 
@@ -156,6 +161,7 @@ export function ModalEditAd() {
                 apiModel.map((model: any, index: number) => (
                   <option key={index}>{model[1].name}</option>
                 ))}
+           
             </select>
             <p>{errors.model?.message}</p>
 
@@ -164,6 +170,7 @@ export function ModalEditAd() {
                 <label htmlFor='year'>Ano</label>
                 <input
                   id='year'
+                  placeholder={editAdModal.year}
                   defaultValue={
                     filteredModel.length > 0 ? filteredModel[1].year : ''
                   }
@@ -177,6 +184,7 @@ export function ModalEditAd() {
                 <label htmlFor='fuel'>Combustivel</label>
                 <input
                   id='fuel'
+                  placeholder={fuelType}
                   {...register('fuel')}
                   defaultValue={fuelType}
                   readOnly

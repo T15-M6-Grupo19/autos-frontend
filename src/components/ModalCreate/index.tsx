@@ -86,6 +86,7 @@ export function ModalCreate() {
     data.photos = photoArr;
 
     try {
+
       console.log(token);
       await api.post(`/salesAd`, data, {
         headers: {
@@ -95,6 +96,7 @@ export function ModalCreate() {
       setOpenCreateModal(false);
       window.location.reload();
       console.log(api.defaults.headers);
+
     } catch (error) {
       console.log(error);
     }

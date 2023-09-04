@@ -82,14 +82,21 @@ interface ICarContext {
   >;
   userData: any;
   getNameCharacters: (name: string) => string;
+
   editAdModal: any;
   setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
+
   getNextAmount: () => void;
   getPrevAmount: () => void;
   prevAmount: string | null;
   nextAmount: string | null;
   count: number | null;
   page: number;
+
+
+  refreshPage: () => void;
+
+
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -243,24 +250,30 @@ export const CarProvider = ({ children }: IProviderProps) => {
   }, []);
 
   const updateAddress = async (formData: EditAddress) => {
-    const token = localStorage.getItem('@TOKEN');
-    console.log(token);
+
+    let token = localStorage.getItem('@TOKEN');
+    token = JSON.parse(token!)
+
 
     if (token) {
       const { sub }: string = jwt_decode(token);
 
-      api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
-        token!
-      )}`;
-
       try {
-        await api.patch(`/users/${sub}`, formData);
+        await api.patch(`/users/${sub}`, formData,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        });
         setEditAddress(false);
       } catch (error) {
         console.error(error);
       }
     }
   };
+
+  const refreshPage = () => {
+    window.location.reload()
+}
 
   return (
     <CarContext.Provider
@@ -294,6 +307,10 @@ export const CarProvider = ({ children }: IProviderProps) => {
         nextAmount,
         count,
         page,
+        setEditAdModal
+        refreshPage,
+
+
       }}
     >
       {children}

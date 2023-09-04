@@ -55,8 +55,6 @@ const LoginBar = () => {
   
       window.localStorage.setItem("@TOKEN", JSON.stringify(token));
 
-      api.defaults.headers.common.Authorization = `Bearer ${token}`;
-
       const { sub }: string = jwt_decode(token);
 
       const userResponse = await api.get("/users/" + sub);

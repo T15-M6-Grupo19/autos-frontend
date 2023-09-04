@@ -30,18 +30,21 @@ export const ModalEditUser = ({toggleModal}: TModalEditUserProp) => {
     const { userData } = useContext(CarContext);
 
     const refreshPage = () => {
-        window.location.reload(false)
+        window.location.reload()
     }
     
     const updateUser = async (updatedData: UpdateData) => {
-        const token = localStorage.getItem('@TOKEN');    
-        
-        api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+        let token = localStorage.getItem('@TOKEN');
+        token = JSON.parse(token!)    
         
         if(token){
             const { sub }: string = jwt_decode(token)
             try {
-                const response = await api.patch<UserUpdate>(`/users/${sub}`, updatedData);
+                const response = await api.patch<UserUpdate>(`/users/${sub}`, updatedData,{
+                    headers:{
+                        Authorization:`Bearer ${token}`
+                    }
+                });
                 toggleModal()
                 refreshPage()
         } catch (error) {
@@ -52,13 +55,17 @@ export const ModalEditUser = ({toggleModal}: TModalEditUserProp) => {
     }
 
     const deleteUser = async () => {
-        const token = localStorage.getItem('@TOKEN');    
-        api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
+        let token = localStorage.getItem('@TOKEN');    
+        token = JSON.parse(token!)
         
         if(token){
             const { sub }: string = jwt_decode(token)
             try {
-            const response = await api.delete<UserUpdate>(`/users/${sub}`);
+            const response = await api.delete<UserUpdate>(`/users/${sub}`, {
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            });
             localStorage.removeItem('@TOKEN')
             navigate("/login")
         } catch (error) {
