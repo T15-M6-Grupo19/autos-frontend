@@ -167,7 +167,11 @@ export const CarProvider = ({ children }: IProviderProps) => {
       try {
         setLoading(!loading);
         const response = await api.get('/salesAd');
-        setCars([...response.data.data]);
+        if (response.data.data) {
+          setCars([...response.data.data]);
+        } else {
+          setCars([...response.data]);
+        }
         setNextAmount(response.data.nextAmount);
         setCount(Math.ceil(response.data.count / 9));
         setPage(response.data.page);
