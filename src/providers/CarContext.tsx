@@ -1,12 +1,12 @@
-import { createContext, useEffect, useState } from 'react';
-import { api } from '../services/api';
+import { createContext, useEffect, useState } from "react";
+import { api } from "../services/api";
 import {
   tResePWD,
   tResetPWDEmail,
-} from '../components/Form/RegisterForm/validator';
-import { useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import { EditAddress } from '../components/Modal/ModalEditAddress/valdiators';
+} from "../components/Form/RegisterForm/validator";
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { EditAddress } from "../components/Modal/ModalEditAddress/valdiators";
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -82,21 +82,25 @@ interface ICarContext {
   >;
   userData: any;
   getNameCharacters: (name: string) => string;
+
   editAdModal: any;
   setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
+
   getNextAmount: () => void;
   getPrevAmount: () => void;
   prevAmount: string | null;
   nextAmount: string | null;
   count: number | null;
   page: number;
+
+  refreshPage: () => void;
 }
 
 export const CarContext = createContext({} as ICarContext);
 
 export const CarProvider = ({ children }: IProviderProps) => {
   const [cars, setCars] = useState<ICar[]>([]);
-  const [filteredCars, setFilteredCars] = useState('');
+  const [filteredCars, setFilteredCars] = useState("");
   const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
   const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -105,29 +109,29 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [EditUserModal, setEditUserModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [editAdModal, setEditAdModal] = useState<any>(null);
-  const [nextAmount, setNextAmount] = useState('');
-  const [prevAmount, setPrevAmount] = useState('');
+  const [nextAmount, setNextAmount] = useState("");
+  const [prevAmount, setPrevAmount] = useState("");
   const [count, setCount] = useState<number | null>(0);
   const [page, setPage] = useState(0);
 
   const navigate = useNavigate();
 
-  const getNameCharacters = (name: string = 'name') => {
-    return name.split(' ')[1]
-      ? name.split(' ')[0].charAt(0) + name.split(' ')[1].charAt(0)
+  const getNameCharacters = (name: string = "name") => {
+    return name.split(" ")[1]
+      ? name.split(" ")[0].charAt(0) + name.split(" ")[1].charAt(0)
       : name.charAt(0);
   };
 
   const sendEmail = (data: tResetPWDEmail) => {
     api
-      .post('/users/resetPassword', data)
+      .post("/users/resetPassword", data)
       .then(() => {
-        alert('email enviado, verifique sua caixa de mensagens ou spam');
-        setTimeout(() => navigate('/'), 2000);
+        alert("email enviado, verifique sua caixa de mensagens ou spam");
+        setTimeout(() => navigate("/"), 2000);
       })
       .catch((error) => {
         console.error(error);
-        alert('Ops, algo deu errado. Favor verifique seus dados');
+        alert("Ops, algo deu errado. Favor verifique seus dados");
       });
   };
 
@@ -135,12 +139,12 @@ export const CarProvider = ({ children }: IProviderProps) => {
     api
       .patch(`/users/resetPassword/${token}`, { password: data.password })
       .then(() => {
-        alert('Senhas alteradas com sucesso');
-        setTimeout(() => navigate('/login'), 2000);
+        alert("Senhas alteradas com sucesso");
+        setTimeout(() => navigate("/login"), 2000);
       })
       .catch((error) => {
         console.error(error);
-        alert('Erro ao tentar trocar a senha');
+        alert("Erro ao tentar trocar a senha");
       });
   };
 
@@ -149,7 +153,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
       return;
     } else if (car.price <= priceRange[0] || car.price >= priceRange[1]) {
       return;
-    } else if (filteredCars == '') {
+    } else if (filteredCars == "") {
       return true;
     }
 
@@ -166,7 +170,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
     const getAllAds = async () => {
       try {
         setLoading(!loading);
-        const response = await api.get('/salesAd');
+        const response = await api.get("/salesAd");
         if (response.data.data) {
           setCars([...response.data.data]);
         } else {
@@ -227,12 +231,12 @@ export const CarProvider = ({ children }: IProviderProps) => {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem('@TOKEN');
+      const token = localStorage.getItem("@TOKEN");
 
       if (token) {
         const { sub }: string = jwt_decode(token);
 
-        const userResponse = await api.get('/users/' + sub);
+        const userResponse = await api.get("/users/" + sub);
 
         setUserData(await userResponse.data);
       } else {
@@ -243,23 +247,27 @@ export const CarProvider = ({ children }: IProviderProps) => {
   }, []);
 
   const updateAddress = async (formData: EditAddress) => {
-    const token = localStorage.getItem('@TOKEN');
-    console.log(token);
+    let token = localStorage.getItem("@TOKEN");
+    token = JSON.parse(token!);
 
     if (token) {
       const { sub }: string = jwt_decode(token);
 
-      api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
-        token!
-      )}`;
-
       try {
-        await api.patch(`/users/${sub}`, formData);
+        await api.patch(`/users/${sub}`, formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setEditAddress(false);
       } catch (error) {
         console.error(error);
       }
     }
+  };
+
+  const refreshPage = () => {
+    window.location.reload();
   };
 
   return (
@@ -294,6 +302,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
         nextAmount,
         count,
         page,
+        refreshPage,
       }}
     >
       {children}

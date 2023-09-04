@@ -280,7 +280,6 @@ export const ContainerComments = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: center;
 
 
   margin-top: 985px;
@@ -299,6 +298,7 @@ export const ContainerComments = styled.div`
   ul {
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 24px;
     width: 100%;
 
@@ -330,6 +330,7 @@ export const ContainerComments = styled.div`
 export const Comment = styled.li`
   margin-bottom: 20px;
   display: flex;
+  overflow: auto;
   flex-direction: column;
   gap: 12px;
 
@@ -381,6 +382,20 @@ export const Comment = styled.li`
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+  }
+
+  button {
+    background-color: var(--color-Alert2);
+    border-radius: 4px;
+    color: var(--color-Alert1);
+
+    height: 28px;
+    width: 165px;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
   }
 `;
 
