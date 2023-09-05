@@ -45,6 +45,10 @@ const LoginBar = () => {
 
   const navigate = useNavigate();
 
+  const registerPage = () => {
+    navigate("/register")
+  }
+
   const { setUserData } = useContext(CarContext);
 
   async function loginForm(data:any) {
@@ -101,8 +105,8 @@ const LoginBar = () => {
               Ainda não possui conta?
             </TextAccount>
           </TextAlign>
-          <RegisterButton>Cadastrar</RegisterButton>
         </form>
+          <RegisterButton onClick={ () => registerPage()}>Cadastrar</RegisterButton>
       </LoginContainer>
     </ContainerAlign>
   );
