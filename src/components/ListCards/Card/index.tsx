@@ -90,7 +90,10 @@ export const Card = ({ car, isOwner }: IPropsCar) => {
               variant='Editar'
               name={'Editar'}
             />
-            <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+            <Link to={`/ad/${car.id}`} >
+            
+              <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+            </Link>
           </div>
         ) : null}
       </div>

@@ -220,7 +220,6 @@ const Ad = () => {
         </BlueBackground>
         <ContainerComments>
           {' '}
-          {/* COMENTÁRIOS */}
           <ul>
             {adData.comments.length !== 0 ? (
               <h2>Comentários</h2>
@@ -244,8 +243,6 @@ const Ad = () => {
           </ul>
         </ContainerComments>
         <ContainerTextAreaComment onSubmit={handleSubmit(CreateComment)}>
-          {' '}
-          {/*ESSA É A TAG FORM */}
           <div className='text-area-header'>
             <span>{getNameCharacters(userData.name)}</span>
             <p>{userData.name}</p>
@@ -270,7 +267,6 @@ const Ad = () => {
             <span>Recomendarei para meus amigos!</span>
           </div>
         </ContainerTextAreaComment>{' '}
-        {/*ADICIONAR COMENTÁRIOS */}
         <FooterAlign>
           <Footer />
         </FooterAlign>
