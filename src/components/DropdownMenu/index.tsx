@@ -40,7 +40,7 @@ export const DropdownMenu = forwardRef<
           <Link to="" onClick={() => setEditAddress(true)}>Editar endereço</Link>
           {userIsAdvertiser && <Link to="">Meus anúncios</Link>}
           {specificUser?.account_type === "anunciante" ? (
-            <Link to="">Meus anúncios</Link>
+            <Link to="/profile">Meus anúncios</Link>
           ) : null}
           <Link to="/login" onClick={handleLogoutClick}>
             Sair

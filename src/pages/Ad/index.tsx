@@ -1,4 +1,4 @@
-import { NavBar } from '../../components/NavBar';
+import { NavBarAdvertiser } from '../../components/NavBar';
 import { Footer } from '../../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -41,6 +41,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { commentData } from './types';
 import { schema } from './validator';
+import { ModalEditUser } from '../../components/Modal/ModalEditUser';
+import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
 
 const Ad = () => {
   const {
@@ -49,7 +51,6 @@ const Ad = () => {
 } = useForm<commentData>({
     resolver: zodResolver(schema),
 });
-
   const [adData, setAdData] = useState({
 
     photos: [
@@ -60,12 +61,20 @@ const Ad = () => {
     ],
     year: '1',
     user: { name: '...' },
-
+    comments: [
+      {
+        id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
+        comment_text: "novo comentário de Arthur",
+        created_at: "2023-08-29T14:19:50.390Z",
+        user: {
+          id: "5f717058-a380-4694-8932-28390578c28d",
+          name: "teste"
+        }
+      }]
   });
   const [isLogged, setIsLogged] = useState(false);
 
-  const { userData, refreshPage } = useContext(CarContext);
-
+  const { userData, refreshPage, EditAddress, setEditAddress, EditUserModal, setEditUserModal, getNameCharacters } = useContext(CarContext);
 
   const params = useParams();
 
@@ -82,8 +91,8 @@ const Ad = () => {
   const userPage = () => {
     navigate(`/profile/${adData.user.id}`);
   };
-  
 
+  
   useEffect(() => {
     async function adInfo() {
       try {
@@ -114,7 +123,7 @@ const Ad = () => {
       
     }
   }
-
+  
   const DeleteComment = async (commentId: string) => {
     api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
@@ -132,9 +141,9 @@ const Ad = () => {
     const refDate = new Date(referenceDate)
     
     const diff = now - refDate
-
+    
     const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-
+    
     if(days == 0){
       return "Hoje"
     }
@@ -146,16 +155,21 @@ const Ad = () => {
     }
     
   }
-
+  
   const handleBuyClick = () => {
     const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
     window.open(url, '_blank');
   };
 
+  const toggleModal = () => setEditUserModal(!EditUserModal);
+  const toggleModalEditAddress = () => setEditAddress(false)
+
   return (
     <>
+    {EditUserModal && <ModalEditUser toggleModal={toggleModal}/>}
+    {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <Container>
-        <NavBar />
+        <NavBarAdvertiser />
         <BlueBackground>
           <ContainerAlign>
             <div>
@@ -220,7 +234,7 @@ const Ad = () => {
             {adData.comments.map((comment) => (
               <Comment>
               <div>
-                <span>SL</span> <p>{comment.user.name}</p>{" "}
+                <span>{getNameCharacters(comment.user.name)}</span> <p>{comment.user.name}</p>{" "}
                 <time>
                   {CalculateTimeDifference(comment.created_at.substring(0,10))}
                 </time>
@@ -237,7 +251,7 @@ const Ad = () => {
           {' '}
           {/*ESSA É A TAG FORM */}
           <div className='text-area-header'>
-            <span>SL</span>
+            <span>{getNameCharacters(userData.name)}</span>
             <p>{userData.name}</p>
           </div>
           <div className='text-comment-area'>
