@@ -229,7 +229,7 @@ const Ad = () => {
             {adData.comments.map((comment) => (
               <Comment  key={uuidv4()}>
               <div>
-                <span>{getNameCharacters(comment.user.name)}</span> <p>{comment.user.name}</p>{" "}
+                <span>{getNameCharacters(comment.user?.name)}</span> <p>{comment.user?.name}</p>{" "}
                 <time>
                   {CalculateTimeDifference(comment.created_at.substring(0,10))}
                 </time>
@@ -237,7 +237,7 @@ const Ad = () => {
               <p>
                 {comment.comment_text}
               </p>
-              {(comment.user.id == userData.id || adData.user.id == userData.id) && (<button onClick={() => DeleteComment(comment.id)}>Excluir</button>)}
+              {(comment.user?.id == userData.id || adData.user?.id == userData.id) && (<button onClick={() => DeleteComment(comment.id)}>Excluir</button>)}
             </Comment>
             ))}
           </ul>
