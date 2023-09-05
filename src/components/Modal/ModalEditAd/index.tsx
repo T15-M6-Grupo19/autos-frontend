@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React, { useContext, useEffect, useState } from 'react';
 import { StyledModal } from '../../ModalCreate/styles';
 import { useForm } from 'react-hook-form';
@@ -42,10 +43,6 @@ export function ModalEditAd() {
     getCar();
   }, []);
 
-
-  let teste = apiCar.filter((car) => car == editAdModal.brand);
-
-
   useEffect(() => {
     async function getModel() {
       const request2 = await fetch(
@@ -58,7 +55,7 @@ export function ModalEditAd() {
   }, [apiCar]);
 
   async function handleBrandChange(e: any) {
-    let brand = e.target.value;
+    const brand = e.target.value;
     const request = await fetch(
       `https://kenzie-kars.herokuapp.com/cars?brand=${brand}`
     );

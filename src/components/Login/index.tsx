@@ -51,7 +51,12 @@ const LoginBar = () => {
 
   const { setUserData } = useContext(CarContext);
 
-  async function loginForm(data:any) {
+  interface Login {
+    email: string;
+    password: string;
+  }
+  
+  async function loginForm(data:Login) {
     try {
       const response = await api.post("/login", data);
 

@@ -7,11 +7,10 @@ import { UserUpdate } from "./types";
 import { UpdateData, schemaUpdateUser } from "./validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../../services/api";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { CarContext } from "../../../providers/CarContext";
-import { Link } from "react-router-dom";
 
 type TModalEditUserProp = {
     toggleModal: () => void;
@@ -19,7 +18,7 @@ type TModalEditUserProp = {
 
 export const ModalEditUser = ({toggleModal}: TModalEditUserProp) => {
     const navigate = useNavigate()
-    const [userUpdated, setUserUpdated] = useState<UserUpdate | undefined>()
+    // const [userUpdated, setUserUpdated] = useState<UserUpdate | undefined>()
     const {
         register,
         handleSubmit,
@@ -40,7 +39,7 @@ export const ModalEditUser = ({toggleModal}: TModalEditUserProp) => {
         if(token){
             const { sub }: string = jwt_decode(token)
             try {
-                const response = await api.patch<UserUpdate>(`/users/${sub}`, updatedData,{
+                await api.patch<UserUpdate>(`/users/${sub}`, updatedData,{
                     headers:{
                         Authorization:`Bearer ${token}`
                     }
@@ -61,7 +60,7 @@ export const ModalEditUser = ({toggleModal}: TModalEditUserProp) => {
         if(token){
             const { sub }: string = jwt_decode(token)
             try {
-            const response = await api.delete<UserUpdate>(`/users/${sub}`, {
+                await api.delete<UserUpdate>(`/users/${sub}`, {
                 headers:{
                     Authorization:`Bearer ${token}`
                 }

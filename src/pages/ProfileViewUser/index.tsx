@@ -31,6 +31,7 @@ const ProfileViewUser = () => {
   });
   const [owner, setOwner] = useState('');
   const [isOwner, setIsOwner] = useState(false);
+  console.log(carList, userDataView)
   const {
     openCreateModal,
     userData,
