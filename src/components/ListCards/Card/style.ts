@@ -28,6 +28,7 @@ export const ContainerCard = styled.li`
   }
 
   div {
+    
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -67,6 +68,7 @@ export const ContainerCard = styled.li`
     }
 
     .second {
+     
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -81,19 +83,19 @@ export const ContainerCard = styled.li`
       color: var(--color-Grey2);
 
       .balloon-name {
-        width: 32px;
-        height: 32px;
-
-        background-color: var(--color-Brand1) ;
-        border-radius: 50%;
-
+        
         display: flex;
         align-items: center;
         justify-content: center;
 
-        span {
-          color: var(--color-WhiteFixed);
-                  
+        .first-letters {
+          height: 32px;
+          width: 32px;
+          background-color: var(--color-Brand1);
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          color: var(--color-WhiteFixed);   
         }
       }
     }

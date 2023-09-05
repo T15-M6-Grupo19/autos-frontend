@@ -70,6 +70,8 @@ export function ModalCreate() {
     setInputCount((prev) => [...prev, 'insira nova imagem']);
   };
 
+  const token = localStorage.getItem('@TOKEN')
+
   const submit = async (data: any) => {
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
@@ -86,11 +88,12 @@ export function ModalCreate() {
     data.photos = photoArr;
 
     try {
+      const tokenParsed = JSON.parse(token)
 
-      console.log(token);
+      console.log(typeof token);
       await api.post(`/salesAd`, data, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${tokenParsed}`,
         },
       });
       setOpenCreateModal(false);

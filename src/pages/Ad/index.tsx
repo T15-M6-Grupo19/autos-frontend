@@ -1,6 +1,7 @@
 import { NavBar } from '../../components/NavBar';
 import { Footer } from '../../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import {
   BlueBackground,
   BuyButton,
@@ -34,7 +35,7 @@ import {
   UserInfoShowAdsButton,
 } from './style';
 import { api } from '../../services/api';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CarContext } from '../../providers/CarContext';
 import Button from '../../components/Button';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,15 +44,11 @@ import { commentData } from './types';
 import { schema } from './validator';
 
 const Ad = () => {
-  const {
-    register,
-    handleSubmit,
-} = useForm<commentData>({
+  const { register, handleSubmit } = useForm<commentData>({
     resolver: zodResolver(schema),
-});
+  });
 
   const [adData, setAdData] = useState({
-
     photos: [
       {
         photo_url:
@@ -60,12 +57,10 @@ const Ad = () => {
     ],
     year: '1',
     user: { name: '...' },
-
   });
   const [isLogged, setIsLogged] = useState(false);
 
   const { userData, refreshPage } = useContext(CarContext);
-
 
   const params = useParams();
 
@@ -82,7 +77,6 @@ const Ad = () => {
   const userPage = () => {
     navigate(`/profile/${adData.user.id}`);
   };
-  
 
   useEffect(() => {
     async function adInfo() {
@@ -107,45 +101,39 @@ const Ad = () => {
   const CreateComment = async (Data: commentData) => {
     api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
-      await api.post(`/comment/${params.adId}`, Data)
-      refreshPage()
+      await api.post(`/comment/${params.adId}`, Data);
+      refreshPage();
     } catch (error) {
       console.log(error);
-      
     }
-  }
+  };
 
   const DeleteComment = async (commentId: string) => {
     api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
-      await api.delete(`/comment/${commentId}`)
-      refreshPage()
+      await api.delete(`/comment/${commentId}`);
+      refreshPage();
     } catch (error) {
       console.log(error);
-      
     }
-  }
-  
-  
+  };
+
   const CalculateTimeDifference = (referenceDate: string) => {
     const now = new Date();
-    const refDate = new Date(referenceDate)
-    
-    const diff = now - refDate
+    const refDate = new Date(referenceDate);
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const diff = now - refDate;
 
-    if(days == 0){
-      return "Hoje"
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (days == 0) {
+      return 'Hoje';
+    } else if (days == 1) {
+      return `há ${days} dia`;
+    } else {
+      return `há ${days} dias`;
     }
-    else if (days == 1){
-      return `há ${days} dia`
-    }
-    else {
-      return `há ${days} dias`
-    }
-    
-  }
+  };
 
   const handleBuyClick = () => {
     const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
@@ -153,7 +141,7 @@ const Ad = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Container>
         <NavBar />
         <BlueBackground>
@@ -216,20 +204,29 @@ const Ad = () => {
           {' '}
           {/* COMENTÁRIOS */}
           <ul>
-          {adData.comments.length !== 0 ? <h2>Comentários</h2> : <h2>Sem Comentários</h2>}
+            {adData.comments.length !== 0 ? (
+              <h2>Comentários</h2>
+            ) : (
+              <h2>Sem Comentários</h2>
+            )}
             {adData.comments.map((comment) => (
-              <Comment>
-              <div>
-                <span>SL</span> <p>{comment.user.name}</p>{" "}
-                <time>
-                  {CalculateTimeDifference(comment.created_at.substring(0,10))}
-                </time>
-              </div>
-              <p>
-                {comment.comment_text}
-              </p>
-              {(comment.user.id == userData.id || adData.user.id == userData.id) && (<button onClick={() => DeleteComment(comment.id)}>Excluir</button>)}
-            </Comment>
+              <Comment key={uuidv4()}>
+                <div>
+                  <span>SL</span> <p>{comment.user.name}</p>{' '}
+                  <time>
+                    {CalculateTimeDifference(
+                      comment.created_at.substring(0, 10)
+                    )}
+                  </time>
+                </div>
+                <p>{comment.comment_text}</p>
+                {(comment.user.id == userData.id ||
+                  adData.user.id == userData.id) && (
+                  <button onClick={() => DeleteComment(comment.id)}>
+                    Excluir
+                  </button>
+                )}
+              </Comment>
             ))}
           </ul>
         </ContainerComments>
@@ -241,7 +238,10 @@ const Ad = () => {
             <p>{userData.name}</p>
           </div>
           <div className='text-comment-area'>
-            <textarea placeholder='Escreva seu comentário ...' {...register("comment_text")}/>
+            <textarea
+              placeholder='Escreva seu comentário ...'
+              {...register('comment_text')}
+            />
             <Button
               name='comentar'
               variant='comment'
@@ -262,7 +262,7 @@ const Ad = () => {
           <Footer />
         </FooterAlign>
       </Container>
-    </>
+    </React.Fragment>
   );
 };
 
