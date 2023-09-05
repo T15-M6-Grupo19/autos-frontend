@@ -9,9 +9,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 80px;
   
   @media screen and (min-width: 1024px) {
     display: block;
+    .gSJGLv {
+      margin-top: -80px;
+    }
   }
 `;
 
