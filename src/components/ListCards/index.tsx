@@ -3,7 +3,6 @@ import Card from './Card';
 import { ListCardContainer } from './style';
 import { useLocation, useParams } from 'react-router-dom';
 import { ICar } from '../../providers/CarContext';
-import { Link } from 'react-router-dom';
 
 type tListCarsProps = {
   carList: Array<ICar>;

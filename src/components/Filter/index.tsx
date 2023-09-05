@@ -129,8 +129,8 @@ const FilterCars = () => {
         </span>
         <Slider
           range
-          min={0}
-          max={650000}
+          min={kmRange[0]}
+          max={kmRange[1]}
           defaultValue={kmRange}
           onChange={handleKmRange}
         />
@@ -144,8 +144,8 @@ const FilterCars = () => {
         </span>
         <Slider
           range
-          min={10000}
-          max={550000}
+          min={priceRange[0]}
+          max={priceRange[1]}
           defaultValue={priceRange}
           onChange={handlePriceRange}
         />

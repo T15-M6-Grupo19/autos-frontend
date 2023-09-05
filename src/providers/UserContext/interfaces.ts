@@ -8,6 +8,7 @@ export interface IUserContext {
     React.SetStateAction<User | undefined | null>
   >;
   loading: boolean;
+  userId: string;
 }
 
 export interface IUserProps {

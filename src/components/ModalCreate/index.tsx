@@ -86,19 +86,17 @@ export function ModalCreate() {
       });
     }
     data.photos = photoArr;
+    console.log(data)
 
     try {
       const tokenParsed = JSON.parse(token)
-
-      console.log(typeof token);
       await api.post(`/salesAd`, data, {
         headers: {
           Authorization: `Bearer ${tokenParsed}`,
         },
       });
       setOpenCreateModal(false);
-      window.location.reload();
-      console.log(api.defaults.headers);
+      // window.location.reload();
 
     } catch (error) {
       console.log(error);
