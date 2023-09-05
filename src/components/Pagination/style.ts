@@ -17,7 +17,14 @@ const PaginationStyle = styled.section`
     flex-direction: row;
     align-items: center;
     display: flex;
+    
+    &:hover {
+      cursor: pointer;
+    }
+  
   }
+
+  
 
   div:nth-child(1) {
     :nth-child(1) {

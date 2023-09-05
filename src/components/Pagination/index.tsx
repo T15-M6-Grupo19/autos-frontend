@@ -1,17 +1,36 @@
-import { PaginationStyle } from "./style"
-import { AiOutlineRight } from "react-icons/ai"
+import { useContext } from 'react';
+import { PaginationStyle } from './style';
+import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
+import { CarContext } from '../../providers/CarContext';
 
 const Pagination = () => {
-     return (
-          <PaginationStyle>
-               <div>
-                    <p className="textBody2500">1</p><p className="textBody2500">de 2</p>
-               </div>
-               <div>
-                    <p className="textBody2500"> Seguinte <AiOutlineRight className="Icon"/> </p>
-               </div>
-          </PaginationStyle>
-     )
-}
+  const { getNextAmount, getPrevAmount, prevAmount, nextAmount, count, page } =
+    useContext(CarContext);
+
+  return (
+    <PaginationStyle>
+      {prevAmount && (
+        <div onClick={() => getPrevAmount()}>
+          <p className='textBody2500'>
+            {' '}
+            <AiOutlineLeft className='Icon' /> Anterior
+          </p>
+        </div>
+      )}
+      <div>
+        <p className='textBody2500'>{page} de {count}</p>
+      </div>
+
+      {nextAmount && (
+        <div onClick={() => getNextAmount()}>
+          <p className='textBody2500'>
+            {' '}
+            Seguinte <AiOutlineRight className='Icon' />{' '}
+          </p>
+        </div>
+      )}
+    </PaginationStyle>
+  );
+};
 
 export default Pagination;

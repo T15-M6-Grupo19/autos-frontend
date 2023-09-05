@@ -32,11 +32,10 @@ import {
   UserInfoDescription,
   UserInfoName,
   UserInfoShowAdsButton,
-} from "./style";
-import { carImg } from "../../database/Mock2";
-import { api } from "../../services/api";
-import { useContext, useEffect, useState } from "react";
-import { CarContext } from "../../providers/CarContext";
+} from './style';
+import { api } from '../../services/api';
+import { useContext, useEffect, useState } from 'react';
+import { CarContext } from '../../providers/CarContext';
 import Button from '../../components/Button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -44,7 +43,6 @@ import { commentData } from './types';
 import { schema } from './validator';
 import { ModalEditUser } from '../../components/Modal/ModalEditUser';
 import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
-
 
 const Ad = () => {
   const {
@@ -54,20 +52,16 @@ const Ad = () => {
     resolver: zodResolver(schema),
 });
   const [adData, setAdData] = useState({
-    photos: [{ photo_url: carImg }],
-    year: "1",
-    user: { id: "1234", name: "...", },
-    comments: [
+
+    photos: [
       {
-        id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
-        comment_text: "novo comentário de Arthur",
-        created_at: "2023-08-29T14:19:50.390Z",
-        user: {
-          id: "5f717058-a380-4694-8932-28390578c28d",
-          name: "teste"
-        }
-      }
-  ]
+        photo_url:
+          'https://img.freepik.com/psd-premium/carro-da-cidade-em-fundo-transparente-renderizacao-em-3d-ilustracao_494250-34780.jpg',
+      },
+    ],
+    year: '1',
+    user: { name: '...' },
+
   });
   const [isLogged, setIsLogged] = useState(false);
 
@@ -155,7 +149,7 @@ const Ad = () => {
   
   const handleBuyClick = () => {
     const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
-    window.open(url, "_blank");
+    window.open(url, '_blank');
   };
 
   const toggleModal = () => setEditUserModal(!EditUserModal);
