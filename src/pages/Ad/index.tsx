@@ -1,4 +1,4 @@
-import { NavBar } from '../../components/NavBar';
+import { NavBar, NavBarAdvertiser } from '../../components/NavBar';
 import { Footer } from '../../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -42,6 +42,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { commentData } from './types';
 import { schema } from './validator';
+import { ModalEditUser } from '../../components/Modal/ModalEditUser';
+import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
 
 const Ad = () => {
   const { register, handleSubmit } = useForm<commentData>({
@@ -57,10 +59,20 @@ const Ad = () => {
     ],
     year: '1',
     user: { name: '...' },
+    comments: [
+      {
+        id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
+        comment_text: "novo comentário de Arthur",
+        created_at: "2023-08-29T14:19:50.390Z",
+        user: {
+          id: "5f717058-a380-4694-8932-28390578c28d",
+          name: "teste"
+        }
+      }]
   });
   const [isLogged, setIsLogged] = useState(false);
 
-  const { userData, refreshPage } = useContext(CarContext);
+  const { userData, refreshPage, EditAddress, setEditAddress, EditUserModal, setEditUserModal, getNameCharacters } = useContext(CarContext);
 
   const params = useParams();
 
@@ -140,10 +152,16 @@ const Ad = () => {
     window.open(url, '_blank');
   };
 
+  const toggleModal = () => setEditUserModal(!EditUserModal);
+  const toggleModalEditAddress = () => setEditAddress(false)
+
   return (
     <React.Fragment>
+    <>
+    {EditUserModal && <ModalEditUser toggleModal={toggleModal}/>}
+    {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <Container>
-        <NavBar />
+        {token ? <NavBarAdvertiser /> : <NavBar/>}
         <BlueBackground>
           <ContainerAlign>
             <div>
@@ -210,23 +228,18 @@ const Ad = () => {
               <h2>Sem Comentários</h2>
             )}
             {adData.comments.map((comment) => (
-              <Comment key={uuidv4()}>
-                <div>
-                  <span>SL</span> <p>{comment.user.name}</p>{' '}
-                  <time>
-                    {CalculateTimeDifference(
-                      comment.created_at.substring(0, 10)
-                    )}
-                  </time>
-                </div>
-                <p>{comment.comment_text}</p>
-                {(comment.user.id == userData.id ||
-                  adData.user.id == userData.id) && (
-                  <button onClick={() => DeleteComment(comment.id)}>
-                    Excluir
-                  </button>
-                )}
-              </Comment>
+              <Comment  key={uuidv4()}>
+              <div>
+                <span>{getNameCharacters(comment.user.name)}</span> <p>{comment.user.name}</p>{" "}
+                <time>
+                  {CalculateTimeDifference(comment.created_at.substring(0,10))}
+                </time>
+              </div>
+              <p>
+                {comment.comment_text}
+              </p>
+              {(comment.user.id == userData.id || adData.user.id == userData.id) && (<button onClick={() => DeleteComment(comment.id)}>Excluir</button>)}
+            </Comment>
             ))}
           </ul>
         </ContainerComments>
@@ -234,7 +247,7 @@ const Ad = () => {
           {' '}
           {/*ESSA É A TAG FORM */}
           <div className='text-area-header'>
-            <span>SL</span>
+            <span>{getNameCharacters(userData.name)}</span>
             <p>{userData.name}</p>
           </div>
           <div className='text-comment-area'>
