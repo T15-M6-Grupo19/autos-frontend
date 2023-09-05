@@ -7,7 +7,7 @@ import { CarContext } from '../../../providers/CarContext';
 import { TCreateAdData, createAdSchema } from '../../ModalCreate/validator';
 import Button from '../../Button';
 import { api } from '../../../services/api';
-import { filterName } from './types';
+import { filterName, updateData } from './types';
 
 export function ModalEditAd() {
   const { editAdModal, setEditAdModal } = useContext(CarContext);
@@ -30,8 +30,8 @@ export function ModalEditAd() {
 
 
   const [apiCar, setApiCar] = useState<string[]>([]);
-  const [apiModel, setApiModel] = useState<any>();
-  const [filteredModel, setFilteredModel] = useState<any[]>([]);
+  const [apiModel, setApiModel] = useState<[string, unknown][]>();
+  const [filteredModel, setFilteredModel] = useState<string[]>([]);
   const [fuelType, setFuelType] = useState('');
   const [inputCount, setInputCount] = useState<string[]>([]);
 
@@ -84,7 +84,7 @@ export function ModalEditAd() {
     setInputCount((prev) => [...prev, 'insira nova imagem']);
   };
 
-  const submit = async (data: any) => {
+  const submit = async (data: updateData) => {
 
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
@@ -94,7 +94,7 @@ export function ModalEditAd() {
     const photoArr = [];
     photoArr.push(data.photos);
     if (data.morePhotos?.length > 0) {
-      data.morePhotos.forEach((photo: any) => {
+      data.morePhotos.forEach((photo: Array<string>) => {
         photoArr.push(photo);
       });
     }
@@ -157,7 +157,7 @@ export function ModalEditAd() {
               onChange={handleModelChange}
             >
               {apiModel &&
-                apiModel.map((model: any, index: number) => (
+                apiModel.map((model: filterName, index: number) => (
                   <option key={index}>{model[1].name}</option>
                 ))}
            

@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { EditAddress } from "../components/Modal/ModalEditAddress/valdiators";
+import { updateData, userData } from "./types";
 
 export interface IProviderProps {
   children: React.ReactNode;
@@ -81,11 +82,11 @@ interface ICarContext {
       account_type: string;
     }>
   >;
-  userData: any;
+  userData: userData;
   getNameCharacters: (name: string) => string;
 
-  editAdModal: any;
-  setEditAdModal: React.Dispatch<React.SetStateAction<any>>;
+  editAdModal: updateData | null;
+  setEditAdModal: React.Dispatch<React.SetStateAction<updateData | null>>;
 
   getNextAmount: () => void;
   getPrevAmount: () => void;
@@ -110,7 +111,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const [EditAddress, setEditAddress] = useState(false);
   const [EditUserModal, setEditUserModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [editAdModal, setEditAdModal] = useState<any>(null);
+  const [editAdModal, setEditAdModal] = useState<updateData | null>(null);
   const [nextAmount, setNextAmount] = useState("");
   const [prevAmount, setPrevAmount] = useState("");
   const [count, setCount] = useState<number | null>(0);
