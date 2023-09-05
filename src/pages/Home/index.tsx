@@ -10,7 +10,8 @@ import { useContext } from 'react';
 import { CarContext } from '../../providers/CarContext';
 
 const Home = () => {
-  const { searchResult } = useContext(CarContext);
+  const { searchResult, cars } = useContext(CarContext);
+
   return (
     <>
       <NavBar />
@@ -22,7 +23,7 @@ const Home = () => {
       <ContainerButtonFilterStyle>
         <Button name='Filtro' variant='primary' />
       </ContainerButtonFilterStyle>
-      <Pagination />
+      {searchResult.length > 9 || cars.length > 9 && <Pagination />}    
       <Footer />
     </>
   );

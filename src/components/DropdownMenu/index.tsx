@@ -9,7 +9,7 @@ export const DropdownMenu = forwardRef<
   React.HTMLProps<HTMLDivElement>
 >((props, ref) => {
   const navigate = useNavigate();
-  const { specificUser, getUserById, loading } = useContext(UserContext);
+  const { specificUser, getUserById, loading, userId  } = useContext(UserContext);
   const [userIsAdvertiser, setUserIsAdvertiser] = useState(false);
   const {setEditAddress, setEditUserModal} = useContext(CarContext)
 
@@ -40,7 +40,7 @@ export const DropdownMenu = forwardRef<
           <Link to="" onClick={() => setEditAddress(true)}>Editar endereço</Link>
           {userIsAdvertiser && <Link to="">Meus anúncios</Link>}
           {specificUser?.account_type === "anunciante" ? (
-            <Link to="/profile">Meus anúncios</Link>
+            <Link to={`/profile/${userId}`}>Meus anúncios</Link>
           ) : null}
           <Link to="/login" onClick={handleLogoutClick}>
             Sair

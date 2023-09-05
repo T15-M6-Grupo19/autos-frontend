@@ -26,6 +26,7 @@ export interface ICar {
   year: number;
   kilometers: number;
   price: number;
+
 }
 
 export interface IPhoto {
@@ -94,6 +95,7 @@ interface ICarContext {
   page: number;
 
   refreshPage: () => void;
+  
 }
 
 export const CarContext = createContext({} as ICarContext);
@@ -101,8 +103,8 @@ export const CarContext = createContext({} as ICarContext);
 export const CarProvider = ({ children }: IProviderProps) => {
   const [cars, setCars] = useState<ICar[]>([]);
   const [filteredCars, setFilteredCars] = useState("");
-  const [kmRange, setKmRange] = useState<number[]>([0, 650000]);
-  const [priceRange, setPriceRange] = useState<number[]>([10000, 550000]);
+  const [kmRange, setKmRange] = useState<number[]>([0, 650000000000]);
+  const [priceRange, setPriceRange] = useState<number[]>([0, 50000000000]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [userData, setUserData] = useState({});
   const [EditAddress, setEditAddress] = useState(false);
@@ -148,33 +150,17 @@ export const CarProvider = ({ children }: IProviderProps) => {
       });
   };
 
-  const searchResult = cars.filter((car) => {
-    if (car.kilometers <= kmRange[0] || car.kilometers >= kmRange[1]) {
-      return;
-    } else if (car.price <= priceRange[0] || car.price >= priceRange[1]) {
-      return;
-    } else if (filteredCars == "") {
-      return true;
-    }
-
-    return (
-      car.brand.includes(filteredCars) ||
-      car.model.includes(filteredCars) ||
-      car.color.includes(filteredCars) ||
-      car.year.toString().includes(filteredCars) ||
-      car.fuel.includes(filteredCars)
-    );
-  });
-
   useEffect(() => {
     const getAllAds = async () => {
       try {
         setLoading(!loading);
         const response = await api.get("/salesAd");
+        
         if (response.data.data) {
           setCars([...response.data.data]);
         } else {
           setCars([...response.data]);
+          
         }
         setNextAmount(response.data.nextAmount);
         setCount(Math.ceil(response.data.count / 9));
@@ -221,6 +207,7 @@ export const CarProvider = ({ children }: IProviderProps) => {
       setPrevAmount(response.data.prevAmount);
       setPage(response.data.page);
       setCars([...response.data.data]);
+      
     } catch (error) {
       alert(error);
       console.error(error);
@@ -269,6 +256,27 @@ export const CarProvider = ({ children }: IProviderProps) => {
   const refreshPage = () => {
     window.location.reload();
   };
+
+  
+  const searchResult = cars.filter((car) => {
+    if (car.kilometers <= kmRange[0] || car.kilometers >= kmRange[1]) {
+     
+      return;
+    } else if (car.price <= priceRange[0] || car.price >= priceRange[1]) {
+      
+      return;
+    } else if (filteredCars == "") {
+      return true;
+    }
+    
+    return (
+      car.brand.includes(filteredCars) ||
+      car.model.includes(filteredCars) ||
+      car.color.includes(filteredCars) ||
+      car.year.toString().includes(filteredCars) ||
+      car.fuel.includes(filteredCars)
+    );
+  });
 
   return (
     <CarContext.Provider

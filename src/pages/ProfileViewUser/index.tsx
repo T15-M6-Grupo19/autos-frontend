@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { BannerColor } from '../../../components/Banner';
-import { Footer } from '../../../components/Footer';
-import ListCards from '../../../components/ListCards';
-import { NavBarAdvertiser } from '../../../components/NavBar';
-import Pagination from '../../../components/Pagination';
+import { BannerColor } from '../../components/Banner';
+import { Footer } from '../../components/Footer';
+import ListCards from '../../components/ListCards';
+import { NavBarAdvertiser } from '../../components/NavBar';
+import Pagination from '../../components/Pagination';
 import { MainStructure, NotFoundContainer } from './styles';
 import { useParams } from 'react-router-dom';
-import { api } from '../../../services/api';
+import { api } from '../../services/api';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-import { ModalEditUser } from '../../../components/Modal/ModalEditUser';
-import { ModalEditAd } from '../../../components/Modal/ModalEditAd';
-import { ModalCreate } from '../../../components/ModalCreate';
-import { ModalEditAddress } from '../../../components/Modal/ModalEditAddress';
-import { CarContext } from '../../../providers/CarContext';
+import { ModalEditUser } from '../../components/Modal/ModalEditUser';
+import { ModalEditAd } from '../../components/Modal/ModalEditAd';
+import { ModalCreate } from '../../components/ModalCreate';
+import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
+import { CarContext } from '../../providers/CarContext';
 
 const ProfileViewUser = () => {
   const [userDataView, setUserDataView] = useState({
