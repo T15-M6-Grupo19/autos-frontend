@@ -7,6 +7,7 @@ import { CarContext } from '../../../providers/CarContext';
 import { TCreateAdData, createAdSchema } from '../../ModalCreate/validator';
 import Button from '../../Button';
 import { api } from '../../../services/api';
+import { filterName } from './types';
 
 export function ModalEditAd() {
   const { editAdModal, setEditAdModal } = useContext(CarContext);
@@ -54,8 +55,9 @@ export function ModalEditAd() {
     getModel();
   }, [apiCar]);
 
-  async function handleBrandChange(e: any) {
-    const brand = e.target.value;
+  async function handleBrandChange(e:Event) {
+
+    const brand:Event | null = e.target!.value;
     const request = await fetch(
       `https://kenzie-kars.herokuapp.com/cars?brand=${brand}`
     );
@@ -63,9 +65,9 @@ export function ModalEditAd() {
     setApiModel(Object.entries(response));
   }
 
-  async function handleModelChange(e: any) {
-    let model = e.target.value;
-    let currentCar = apiModel.filter((filterModel: any) => {
+  async function handleModelChange(e: Event) {
+    let model:Event | null = e.target?.value;
+    let currentCar = apiModel.filter((filterModel: Array<filterName>) => {
       return filterModel[1].name == model;
     });
     if (currentCar[0][1].fuel == 1) {
