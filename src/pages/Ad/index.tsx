@@ -111,9 +111,12 @@ const Ad = () => {
   });
 
   const CreateComment = async (Data: commentData) => {
-    api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
-      await api.post(`/comment/${params.adId}`, Data);
+      await api.post(`/comment/${params.adId}`, Data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`
+        }
+      });
       refreshPage();
     } catch (error) {
       console.log(error);
@@ -121,9 +124,12 @@ const Ad = () => {
   };
 
   const DeleteComment = async (commentId: string) => {
-    api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
-      await api.delete(`/comment/${commentId}`);
+      await api.delete(`/comment/${commentId}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`
+        }
+      });
       refreshPage();
     } catch (error) {
       console.log(error);
