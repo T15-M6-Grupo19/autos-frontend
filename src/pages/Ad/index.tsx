@@ -61,7 +61,16 @@ const Ad = () => {
     ],
     year: '1',
     user: { name: '...' },
-
+    comments: [
+      {
+        id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
+        comment_text: "novo comentário de Arthur",
+        created_at: "2023-08-29T14:19:50.390Z",
+        user: {
+          id: "5f717058-a380-4694-8932-28390578c28d",
+          name: "teste"
+        }
+      }]
   });
   const [isLogged, setIsLogged] = useState(false);
 
