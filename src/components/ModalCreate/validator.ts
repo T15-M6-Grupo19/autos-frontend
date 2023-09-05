@@ -9,6 +9,9 @@ export const createAdSchema = z.object({
     color: z.string(),
     price: z.string(),
     description: z.string(),
+    photos: z.string(),
+    morePhotos: z.array(z.string()).optional()
 })
+
 
 export type TCreateAdData = z.infer<typeof createAdSchema>

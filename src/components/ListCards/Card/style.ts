@@ -28,6 +28,7 @@ export const ContainerCard = styled.li`
   }
 
   div {
+    
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -52,7 +53,7 @@ export const ContainerCard = styled.li`
       }
 
       div {
-        display: block;
+        display: flex;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -67,6 +68,7 @@ export const ContainerCard = styled.li`
     }
 
     .second {
+     
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -81,69 +83,22 @@ export const ContainerCard = styled.li`
       color: var(--color-Grey2);
 
       .balloon-name {
-        width: 32px;
-        height: 32px;
-
-        background-color: var(--color-Brand1);
-        border-radius: 50%;
-
+        
         display: flex;
         align-items: center;
         justify-content: center;
 
-        span {
-          color: var(--color-WhiteFixed);
+        .first-letters {
+          height: 32px;
+          width: 32px;
+          background-color: var(--color-Brand1);
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          color: var(--color-WhiteFixed);   
         }
       }
     }
-
-    /* .third {
-      display: flex;
-      flex-direction: row;
-
-      justify-content: space-between;
-
-      margin-top: 10px;
-
-      .detail {
-        display: flex;
-        flex-direction: row;
-
-        span {
-          width: 70px;
-          height: 30px;
-
-          border-radius: 4px;
-
-          background-color: var(--color-Brand4);
-          color: var(--color-Brand2);
-
-          font-size: 14px;
-          font-family: "Inter";
-          font-weight: 500;
-          font-style: normal;
-          text-decoration: none;
-          text-transform: none;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-
-      .wrap-price {
-        justify-content: end;
-
-        .price {
-          font-family: "Lexend";
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 20px;
-
-          color: var(--color-Grey1);
-        }
-      }
-    } */
 
     .thirsd {
       display: flex;
@@ -207,6 +162,7 @@ export const ContainerCard = styled.li`
   &:hover img {
     animation: ClickImage 1s linear both;
   }
+  
   &:hover figure {
     border: 1px solid var(--color-Brand2);
     overflow: hidden;
@@ -227,10 +183,10 @@ export const ContainerCard = styled.li`
 
   @keyframes NotCLickImage {
     0% {
-      transform: scale(1.5);
+      transform: scale(1.2);
     }
     100% {
-      transform: scale(0.9);
+      transform: scale(1);
     }
-  }
+  } 
 `;

@@ -1,26 +1,37 @@
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useContext, useEffect, useState } from 'react';
-import { StyledModal } from './styles';
+import { StyledModal } from '../../ModalCreate/styles';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CarContext } from '../../providers/CarContext';
-import { TCreateAdData, createAdSchema } from './validator';
-import Button from '../Button';
-import { api } from '../../services/api';
+import { CarContext } from '../../../providers/CarContext';
+import { TCreateAdData, createAdSchema } from '../../ModalCreate/validator';
+import Button from '../../Button';
+import { api } from '../../../services/api';
 
-export function ModalCreate() {
+export function ModalEditAd() {
+  const { editAdModal, setEditAdModal } = useContext(CarContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TCreateAdData>({ resolver: zodResolver(createAdSchema) });
+  } = useForm<TCreateAdData>({
+    resolver: zodResolver(createAdSchema),
+    defaultValues: {
+      brand: editAdModal?.brand,
+      model: editAdModal?.model,
+      kilometers: editAdModal?.kilometers,
+      price: editAdModal?.price,
+      description: editAdModal?.description,
+      color: editAdModal?.color,
+    },
+  });
+
+
   const [apiCar, setApiCar] = useState<string[]>([]);
   const [apiModel, setApiModel] = useState<any>();
   const [filteredModel, setFilteredModel] = useState<any[]>([]);
   const [fuelType, setFuelType] = useState('');
   const [inputCount, setInputCount] = useState<string[]>([]);
-  const { setOpenCreateModal } = useContext(CarContext);
 
   useEffect(() => {
     async function getCar() {
@@ -30,6 +41,10 @@ export function ModalCreate() {
     }
     getCar();
   }, []);
+
+
+  let teste = apiCar.filter((car) => car == editAdModal.brand);
+
 
   useEffect(() => {
     async function getModel() {
@@ -70,9 +85,8 @@ export function ModalCreate() {
     setInputCount((prev) => [...prev, 'insira nova imagem']);
   };
 
-  const token = localStorage.getItem('@TOKEN')
-
   const submit = async (data: any) => {
+
     data.year = filteredModel[1].year;
     data.fuel = fuelType;
     data.kilometers = Number(data.kilometers);
@@ -86,22 +100,16 @@ export function ModalCreate() {
       });
     }
     data.photos = photoArr;
-    console.log(data)
 
     try {
-      const tokenParsed = JSON.parse(token)
-      await api.post(`/salesAd`, data, {
-        headers: {
-          Authorization: `Bearer ${tokenParsed}`,
-        },
-      });
-      setOpenCreateModal(false);
-      // window.location.reload();
-
+      await api.post(`/salesAd`, data);
+      setEditAdModal(null);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
+
 
   if (apiCar[0] !== 'Selecione a marca') {
     apiCar.unshift('Selecione a marca');
@@ -112,10 +120,10 @@ export function ModalCreate() {
       <div className='modal-background'>
         <div className='modal-container'>
           <div className='modal-title'>
-            <h3>Criar Anúncio</h3>
+            <h3>Editar Anúncio</h3>
             <button
               className='close-button'
-              onClick={() => setOpenCreateModal(false)}
+              onClick={() => setEditAdModal(null)}
             >
               X
             </button>
@@ -127,10 +135,19 @@ export function ModalCreate() {
               id='brand'
               {...register('brand')}
               onChange={handleBrandChange}
+
             >
-              {apiCar.map((car, index) => (
-                <option key={index}>{car}</option>
-              ))}
+              {/*<option selected>{editAdModal.brand}</option> */}
+              {apiCar.map((car, index) =>
+                editAdModal.brand == car ? (
+                  <option selected key={index}>
+                    {car}
+                  </option>
+                ) : (
+                  <option key={index}>{car}</option>
+                )
+              )}
+
             </select>
             <p>{errors.brand?.message}</p>
 
@@ -144,6 +161,7 @@ export function ModalCreate() {
                 apiModel.map((model: any, index: number) => (
                   <option key={index}>{model[1].name}</option>
                 ))}
+           
             </select>
             <p>{errors.model?.message}</p>
 
@@ -152,11 +170,12 @@ export function ModalCreate() {
                 <label htmlFor='year'>Ano</label>
                 <input
                   id='year'
+                  placeholder={editAdModal.year}
                   defaultValue={
                     filteredModel.length > 0 ? filteredModel[1].year : ''
                   }
                   {...register('year')}
-                  readOnly
+                  disabled
                 />
 
                 <p>{errors.year?.message}</p>
@@ -165,6 +184,7 @@ export function ModalCreate() {
                 <label htmlFor='fuel'>Combustivel</label>
                 <input
                   id='fuel'
+                  placeholder={fuelType}
                   {...register('fuel')}
                   defaultValue={fuelType}
                   readOnly
@@ -240,7 +260,7 @@ export function ModalCreate() {
             </div>
 
             <div className='div-buttons'>
-              <button onClick={() => setOpenCreateModal(false)} type='button'>
+              <button onClick={() => setEditAdModal(null)} type='button'>
                 Cancelar
               </button>
               <button className='create-button' type='submit'>

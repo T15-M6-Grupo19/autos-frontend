@@ -1,58 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { ICar } from "../../../providers/CarContext";
-// import { ContainerCard } from "./style";
+import { ContainerCard } from './style';
+import Button from '../../Button';
+import { useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import Ferrari from '../../../assets/Ferrari.svg';
+import { CarContext } from '../../../providers/CarContext';
+import { User } from '../../../providers/UserContext/interfaces';
+import { Link } from 'react-router-dom';
 
-// interface ICarProps {
-//   car: ICar
-// }
+export interface Iphotos {
+  id: string;
+  photo_url: string;
+}
 
-// export const Card = ({ car }: ICarProps) => {
-//   return (
-//     <ContainerCard>
-//       <figure>
-//         <img src={car.imageURL} />
-//       </figure>
-//       <div>
-//         <div className="first">
-//           <h2> {car.marca} </h2>
-//           <div> {car.modelo} </div>
-//         </div>
-//         <div className="second">
-//           <div className="balloon-name">
-//             <span>SL</span>
-//           </div>
-//           <span>Silva Luiz</span>
-//         </div>
-//         <div className="third">
-//           <div className="detail">
-//             <span>{car.km}km</span>
-//             <span>{car.ano}</span>
-//           </div>
-//           <div className="wrap-price">
-//             <span className="price">
-//               {car.preco.toLocaleString("pt-BR", {
-//                 style: "currency",
-//                 currency: "BRL",
-//               })}
-//             </span>
-//           </div>
-//         </div>
-//       </div>
-//     </ContainerCard>
-//   );
-// };
-
-// export default Card;
-
-import { ContainerCard } from "./style";
-// import { IMockCar } from '../types';
-import Button from "../../Button";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Ferrari from "../../../assets/Ferrari.svg";
-
-export interface MockCar {
-  imageURL: string;
+export interface iCardCar {
+  id: string;
   brand: string;
   model: string;
   fuel: string;
@@ -60,21 +21,25 @@ export interface MockCar {
   year: number;
   kilometers: number;
   price: number;
+  photos: Iphotos[];
+  user: User;
 }
 
-export interface IMockCarList {
-  listCard: MockCar[];
+export interface IPropsCar {
+  car: iCardCar;
+  isOwner?: boolean;
 }
 
-export interface IMockCar {
-  car: MockCar;
-}
-
-export const Card = ({ car }: IMockCar) => {
+export const Card = ({ car, isOwner }: IPropsCar) => {
   const [isProfile, setIsProfile] = useState(false);
   const page = useLocation();
+  const { setEditAdModal, getNameCharacters } = useContext(CarContext);
+
   useEffect(() => {
-    if (page.pathname.split("/")[1] === "profile" && !page.pathname.split("/")[2]) {
+    if (
+      page.pathname.split('/')[1] === 'profile' &&
+      !page.pathname.split('/')[2]
+    ) {
       setIsProfile(true);
     }
 
@@ -84,58 +49,51 @@ export const Card = ({ car }: IMockCar) => {
   return (
     <ContainerCard>
       <figure>
-        <img src={car.imageURL ? car.imageURL : Ferrari} />
+        <Link to={`/ad/${car.id}`} >
+          <img src={car.photos ? car.photos[0]?.photo_url : Ferrari} />
+        </Link>
       </figure>
-      <div className="box-div">
-        <div className="fist">
+      <div>
+        <div className='fist'>
           <h2>
-            {" "}
-            {car.brand} - {car.model}{" "}
+            {' '}
+            {car.brand} - {car.model}{' '}
           </h2>
           <div> {car.model} </div>
         </div>
-        <div className="second">
-          <div className="ballon-name">
-            <span>SL</span>
+        <div className='second'>
+          <div className='ballon-name'>
+            <span className='first-letters'>{getNameCharacters(car.user?.name)}</span>
           </div>
-          <span>Silva Luiz</span>
+          <span>{car.user?.name}</span>
         </div>
-        {/* <div className='thirsd'>
+        <div className='thirsd'>
           <div className='detail'>
-            <span>
-              {car.km} <span>KM</span>
-            </span>
-            <span>{car.ano}</span>
-          </div>
-          <div className='wrap-price'>
-            <span className='price'>
-              {car.preco.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
-            </span>
-          </div>
-        </div> */}
-        <div className="thirsd">
-          <div className="detail">
             <span>
               {car.kilometers} <span>KM</span>
             </span>
             <span>{car.year}</span>
           </div>
-          <div className="wrap-price">
-            <span className="price">
-              {car.price.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
+          <div className='wrap-price'>
+            <span className='price'>
+              {car.price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
               })}
             </span>
           </div>
         </div>
-        {isProfile ? (
-          <div className="fourth">
-            <Button variant="Editar" name={"Editar"} />
-            <Button variant="Ver Detalhes" name={"Ver Detalhes"} />
+        {isOwner ? (
+          <div className='fourth'>
+            <Button
+              onClick={() => setEditAdModal(car)}
+              variant='Editar'
+              name={'Editar'}
+            />
+            <Link to={`/ad/${car.id}`} >
+            
+              <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+            </Link>
           </div>
         ) : null}
       </div>

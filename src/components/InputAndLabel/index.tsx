@@ -11,4 +11,3 @@ export const InputComponent = ({ label, variant, register, error,...props }: Inp
   );
 };
 
-
