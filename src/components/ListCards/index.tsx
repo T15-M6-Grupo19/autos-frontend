@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import { ListCardContainer } from './style';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ICar } from '../../providers/CarContext';
+import { Link } from 'react-router-dom';
 
 type tListCarsProps = {
   carList: Array<ICar>;
@@ -17,11 +18,15 @@ const ListCards = ({ carList, isOwner }: tListCarsProps) => {
     page.pathname.split('/')[1] === 'profile' && setIsProfile(true);
   }, [page]);
 
+
   return (
     carList[0] && (
       <ListCardContainer view={isProfile ? 'allSpace' : 'spaceTwo'}>
         {carList.map((car) => {
-          return <Card key={car.id} car={car} isOwner={isOwner} />;
+          
+          return (
+              <Card key={car.id} car={car} isOwner={isOwner} />
+          );
         })}
       </ListCardContainer>
     )

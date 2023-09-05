@@ -61,7 +61,7 @@ const LoginBar = () => {
 
       setUserData(userResponse.data);
       getUserById();
-      navigate("/profile");
+      navigate(`/profile/${sub}`);
     } catch (error) {
       console.log(error);
       reset();

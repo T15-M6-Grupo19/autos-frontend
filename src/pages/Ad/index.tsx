@@ -1,6 +1,7 @@
 import { NavBar, NavBarAdvertiser } from '../../components/NavBar';
 import { Footer } from '../../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import {
   BlueBackground,
   BuyButton,
@@ -34,7 +35,7 @@ import {
   UserInfoShowAdsButton,
 } from './style';
 import { api } from '../../services/api';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CarContext } from '../../providers/CarContext';
 import Button from '../../components/Button';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -45,14 +46,11 @@ import { ModalEditUser } from '../../components/Modal/ModalEditUser';
 import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
 
 const Ad = () => {
-  const {
-    register,
-    handleSubmit,
-} = useForm<commentData>({
+  const { register, handleSubmit } = useForm<commentData>({
     resolver: zodResolver(schema),
-});
-  const [adData, setAdData] = useState({
+  });
 
+  const [adData, setAdData] = useState({
     photos: [
       {
         photo_url:
@@ -92,7 +90,6 @@ const Ad = () => {
     navigate(`/profile/${adData.user.id}`);
   };
 
-  
   useEffect(() => {
     async function adInfo() {
       try {
@@ -116,46 +113,40 @@ const Ad = () => {
   const CreateComment = async (Data: commentData) => {
     api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
-      await api.post(`/comment/${params.adId}`, Data)
-      refreshPage()
+      await api.post(`/comment/${params.adId}`, Data);
+      refreshPage();
     } catch (error) {
       console.log(error);
-      
     }
-  }
-  
+  };
+
   const DeleteComment = async (commentId: string) => {
     api.defaults.headers.common.Authorization = `Bearer ${JSON.parse(token!)}`;
     try {
-      await api.delete(`/comment/${commentId}`)
-      refreshPage()
+      await api.delete(`/comment/${commentId}`);
+      refreshPage();
     } catch (error) {
       console.log(error);
-      
     }
-  }
-  
-  
+  };
+
   const CalculateTimeDifference = (referenceDate: string) => {
     const now = new Date();
-    const refDate = new Date(referenceDate)
-    
-    const diff = now - refDate
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-    
-    if(days == 0){
-      return "Hoje"
+    const refDate = new Date(referenceDate);
+
+    const diff = now - refDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (days == 0) {
+      return 'Hoje';
+    } else if (days == 1) {
+      return `há ${days} dia`;
+    } else {
+      return `há ${days} dias`;
     }
-    else if (days == 1){
-      return `há ${days} dia`
-    }
-    else {
-      return `há ${days} dias`
-    }
-    
-  }
-  
+  };
+
   const handleBuyClick = () => {
     const url = `https://api.whatsapp.com/send?phone=55${userData.mobile}`;
     window.open(url, '_blank');
@@ -165,7 +156,8 @@ const Ad = () => {
   const toggleModalEditAddress = () => setEditAddress(false)
 
   return (
-    <>
+    <React.Fragment>
+    
     {EditUserModal && <ModalEditUser toggleModal={toggleModal}/>}
     {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <Container>
@@ -228,11 +220,14 @@ const Ad = () => {
         </BlueBackground>
         <ContainerComments>
           {' '}
-          {/* COMENTÁRIOS */}
           <ul>
-          {adData.comments.length !== 0 ? <h2>Comentários</h2> : <h2>Sem Comentários</h2>}
+            {adData.comments.length !== 0 ? (
+              <h2>Comentários</h2>
+            ) : (
+              <h2>Sem Comentários</h2>
+            )}
             {adData.comments.map((comment) => (
-              <Comment>
+              <Comment  key={uuidv4()}>
               <div>
                 <span>{getNameCharacters(comment.user.name)}</span> <p>{comment.user.name}</p>{" "}
                 <time>
@@ -248,14 +243,15 @@ const Ad = () => {
           </ul>
         </ContainerComments>
         <ContainerTextAreaComment onSubmit={handleSubmit(CreateComment)}>
-          {' '}
-          {/*ESSA É A TAG FORM */}
           <div className='text-area-header'>
             <span>{getNameCharacters(userData.name)}</span>
             <p>{userData.name}</p>
           </div>
           <div className='text-comment-area'>
-            <textarea placeholder='Escreva seu comentário ...' {...register("comment_text")}/>
+            <textarea
+              placeholder='Escreva seu comentário ...'
+              {...register('comment_text')}
+            />
             <Button
               name='comentar'
               variant='comment'
@@ -271,12 +267,11 @@ const Ad = () => {
             <span>Recomendarei para meus amigos!</span>
           </div>
         </ContainerTextAreaComment>{' '}
-        {/*ADICIONAR COMENTÁRIOS */}
         <FooterAlign>
           <Footer />
         </FooterAlign>
       </Container>
-    </>
+    </React.Fragment>
   );
 };
 

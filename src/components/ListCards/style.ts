@@ -37,12 +37,9 @@ const ListCardContainer = styled.ul<IListCard>`
                 height: auto;
                 width: 100%;
 
-                
-                
                 margin: 0px;
 
                 align-items: normal;
-
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
 

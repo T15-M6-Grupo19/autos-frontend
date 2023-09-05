@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Ferrari from '../../../assets/Ferrari.svg';
 import { CarContext } from '../../../providers/CarContext';
+import { User } from '../../../providers/UserContext/interfaces';
+import { Link } from 'react-router-dom';
 
 export interface Iphotos {
   id: string;
@@ -11,6 +13,7 @@ export interface Iphotos {
 }
 
 export interface iCardCar {
+  id: string;
   brand: string;
   model: string;
   fuel: string;
@@ -19,11 +22,8 @@ export interface iCardCar {
   kilometers: number;
   price: number;
   photos: Iphotos[];
+  user: User;
 }
-
-// export interface ICarList {
-//   listCard: iCardCar[];
-// }
 
 export interface IPropsCar {
   car: iCardCar;
@@ -33,7 +33,7 @@ export interface IPropsCar {
 export const Card = ({ car, isOwner }: IPropsCar) => {
   const [isProfile, setIsProfile] = useState(false);
   const page = useLocation();
-  const { setEditAdModal } = useContext(CarContext);
+  const { setEditAdModal, getNameCharacters } = useContext(CarContext);
 
   useEffect(() => {
     if (
@@ -49,9 +49,11 @@ export const Card = ({ car, isOwner }: IPropsCar) => {
   return (
     <ContainerCard>
       <figure>
-        <img src={car.photos ? car.photos[0]?.photo_url : Ferrari} />
+        <Link to={`/ad/${car.id}`} >
+          <img src={car.photos ? car.photos[0]?.photo_url : Ferrari} />
+        </Link>
       </figure>
-      <div className='box-div'>
+      <div>
         <div className='fist'>
           <h2>
             {' '}
@@ -61,9 +63,9 @@ export const Card = ({ car, isOwner }: IPropsCar) => {
         </div>
         <div className='second'>
           <div className='ballon-name'>
-            <span>SL</span>
+            <span className='first-letters'>{getNameCharacters(car.user?.name)}</span>
           </div>
-          <span>Silva Luiz</span>
+          <span>{car.user?.name}</span>
         </div>
         <div className='thirsd'>
           <div className='detail'>
@@ -88,7 +90,10 @@ export const Card = ({ car, isOwner }: IPropsCar) => {
               variant='Editar'
               name={'Editar'}
             />
-            <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+            <Link to={`/ad/${car.id}`} >
+            
+              <Button variant='Ver Detalhes' name={'Ver Detalhes'} />
+            </Link>
           </div>
         ) : null}
       </div>

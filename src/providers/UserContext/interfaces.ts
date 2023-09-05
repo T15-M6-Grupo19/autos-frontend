@@ -1,3 +1,4 @@
+import { UserType } from "../../components/Form/RegisterForm/types";
 import Ad from "../../pages/Ad";
 
 export interface IUserContext {
@@ -27,6 +28,7 @@ export interface Ad {
   published: boolean;
 }
 
+
 export interface User {
   id: number;
   name: string;
@@ -45,5 +47,5 @@ export interface User {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   deletedAt?: Date | string;
-  ads: Ad[];
+  ads?: Ad[];
 }
