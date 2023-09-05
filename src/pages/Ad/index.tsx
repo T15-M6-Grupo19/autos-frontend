@@ -1,4 +1,4 @@
-import { NavBarAdvertiser } from '../../components/NavBar';
+import { NavBar, NavBarAdvertiser } from '../../components/NavBar';
 import { Footer } from '../../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -169,7 +169,7 @@ const Ad = () => {
     {EditUserModal && <ModalEditUser toggleModal={toggleModal}/>}
     {EditAddress && <ModalEditAddress toggleModal={toggleModalEditAddress}/>}
       <Container>
-        <NavBarAdvertiser />
+        {token ? <NavBarAdvertiser /> : <NavBar/>}
         <BlueBackground>
           <ContainerAlign>
             <div>

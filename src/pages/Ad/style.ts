@@ -11,7 +11,6 @@ export const Container = styled.div`
   justify-content: center;
   
   @media screen and (min-width: 1024px) {
-    margin-top: 80px;
     display: block;
   }
 `;
