@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import { ListCardContainer } from './style';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ICar } from '../../providers/CarContext';
 
 type tListCarsProps = {

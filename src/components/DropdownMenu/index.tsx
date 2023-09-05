@@ -7,7 +7,7 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 export const DropdownMenu = forwardRef<
   HTMLDivElement,
   React.HTMLProps<HTMLDivElement>
->((props, ref) => {
+>((ref) => {
   const navigate = useNavigate();
   const { specificUser, getUserById, loading, userId  } = useContext(UserContext);
   const [userIsAdvertiser, setUserIsAdvertiser] = useState(false);

@@ -13,6 +13,8 @@ export const RegisterForm = ({ toggleModal }: RegisterType) => {
   const [user, setUser] = useState<User | undefined>();
   const [buttonClicked, setButtonClicked] = useState(false);
 
+  console.log(user)
+
   const {
     register,
     handleSubmit,
