@@ -1,4 +1,4 @@
-import { SetStateAction, useContext } from 'react';
+import { useContext, SetStateAction } from 'react';
 import Button from '../Button';
 import { FilterCard } from './style';
 import { CarContext } from '../../providers/CarContext';
@@ -29,11 +29,11 @@ const FilterCars = () => {
     setPriceRange([10000, 550000]);
   }
 
-  function handleKmRange(newRange:SetStateAction<number[]>) {
+  function handleKmRange(newRange: SetStateAction<number[]>) {
     setKmRange(newRange);
   }
 
-  function handlePriceRange(newRange:SetStateAction<number[]>) {
+  function handlePriceRange(newRange: number[]) {
     setPriceRange(newRange);
   }
 

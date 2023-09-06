@@ -34,10 +34,14 @@ const LoginBar = () => {
     password: yup.string().required("Informe sua senha"),
   });
 
+  interface iLoginProps {
+    email: string;
+    password: string;
+  }
+
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
@@ -66,7 +70,7 @@ const LoginBar = () => {
 
       const { sub }: string = jwt_decode(token);
 
-      const userResponse = await api.get("/users/" + sub);
+      const userResponse = await api.get('/users/' + sub);
 
       setUserData(userResponse.data);
       getUserById();
@@ -75,7 +79,7 @@ const LoginBar = () => {
       console.log(error);
       reset();
     } finally {
-      // console.log(error.)
+      null;
     }
   }
 
