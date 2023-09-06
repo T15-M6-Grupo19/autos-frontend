@@ -40,37 +40,20 @@ import { CarContext } from '../../providers/CarContext';
 import Button from '../../components/Button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { commentData } from './types';
+import { GetAdData, commentData } from './types';
 import { schema } from './validator';
 import { ModalEditUser } from '../../components/Modal/ModalEditUser';
 import { ModalEditAddress } from '../../components/Modal/ModalEditAddress';
+import { ModalOpenPhoto } from '../../components/Modal/ModalOpenPhoto';
 
 const Ad = () => {
   const { register, handleSubmit } = useForm<commentData>({
     resolver: zodResolver(schema),
   });
 
-  const [adData, setAdData] = useState({
-    photos: [
-      {
-        photo_url:
-          'https://img.freepik.com/psd-premium/carro-da-cidade-em-fundo-transparente-renderizacao-em-3d-ilustracao_494250-34780.jpg',
-      },
-    ],
-    year: '1',
-    user: { name: '...' },
-    comments: [
-      {
-        id: "97d2d700-9b92-458b-9865-ddfdf6a6c040",
-        comment_text: "novo comentário de Arthur",
-        created_at: "2023-08-29T14:19:50.390Z",
-        user: {
-          id: "5f717058-a380-4694-8932-28390578c28d",
-          name: "teste"
-        }
-      }]
-  });
+  const [adData, setAdData] = useState<GetAdData | undefined>();
   const [isLogged, setIsLogged] = useState(false);
+  const [openPhotoIndex, setOpenPhotoIndex] = useState(null);
 
   const { userData, refreshPage, EditAddress, setEditAddress, EditUserModal, setEditUserModal, getNameCharacters } = useContext(CarContext);
 
@@ -87,7 +70,7 @@ const Ad = () => {
   const navigate = useNavigate();
 
   const userPage = () => {
-    navigate(`/profile/${adData.user.id}`);
+    navigate(`/profile/${adData?.user.id}`);
   };
 
   useEffect(() => {
@@ -154,6 +137,8 @@ const Ad = () => {
 
   const toggleModal = () => setEditUserModal(!EditUserModal);
   const toggleModalEditAddress = () => setEditAddress(false)
+  const toggleModalOpenPhotos = () => setOpenPhotoIndex(null)
+
 
   return (
     <React.Fragment>
@@ -166,18 +151,18 @@ const Ad = () => {
           <ContainerAlign>
             <div>
               <CarImageContainer>
-                <CarImage src={adData.photos[0]?.photo_url} />
+                <CarImage src={adData?.photos[0]?.photo_url} />
               </CarImageContainer>
 
               <CarInfoContainer>
-                <CarInfoText className='textHeading6600'>{`${adData.model} ${adData.brand} ${adData.color}`}</CarInfoText>
+                <CarInfoText className='textHeading6600'>{`${adData?.model} ${adData?.brand} ${adData?.color}`}</CarInfoText>
                 <CarBallonPriceAlign>
                   <CarInfoBalloonAlign>
-                    <CarInfoBalloon>{adData.year}</CarInfoBalloon>
-                    <CarInfoBalloon>{`${adData.kilometers} KM`}</CarInfoBalloon>
+                    <CarInfoBalloon>{adData?.year}</CarInfoBalloon>
+                    <CarInfoBalloon>{`${adData?.kilometers} KM`}</CarInfoBalloon>
                   </CarInfoBalloonAlign>
                   <CarPrice className='textHeading7500'>{`${formatter.format(
-                    adData.price
+                    adData?.price
                   )}`}</CarPrice>
                 </CarBallonPriceAlign>
                 <BuyButton onClick={handleBuyClick}>Comprar</BuyButton>
@@ -186,7 +171,7 @@ const Ad = () => {
                 <DescriptionTitle className='textHeading6600'>
                   Descrição
                 </DescriptionTitle>
-                <Description className='textbody1400'>{`${adData.description}`}</Description>
+                <Description className='textbody1400'>{`${adData?.description}`}</Description>
               </DescriptionContainer>
             </div>
 
@@ -196,20 +181,21 @@ const Ad = () => {
                   Fotos
                 </CarPhotosTitle>
                 <CarPhotosList>
-                  {adData.photos.map((photo) => (
-                    <CarPhotosListItem>
-                      <CarPhoto src={photo.photo_url}></CarPhoto>
+                  {adData?.photos.map((photo, index) => (
+                    <CarPhotosListItem key={photo.id}>
+                      <CarPhoto src={photo.photo_url} onClick={() => setOpenPhotoIndex(index)}></CarPhoto>
+                      {openPhotoIndex === index && <ModalOpenPhoto toggleModalOpenPhotos={toggleModalOpenPhotos} photo={photo.photo_url}/>}
                     </CarPhotosListItem>
                   ))}
                 </CarPhotosList>
               </CarPhotosContainer>
               <UserInfoContainer>
-                <UserInfoBalloon>{adData.user.name[0]}</UserInfoBalloon>
+                <UserInfoBalloon>{adData?.user.name[0]}</UserInfoBalloon>
                 <UserInfoName className='textHeading6600'>
-                  {adData.user.name}
+                  {adData?.user.name}
                 </UserInfoName>
                 <UserInfoDescription className='textbody1400'>
-                  {adData.user.description}
+                  {adData?.user.description}
                 </UserInfoDescription>
                 <UserInfoShowAdsButton onClick={() => userPage()}>
                   Ver todos os anúncios
@@ -221,12 +207,12 @@ const Ad = () => {
         <ContainerComments>
           {' '}
           <ul>
-            {adData.comments.length !== 0 ? (
+            {adData?.comments.length !== 0 ? (
               <h2>Comentários</h2>
             ) : (
               <h2>Sem Comentários</h2>
             )}
-            {adData.comments.map((comment) => (
+            {adData?.comments.map((comment) => (
               <Comment  key={uuidv4()}>
               <div>
                 <span>{getNameCharacters(comment.user?.name)}</span> <p>{comment.user?.name}</p>{" "}
