@@ -62,7 +62,7 @@ export const Card = ({ car, isOwner }: IPropsCar) => {
           <div> {car.model} </div>
         </div>
         <div className='second'>
-          <div className='ballon-name'>
+          <div className='balloon-name'>
             <span className='first-letters'>{getNameCharacters(car.user?.name)}</span>
           </div>
           <span>{car.user?.name}</span>
