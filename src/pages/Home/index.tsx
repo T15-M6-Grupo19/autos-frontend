@@ -4,17 +4,18 @@ import ListCards from '../../components/ListCards';
 import Button from '../../components/Button';
 import { Banner } from '../../components/Banner';
 import { Footer } from '../../components/Footer';
-import { NavBar } from '../../components/NavBar';
+import { NavBar, NavBarAdvertiser } from '../../components/NavBar';
 import FilterCars from '../../components/Filter';
 import { useContext } from 'react';
 import { CarContext } from '../../providers/CarContext';
 
 const Home = () => {
   const { searchResult, cars } = useContext(CarContext);
+  const token = localStorage.getItem('@TOKEN');
 
   return (
     <>
-      <NavBar />
+      {token ? <NavBarAdvertiser /> : <NavBar/>}
       <Banner />
       <MainStructure>
         <FilterCars />
