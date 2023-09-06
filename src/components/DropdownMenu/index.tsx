@@ -6,8 +6,8 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 
 export const DropdownMenu = forwardRef<
   HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
->((props, ref) => {
+  React.RefObject<HTMLDivElement>
+>((ref) => {
   const navigate = useNavigate();
   const { specificUser, getUserById, loading, userId  } = useContext(UserContext);
   const [userIsAdvertiser, setUserIsAdvertiser] = useState(false);
@@ -26,6 +26,7 @@ export const DropdownMenu = forwardRef<
   useEffect(() => {
     getLocalStorageItem();
     getUserById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogoutClick = () => {

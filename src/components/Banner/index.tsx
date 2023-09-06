@@ -10,7 +10,6 @@ import {
   TextStyle,
 } from "./style";
 import { CarContext } from "../../providers/CarContext";
-import { ModalCreate } from "../ModalCreate";
 
 export const Banner = () => {
   return (
@@ -29,7 +28,7 @@ export const Banner = () => {
 
 
 export const BannerColor = ({ name, account_type, description, isOwner }: { name: string; account_type: string, description: string , isOwner:boolean }) => {
-  const { openCreateModal, setOpenCreateModal, getNameCharacters } = useContext(CarContext);
+  const { setOpenCreateModal, getNameCharacters } = useContext(CarContext);
 
   return (
     <BannerColorStyle>
