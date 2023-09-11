@@ -1,42 +1,224 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
     :root {
-	--FeedbackAlert1: #cd2b31;
-	--FeedbackAlert2: #fdd8d8;
-	--FeedbackAlert3: #ffe5e5;
-	--FeedbackSucess1: #18794e;
-	--FeedbackSucess2: #ccebd7;
-	--FeedbackSucess3: #ddf3e4;
-	--ColorRandom1: #e34d8c;
-	--ColorRandom2: #c04277;
-	--ColorRandom3: #7d2a4d;
-	--ColorRandom4: #7000ff;
-	--ColorRandom5: #6200e3;
-	--ColorRandom6: #36007d;
-	--ColorRandom7: #349974;
-	--ColorRandom8: #2a7d5f;
-	--ColorRandom9: #153d2e;
-	--ColorRandom10: #6100ff;
-	--ColorRandom11: #5700e3;
-	--ColorRandom12: #30007d;
-	--ColorBrand1: #4529e6;
-	--ColorBrand2: #5126ea;
-	--ColorBrand3: #b0a6f0;
-	--ColorBrand4: #edeafd;
-	--GreyScale0: #0b0d0d;
-	--GreyScale1: #212529;
-	--GreyScale2: #495057;
-	--GreyScale3: #868e96;
-	--GreyScale4: #adb5bd;
-	--GreyScale5: #ced4da;
-	--GreyScale6: #dee2e6;
-	--GreyScale7: #e9ecef;
-	--GreyScale8: #f1f3f5;
-	--GreyScale9: #f8f9fa;
-	--GreyScale10: #fdfdfd;
-	--ColorsFixedWhiteFixed: #ffffff;
-}
+		--color-Alert1: #cd2b31;
+		--color-Alert2: #fdd8d8;
+		--color-Alert3: #ffe5e5;
+		--color-Sucess1: #18794e;
+		--color-Sucess2: #ccebd7;
+		--color-Sucess3: #ddf3e4;
+		--color-Random1: #e34d8c;
+		--color-Random2: #c04277;
+		--color-Random3: #7d2a4d;
+		--color-Random4: #7000ff;
+		--color-Random5: #6200e3;
+		--color-Random6: #36007d;
+		--color-Random7: #349974;
+		--color-Random8: #2a7d5f;
+		--color-Random9: #153d2e;
+		--color-Random10: #6100ff;
+		--color-Random11: #5700e3;
+		--color-Random12: #30007d;
+		--color-Brand1: #4529e6;
+		--color-Brand2: #5126ea;
+		--color-Brand3: #b0a6f0;
+		--color-Brand4: #edeafd;
+		--color-Grey0: #0b0d0d;
+		--color-Grey1: #212529;
+		--color-Grey2: 	   #495057;
+		--color-Grey3: 	   #868e96;
+		--color-Grey4: 	   #adb5bd;
+		--color-Grey5: 	   #ced4da;
+		--color-Grey6: 	   #dee2e6;
+		--color-Grey7: 	   #e9ecef;
+		--color-Grey8: 	   #f1f3f5;
+		--color-Grey9: 	   #f8f9fa;
+		--color-Grey10: 	   #fdfdfd;
+		--color-WhiteFixed:#ffffff;
+
+		--slider-Widht: 250px;
+
+
+	}
+
+	.textHeading1700 {
+		font-size: 4.4rem;
+		font-family: "Lexend";
+		font-weight: 700;
+		font-style: normal;
+		line-height: 56px;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading2600 {
+		font-size: 3.6rem;
+		font-family: "Lexend";
+		font-weight: 600;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading3500 {
+		font-size: 3.2rem;
+		font-family: "Lexend";
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading3600 {
+		font-size: 3.2rem;
+		font-family: "Lexend";
+		font-weight: 600;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading4600 {
+		font-size: 2.8rem;
+		font-family: "Lexend";
+		font-weight: 600;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading4500 {
+		font-size: 2.8rem;
+		font-family: "Lexend";
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading5500 {
+		font-size: 2.4rem;
+		font-family: "Lexend";
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading5600 {
+		font-size: 2.4rem;
+		font-family: "Lexend";
+		font-weight: 600;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading6500 {
+		font-size: 2rem;
+		font-family: "Lexend";
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading6600 {
+		font-size: 2rem;
+		font-family: "Lexend";
+		font-weight: 600;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading7500 {
+		font-size: 1.6rem;
+		font-family: "Lexend";
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textHeading7600 {
+		font-size: 1.6rem;
+		font-family: "Lexend";
+		font-weight: 600;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textInputLabel {
+		font-size: 1.4rem;
+		font-family: "Inter";
+		font-weight: 500;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textInputPlaceholder {
+		font-size: 1.6rem;
+		font-family: "Inter";
+		font-weight: 400;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textButtonBigText {
+		font-size: 1.6rem;
+		font-family: "Inter";
+		font-weight: 700;
+		font-style: normal;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textBody1400 {
+		font-size: 1.6rem;
+		font-family: "Inter";
+		font-weight: 400;
+		font-style: normal;
+		line-height: 28px;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textBody1600 {
+		font-size: 1.6rem;
+		font-family: "Inter";
+		font-weight: 700;
+		font-style: normal;
+		line-height: 28px;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textBody2400 {
+		font-size: 1.4rem;
+		font-family: "Inter";
+		font-weight: 400;
+		font-style: normal;
+		line-height: 24px;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+	.textBody2500 {
+		font-size: 1rem;
+		font-family: "Inter";
+		font-weight: 500;
+		font-style: normal;
+		line-height: 24px;
+		text-decoration: none;
+		text-transform: none;
+	}
+
+
 
     *{
         box-sizing: border-box;
@@ -46,12 +228,16 @@ export const GlobalStyles = createGlobalStyle`
         list-style: none;
         text-decoration: none;
 
+
     }
 
     button {
         cursor: pointer;
     }
 
-    
+	html body{
+		width: 100%;
+		height: 100vh;
+	}
 
 `;
