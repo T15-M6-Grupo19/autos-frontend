@@ -86,7 +86,6 @@ export function ModalCreate() {
       });
     }
     data.photos = photoArr;
-    console.log(data)
 
     try {
       const tokenParsed = JSON.parse(token)
@@ -95,11 +94,10 @@ export function ModalCreate() {
           Authorization: `Bearer ${tokenParsed}`,
         },
       });
-      setOpenCreateModal(false);
-      // window.location.reload();
+      setOpenCreateModal(false)
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
